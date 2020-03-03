@@ -1,0 +1,283 @@
+ <link rel="stylesheet" href="css/bt2.css">
+       <!-- bootstrap -->
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+		
+        <!-- fontawesome -->
+        <link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="css/style2.css">
+
+<div id="wrapper" data-spy="scroll" data-target="#spy" class="">
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper" class="">
+        <nav id="spy">
+            <ul class="sidebar-nav nav">
+                <li class="sidebar-brand active"> <a href="#home" class=""><i class="fa fa-user solo">admin</i></a>
+
+                </li>
+                <li class=""> <a href="#anch1" data-scroll="" class="">
+                            <i class="fa fa-anchor solo">   Anchor 1</i>
+                        </a>
+
+                </li>
+                <li class=""> <a href="#anch2" data-scroll="" class="">
+                            <i class="fa fa-pie-chart solo">   Chart Data</i>
+                        </a>
+
+                </li>
+                <li class=""> <a href="#anch3" data-scroll="" class="">
+                            <i class="fa fa-table solo">   Tabular Data</i>
+                        </a>
+
+                </li>
+                <li class=""> <a href="#anch4" data-scroll="" class="">
+                            <i class="fa fa-bar-chart solo">   Graphs</i>
+                        </a>
+
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <!-- Page content -->
+    <div id="page-content-wrapper" class="">
+        <div class="content-header">
+             <h1 id="home" class="">
+                    <a id="menu-toggle" href="#" class="btn btn-menu btn-lg toggle">
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </a>
+                    Admin Analysis Panel
+                </h1>
+
+        </div>
+        <div class="page-content inset">
+            <div class="row">
+                <div class="jumbotron text-center">
+                     <h1 class="">Admin Panel</h1>
+
+                    <p class="">This is a sidebar navigation responsive template built off of Bootstrap
+                        3.0 and simple sidebar template. It includes anchors, scroll spy, smooth
+                        scroll, and Awesome icon fonts.</p>
+                    <p class=""><a class="btn btn-default">Click On Me!</a>
+ <a class="btn btn-info">Tweet Me!</a>
+                    </p>
+                </div>
+            </div>
+            <div class="row well">
+                <div class="col-md-7">
+                    <legend id="anch1" class="">Create a room</legend>
+                    <div class="row main">
+				<div class="main-login main-center">
+				<h5>Fill all the fields below</h5>
+					<form class="uploadImage" method="post" action="/upload" enctype="multipart/form-data" id="formRoom">
+						
+						<div class="form-group">
+							<label for="name" class="cols-sm-2 control-label">Room name</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="name" id="name" placeholder="Enter room name">
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="email" class="cols-sm-2 control-label">Price</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-money fa" aria-hidden="true"></i></span>
+									<input type="number" class="form-control" name="price" id="price" placeholder="Price..">
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="username" class="cols-sm-2 control-label">Beds count</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+									<input type="number" class="form-control" name="beds" id="beds" placeholder="Number of beds">
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="password" class="cols-sm-2 control-label">Rating</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-star-half-full fa-lg" aria-hidden="true"></i></span>
+									<select name="rating" class="form-control" id="rating">
+                                    <option value="1">One star</option>
+                                    <option value="2">Two star</option>
+                                    <option value="3">Three star</option>
+                                    <option value="4">Four star</option>
+                                    <option value="5">Five star</option>
+                                    
+                                    </select>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="confirm" class="cols-sm-2 control-label">status</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+									<select name="status" class="form-control">
+                                    <option value="yes">YES</option>
+                                    <option value="no">NO</option>
+                                    
+                                    </select>
+								</div>
+							</div>
+                        </div>
+
+                        <div class="form-group">
+							<label for="confirm" class="cols-sm-2 control-label">Upload Image</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-upload fa-lg" aria-hidden="true"></i></span>
+									<input type="file"  name="img" class="form-control"/>
+								</div>
+							</div>
+						</div>
+                        
+                        <div class="form-group">
+							<label for="confirm" class="cols-sm-2 control-label">Complements</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></span>
+									<textarea name="complements" rows="4" cols="30" class="form-control">
+                                      </textarea>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="form-group ">
+							<input type="submit" class="btn btn-primary form-control" value="Create" id="submit"/>
+						</div>
+						
+					</form>
+				</div>
+			</div>
+                    
+                </div>
+                <div class="col-md-12 well">
+                    <legend id="anch2" class="">Tokken purchase charts</legend>
+                    <canvas id="mycanvas" width="256" height="256"></canvas>
+                        
+                              <canvas id="mycanvas1" width="256" height="256"></canvas>
+                              <canvas id="mycanvas2" width="256" height="256"></canvas>
+                </div>
+                <div class="col-md-12 well">
+                   
+                    <legend id="anch3" class="">Header Home page</legend>
+                    <form class="" method="post" action="/header" enctype="multipart/form-data" id="formRoom">
+						
+						<div class="form-group">
+							<label for="name" class="cols-sm-2 control-label">Line one</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="line1" id="name" placeholder="Set header line 1">
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="email" class="cols-sm-2 control-label">Line Two</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-money fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="line2" id="line2" placeholder="set line two header">
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="username" class="cols-sm-2 control-label">Select Image</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+									<input type="file" class="form-control" name="img" id="img" placeholder="select header">
+								</div>
+							</div>
+                        </div>
+                        <div class="form-group ">
+                                <input type="submit" class="btn btn-primary form-control" value="Create" id="submit"/>
+                            </div>
+                            
+                        </form>
+                    
+                </div>
+                <div class="col-md-12 well">
+                        
+                         <legend id="anch3" class="">Home page welcome info</legend>
+                         <form class="" method="post" action="/h2" enctype="multipart/form-data" id="formRoom">
+                             
+                             <div class="form-group">
+                                 <label for="name" class="cols-sm-2 control-label">Title</label>
+                                 <div class="cols-sm-10">
+                                     <div class="input-group">
+                                         <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                         <input type="text" class="form-control" name="title" id="name" placeholder="Set title">
+                                     </div>
+                                 </div>
+                             </div>
+     
+                             <div class="form-group">
+                                 <label for="email" class="cols-sm-2 control-label">Details</label>
+                                 <div class="cols-sm-10">
+                                     <div class="input-group">
+                                         <span class="input-group-addon"><i class="fa fa-money fa" aria-hidden="true"></i></span>
+                                         <textarea name="details" rows="4" cols="30" class="form-control">
+                                            </textarea>
+                                     </div>
+                                 </div>
+                             </div>
+     
+                             
+                             <div class="form-group ">
+                                     <input type="submit" class="btn btn-primary form-control" value="Create" id="submit"/>
+                                 </div>
+                                 
+                             </form>
+                         
+                     </div>
+            </div>
+           
+            </a>
+        </div><a href="#" target="_blank" class="">
+
+        </a>
+    </div><a href="#" target="_blank" class="">
+
+    </a>
+</div>
+        <!-- jquery library -->
+        <script src="js/jquery-1.11.2.min.js"></script>
+        <!-- bootstrap -->
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/form.js"></script>
+<script>
+   $('.uploadImage').submit(function(e){
+     e.preventDefault();
+     
+     var data =  $('.uploadImage').serialize();
+     
+     $(this).ajaxSubmit({
+       data: data,
+       contentType: 'application/json',
+       success: function(response){
+       
+      
+    $(this).closest('form').find("input[type=text], textarea").val("");
+
+    
+            
+       }
+   });
+     return false;
+});
+</script>

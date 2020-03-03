@@ -1,0 +1,187 @@
+ <!-- end header -->
+ <div class="row" style="margin-left:2%;margin-right:0%; margin-bottom:15%">
+    <div class="col-md-4">
+        <legend ng-if="!rm._id" id="anch1" class="">Create a room</legend>
+        <legend ng-if="rm._id" id="anch1" class="">Update room</legend>
+   
+        <form  onsubmit="return false"  id="frm" class="uploadImage" method="post" action="saveRoom" enctype="multipart/form-data" id="formRoom">
+            
+            <div class="form-group">
+                <label for="name" class="cols-sm-2 control-label">Room name</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                        <input type="text" ng-model="rm.name" class="form-control" name="name" id="name" placeholder="Enter room name">
+                        <input ng-if="rm"   type="text" ng-model="rm._id" class="form-control" name="id" id="id" placeholder="Enter room name">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+            <div class="form-group col-md-6">
+                <label for="email" class="cols-sm-2 control-label">Price</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-money fa" aria-hidden="true"></i></span>
+                        <input ng-model="rm.price" type="number" class="form-control" name="price" id="price" placeholder="Price..">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="username" class="cols-sm-2 control-label">Beds </label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                        <input ng-model="rm.beds"type="number" class="form-control" name="beds" id="beds" placeholder="Number of beds">
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="password" class="cols-sm-2 control-label">Rating</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-star-half-full fa-lg" aria-hidden="true"></i></span>
+                        <select class="form-control" ng-change="unitChanged()" ng-model="rm.rating">
+                            <option ng-selected="data.unit == item.id" ng-repeat="item in units" ng-value="item.id">{{item.label}}</option>
+                       </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="confirm" class="cols-sm-2 control-label">Vacant</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                        <select class="form-control" ng-change="unitChanged()" ng-model="rm.status">
+                            <option ng-selected="data.unit == item.id" ng-repeat="item in status" ng-value="item.id">{{item.label}}</option>
+                       </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="form-group">
+                <label for="confirm" class="cols-sm-2 control-label">Upload Image</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-upload fa-lg" aria-hidden="true"></i></span>
+                        <input type="file" fileread="rm.file"  name="img"  id="file" class="form-control"/>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="confirm" class="cols-sm-2 control-label">Complements</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></span>
+                        <textarea ng-model="rm.complements" name="complements" rows="2" cols="30" class="form-control">
+                          </textarea>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group ">
+                    <input ng-if="!rm._id"  type="button" class="form-control  btn btn-primary " value="Create" ng-click="update()" />
+                <div class="row">
+                        <input ng-if="rm._id" id="saveMe" type="button" class="col-md-4  btn btn-primary " value="Update" ng-click="update()" />
+
+                       
+                        <input ng-if="rm._id" id="saveMe" type="button" class="col-md-4  btn btn-primary " value="New" ng-click="new()" />
+                        <input ng-if="rm._id"  type="button" class=" col-md-4  btn btn-primary " value="Delete" ng-click="delete()" />
+                       
+                </div>
+               
+            </div>
+            
+        </form>
+    </div>
+    <div class="col-md-5"> 
+      <!-- start other detect room section -->
+<section class="other_room_area">
+    <div class="">
+        <div class="row">
+            <div class="other_room">
+                
+                <div class="section_content">
+                    <!-- start hotel booking -->
+                   
+                    <!-- end hotel booking -->
+
+                    <!-- start single room details -->
+                    <div class="accomodation_single_room">
+                        <div class="container">
+                            <div class="row">
+
+                                <div class="col-lg-3 col-md-3 col-sm-3" dir-paginate="room in rooms | itemsPerPage:8| filter:byRange('price', 0, range)">
+                                    <div class="single_room_wrapper clearfix padding-bottom-30">
+                                        <figure class="uk-overlay uk-overlay-hover">
+                                            <div class="room_media">
+                                                <a ><img src="{{room.img|wraps}}" style="height:120px; width:240px"  alt=""></a>
+                                            </div>
+                                            <div class="room_title border-bottom-whitesmoke clearfix">
+                                                    <div class="left_room_title floatleft">
+                                                        <h6>{{room.name}}</h6>
+                                                        <p>Ksh{{room.price}}/ <span>night</span></p>
+                                                    </div>
+                                                    <div class="left_room_title floatright">
+                                                        <a  class="btn" ng-click="manage(room)">Manage</a>
+                                                    </div>
+                                                </div>
+                                            <div class=" ng-hide uk-overlay-panel uk-overlay-background single_wrapper_details clearfix animated bounceInDown">
+                                                <div class="border-dark-1 padding-22 clearfix single_wrapper_details_pad">
+                                                    <h5>{{room.name}}</h5>
+                                                    <p>
+                                                       {{room.complements}}
+                                                    </p>
+                                                    
+                                                    <div class="single_room_cost clearfix">
+                                                        <div class="floatleft">
+                                                            <p>Ksh{{room.price}}/ <span>night</span></p>
+                                                        </div>
+                                                        <div class="floatright">
+                                                            <a  class="btn" ng-click="bookRoom(room)">Manage</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </figure>
+                                    </div>
+                                </div>
+                              
+                            </div>
+                            <div class="row">
+                                <nav class="text-center margin-top-1 margin-bottom-75">
+                                        <dir-pagination-controls
+                                       
+                                        max-size="5"
+                                        direction-links="true"
+                                        boundary-links="true" >
+                                        </dir-pagination-controls>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end single room details -->
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+<!-- end other detect room section -->
+    </div>
+</div>
+<hr style="width:90%"/>
+<br>
+<script>
+      $('#saveMe').click(function(e){
+     
+    
+});
+</script>

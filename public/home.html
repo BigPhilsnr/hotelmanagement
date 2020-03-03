@@ -1,0 +1,540 @@
+<style>
+    ::-webkit-inner-spin-button {
+        display: none;
+    }
+</style>
+<div id="home_one">
+
+
+
+    <!-- start main slider -->
+    <div class="main_slider_area">
+        <div class="main_slider" id="slider_rev">
+            <!-- start hotel booking -->
+            <div class="hotel_booking_area" id="menuX">
+                <div class="container">
+                    <div class="hotel_booking">
+                        <div>
+                            <form id="formx" role="form" action="#" class="">
+                                <div class="col-lg-2 col-md-2 col-sm-2">
+                                    <div class="room_book border-right-dark-1">
+                                        <h6>Book Your</h6>
+                                        <p>Tours</p>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-4 col-md-4 col-sm-4">
+                                    <div class="input-group border-bottom-dark-2">
+                                        <input name="from" ng-model="from" class="date-picker" id="datepicker"
+                                            placeholder="Arrival" type="date" />
+                                        <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-4 col-md-4 col-sm-4">
+                                    <div class="input-group border-bottom-dark-2">
+                                        <input ng-model="to" name="to" class="date-picker form-control" id="datepicker1"
+                                            placeholder="Departure" type="date" />
+                                        <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2">
+                                    <div class="row floatright">
+
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <a ng-click="search()" href="#!acc" class="btn btn-primary  "
+                                                value="Search"> Search</a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+
+                    </div>
+                    <!-- special offer start -->
+                    <div class="special_offer_main">
+                        <img src="img/special-offer-main.png" alt="">
+                    </div>
+                    <!-- end offer start -->
+                </div>
+            </div>
+            
+            <!-- end hotel booking -->
+            <div class="fullwidthbanner-container">
+                <div class="fullwidth_home_banner">
+                    <ul>
+                        <li data-transition="random" data-slotamount="7" data-masterspeed="9000">
+                            <img src="{{home.banner_image|wraps}}" alt="slide">
+                            <div class="tp-caption large_black sfr" data-x="105" data-y="197" data-speed="1200"
+                                data-start="1100" data-easing="easeInOutBack"
+                                style="font-family: 'Playfair Display', serif; font-size: 48px;color: white; margin-bottom: 23px; text-transform: uppercase; line-height: 40px;">
+                                {{home.Title1}}
+
+                            </div>
+                            <div class="tp-caption large_black sfr" data-x="105" data-y="255" data-speed="1500"
+                                data-start="1400" data-easing="easeInOutBack"
+                                style="font-family: 'Playfair Display', serif; font-size: 48px;color: white; margin-bottom: 23px; text-transform: uppercase; line-height: 40px;">
+                                {{home.Title2}}
+                            </div>
+                            <div class="tp-caption lfb carousel-caption-inner" data-x="105" data-y="313"
+                                data-speed="1300" data-start="1700" data-easing="easeInOutBack"
+                                style="background: #f7c411; padding: 10px; cursor: pointer;">
+                                <a class=""
+                                    style="background: #f7c411; border-radius: 0; color: #313a45; display: inline-block;  font-size: 18px; padding: 8px 34px; text-transform: uppercase; border: 1px solid #9e811a;">Explore
+                                    IT</a>
+                            </div>
+                        </li>
+
+                        <li data-transition="random" data-slotamount="7" data-masterspeed="1000">
+                            <img src="img/rev-slider/slider-one.jpg" alt="slide">
+                            <div class="tp-caption large_black sfr" data-x="105" data-y="197" data-speed="1200"
+                                data-start="1100" data-easing="easeInOutBack"
+                                style="font-family: 'Playfair Display', serif; font-size: 48px;color: #131e2a; margin-bottom: 23px; text-transform: uppercase; line-height: 40px;">
+                                Book Your Holidays Tour
+                            </div>
+                            <div class="tp-caption large_black sfr" data-x="105" data-y="255" data-speed="1500"
+                                data-start="1400" data-easing="easeInOutBack"
+                                style="font-family: 'Playfair Display', serif; font-size: 48px;color: #131e2a; margin-bottom: 23px; text-transform: uppercase; line-height: 40px;">
+                                Today
+                            </div>
+                            <div class="tp-caption lfb carousel-caption-inner" data-x="105" data-y="313"
+                                data-speed="1300" data-start="1700" data-easing="easeInOutBack"
+                                style="background: #f7c411; padding: 10px; cursor: pointer;">
+                                <a href="#!home" class=""
+                                    style="background: #f7c411; border-radius: 0; color: #313a45; display: inline-block;  font-size: 18px; padding: 8px 34px; text-transform: uppercase; border: 1px solid #9e811a;">Explore
+                                    IT</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end main slider -->
+
+    <!-- start welcome section -->
+    <section class="welcome_area">
+        <div class="container">
+            <div class="welcome">
+                <div class="section_title nice_title content-center">
+                    <br />
+                    <h3>{{home.welcomeTitle}}</h3>
+                </div>
+                <div class="section_description">
+                    <p> {{home.welcomeDetails}} </p>
+                </div>
+               
+            </div>
+        </div>
+    </section>
+    <!-- end welcome section -->
+
+    <!-- start Hotel Facilities section -->
+    <section class="hotel_facilities_area margin-top-115 margin-bottom-100"
+        style="background:image(img/hotel-facilities-bg.jpg)">
+        <div class="container">
+            <div class="hotel_facilities">
+                <div class="section_title nice_title content-center">
+                    <h3>OUR SAFARIS</h3>
+                </div>
+                <div class="hotel_facilities_content">
+                    <div role="tabpanel">
+
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" g-click="tab(1)" ng-class="{ 'active': no==1}">
+                                <a aria-controls="restaurant" role="tab" data-toggle="tab"><img
+                                        src="img/home-facilities-icon-eleven.png"
+                                        alt="restaurant"><span>South west</span></a>
+                            </li>
+                            <li role="presentation" ng-click="tab(2)" ng-class="{ 'active': no==2}">
+                                <a aria-controls="sports-club" role="tab" data-toggle="tab"><img
+                                        src="img/home-facilities-icon-seven.png"
+                                        alt="sports-club"><span>Great Rift</span></a>
+                            </li>
+                            <li role="presentation" ng-click="tab(3)" ng-class="{ 'active': no==3}">
+                                <a aria-controls="pick-up" role="tab" data-toggle="tab"><img
+                                        src="img/home-facilities-icon-eight.png" alt="pick-up"><span>Central</span></a>
+                            </li>
+
+                            <li role="presentation" ng-click="tab(4)" ng-class="{ 'active': no==4}">
+                                <a aria-controls="gym" role="tab" data-toggle="tab"><img
+                                        src="img/home-facilities-icon-ten.png" alt="gym"><span>Western</span></a>
+                            </li>
+                        </ul>
+
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" ng-class="{ 'active': no==1}" class="tab-pane" id="restaurant">
+                                <div class="single-tab-content">
+                                    <div class="row">
+                                        <div class="co-lg-5 col-md-5 col-sm-6">
+                                            <div class="single-tab-image">
+                                                <a href="#!home"><img src="img/hotel-facility-one.jpg" alt=""></a>
+                                            </div>
+                                        </div>
+                                        <div class="co-lg-7 col-md-7 col-sm-6">
+                                            <div class="single-tab-details">
+                                                <h6>The world class</h6>
+                                                <h3>South west Kenyan Safaris</h3>
+                                                <p>
+                                                    {{home.hf.rest}}
+                                                </p>
+                                                <div class="our_services">
+                                                    <a href="#!home" class="margin-right-33">Service Hours; 19.00-22:00
+                                                    </a>
+                                                    <a href="#!home">service charge : Ksh 15</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" ng-class="{ 'active': no==2}" class="tab-pane" id="sports-club">
+                                <div class="single-tab-content">
+                                    <div class="row">
+                                        <div class="co-lg-5 col-md-5">
+                                            <div class="single-tab-image">
+                                                <a href="#!home"><img src="img/hotel-facility-three.jpg" alt=""></a>
+                                            </div>
+                                        </div>
+                                        <div class="co-lg-7 col-md-7">
+                                            <div class="single-tab-details">
+                                                <h6>The world class</h6>
+                                                <h3>Great Rift Valley Safari</h3>
+                                                <p>
+                                                    {{home.hf.sc}}
+                                                </p>
+                                                <div class="our_services">
+                                                    <a href="#!home" class="margin-right-33">Service Hours; 19.00-22:00
+                                                    </a>
+                                                    <a href="#!home">service charge : Ksh 15</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" ng-class="{ 'active': no==3}" class="tab-pane" id="pick-up">
+                                <div class="single-tab-content">
+                                    <div class="row">
+                                        <div class="co-lg-5 col-md-5">
+                                            <div class="single-tab-image">
+                                                <a href="#!home"><img src="img/hotel-facility-one.jpg" alt=""></a>
+                                            </div>
+                                        </div>
+                                        <div class="co-lg-7 col-md-7">
+                                            <div class="single-tab-details">
+                                                <h6>The world class</h6>
+                                                <h3>Central Kenya Safaris</h3>
+                                                <p>
+                                                    {{home.hf.vallet}}
+                                                </p>
+                                                <div class="our_services">
+                                                    <a href="#!home" class="margin-right-33">Service Hours; 19.00-22:00
+                                                    </a>
+                                                    <a href="#!home">service charge : Ksh 15</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div role="tabpanel" ng-class="{ 'active': no==4}" class="tab-pane" id="gym">
+                                <div class="single-tab-content">
+                                    <div class="row">
+                                        <div class="co-lg-5 col-md-5">
+                                            <div class="single-tab-image">
+                                                <a href=><img src="img/hotel-facility-one.jpg" alt=""></a>
+                                            </div>
+                                        </div>
+                                        <div class="co-lg-7 col-md-7">
+                                            <div class="single-tab-details">
+                                                <h6>The world class</h6>
+                                                <h3>Western Kenya Safari </h3>
+                                                <p>
+                                                    {{home.hf.gym}}
+                                                </p>
+                                                <div class="our_services" id="mane">
+                                                    <a class="margin-right-33">Service Hours; 19.00-22:00 </a>
+                                                    <a>service charge : Ksh 1000</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end Hotel Facilities section -->
+
+    <!-- start About Us section -->
+    <section class="about_us_area margin-bottom-128">
+        <div class="container">
+            <div class="about_us clearfix">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 padding-left-0">
+                    <div class="news">
+                        <div class="section_title margin-bottom-50">
+                            <h5>News</h5>
+                        </div>
+                        <div class="section_description">
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                    <div ng-repeat="news in home.news"
+                                        class="single_content clearfix margin-top-35 border-bottom-whitesmoke">
+                                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-4 padding-left-0">
+                                            <div class="post_media">
+                                                <a><img src="{{news.src|wraps}}" style="height: 75px;width: 100px"
+                                                        alt=""></a>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-8 padding-left-0">
+                                            <div class="post_title clearfix">
+                                                <h6>{{news.title}}</h6>
+                                            </div>
+                                            <div class="post_content margin-bottom-35">
+                                                <p>{{news.date |film }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <div class="showcase">
+                        <div class="section_title margin-bottom-50">
+                            <h5>Our Tours Showcase</h5>
+                        </div>
+                        <div class="section_description">
+                            <div class="clearfix demo" style="">
+                                <ul id="vertical" class="gallery list-unstyled">
+                                    <li data-thumb="img/lightslider-img/cS-18.jpg">
+                                        <img alt="slider" src="img/cS-18.jpg" />
+                                    </li>
+                                    <li data-thumb="img/lightslider-img/cS-21.jpg">
+                                        <img alt="slider" src="img/lightslider-img/cS-21.jpg" />
+                                    </li>
+                                    <li data-thumb="img/lightslider-img/cS-22.jpg">
+                                        <img alt="slider" src="img/lightslider-img/cS-22.jpg" />
+                                    </li>
+                                    <li data-thumb="img/lightslider-img/cS-23.jpg">
+                                        <img alt="slider" src="img/lightslider-img/cS-23.jpg" />
+                                    </li>
+                                    <li data-thumb="img/lightslider-img/cS-24.jpg">
+                                        <img alt="slider" src="img/lightslider-img/cS-24.jpg" />
+                                    </li>
+                                    <li data-thumb="img/lightslider-img/cS-25.jpg">
+                                        <img alt="slider" src="img/lightslider-img/cS-25.jpg" />
+                                    </li>
+                                    <li data-thumb="img/lightslider-img/cS-26.jpg">
+                                        <img alt="slider" src="img/lightslider-img/cS-26.jpg" />
+                                    </li>
+                                    <li data-thumb="img/lightslider-img/cS-27.jpg">
+                                        <img alt="slider" src="img/lightslider-img/cS-27.jpg" />
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <div class="customer_says">
+                        <div class="section_title margin-bottom-50">
+                            <h5>Customer Says</h5>
+                        </div>
+                        <div class="section_description">
+                            <div id="customer_says_slider" class="carousel slide" data-ride="carousel"
+                                data-pause="none">
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner" role="listbox">
+                                    <div class="item active">
+                                        <div class="single_says">
+                                            <div class="customer_comment">
+                                                <p>
+                                                    Nice Hotel good room service and amenities
+                                                    <p>
+                                                        I enjoyed my stay here
+                                                    </p>
+                                            </div>
+                                            <div class="customer_detail clearfix">
+
+                                                <div class="customer_identity floatleft">
+                                                    <h6>John Doe</h6>
+                                                    <p>www.john.com</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item" ng-repeat="feed in home.feedback">
+                                        <div class="single_says">
+                                            <div class="customer_comment">
+                                                <p>
+                                                    {{feed.message}}
+                                                </p>
+                                            </div>
+                                            <div class="customer_detail clearfix">
+
+                                                <div class="customer_identity floatleft">
+                                                    <h6>{{feed.firstname}} {{feed.lastname}}</h6>
+                                                    <p>{{feed.email}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end About Us section -->
+
+    <!-- start contact us area -->
+    <section class="contact_us_area content-left">
+        <div class="container">
+            <div class="contact_us clearfix">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <div class="call clearfix">
+                        <h6>Call Us</h6>
+                        <p>+25478957854</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <div class="email_us clearfix">
+                        <h6>Email us</h6>
+                        <p>sales@maxtoursandsafaris.com </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <div class="social_icons clearfix">
+                        <ul>
+                            <li><a href="https://www.facebook.com/salientmagazine/"><i class="fa fa-facebook"> facebook
+                                        page</i></a></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end contact us area -->
+
+    <!-- start footer -->
+    <footer class="footer_area">
+        <div class="container">
+            <div class="footer">
+                <div class="footer_top padding-top-80 clearfix">
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div class="footer_widget">
+                            <div class="footer_logo">
+                                <a href="#!home"><img src="img/footer-logo-one.png" alt="img"></a>
+                            </div>
+                            <p> For maginificent suits world class service and elegant outdoor experience choose Maxwell safaris
+                            </p>
+                            <ul>
+                                <li>
+                                    <P><i class="fa fa-map-marker"></i> Off Nairobi Uganda road, <br> Kapsoya Estate
+                                        Eldoret</P>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div class="row">
+                            <div class="footer_widget clearfix">
+                                <h5 class="padding-left-15">Quick Links</h5>
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <ul>
+                                        <li><a>Rooms</a></li>
+                                        <li><a>Food & Drinks</a></li>
+                                        <li><a>Swimming Pool</a></li>
+
+                                    </ul>
+                                </div>
+                                <div class="col-lg-6 col-md-6 sol-sm-6">
+                                    <ul>
+                                        <li><a>Fitness</a></li>
+                                        <li><a>Network</a></li>
+                                        <li><a>Grow</a></li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div class="footer_widget">
+                            <h5>We Are Global</h5>
+                            <div class="footer_map">
+                                <a href="#!home"><img src="img/footer-map-two.jpg" alt="img"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="container">
+                        <div class="footer_copyright margin-tb-50 content-center">
+                            <p>© 2018 <a href="#!home">Salient Systems</a>. All rights reserved</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- end footer -->
+
+</div>
+<div id="chat"
+    style="transition: bottom 2s;position: fixed;height: 200px;width: 241px;background-color:#9e811a;bottom: -158px;right: 4px;z-index: 100;border-radius: 10px 10px 0 0;"
+    class="ng-scope">
+    <div
+        style="background-color: forestgreen;color:white;font-size: 13px;border-radius: 0px 10px 0px 0px;height: 41px;padding: 11px;">
+        Hi, find what you are looking for?
+    </div>
+</div>
+<!-- bootstrap -->
+<script src="js/bootstrap.min.js"></script>
+<!-- rev slider -->
+<script src="js/jquery.themepunch.plugins.min.js"></script>
+<script src="js/jquery.themepunch.revolution.js"></script>
+<script src="js/rs.home.js"></script>
+<!-- uikit -->
+<script src="js/uikit.min.js"></script>
+<!-- easing -->
+
+<!-- scroll up -->
+<script src="js/jquery.scrollUp.min.js"></script>
+<!-- owlcarousel -->
+<script src="js/owl.carousel.min.js"></script>
+<!-- lightslider -->
+<script src="js/lightslider.js"></script>
+
+<!-- wow Animation -->
+<script src="js/wow.min.js"></script>
+<!--Activating WOW Animation only for modern browser-->
+<!--[if !IE]><!-->
+<script type="text/javascript">
+    new WOW().init();
+</script>
+
+
+
+
+<!-- my js -->
+<script src="js/main.js"></script>

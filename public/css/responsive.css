@@ -1,0 +1,957 @@
+
+
+/* --------------------------------------------------------
+                    Start Medium Layout: 992px
+-----------------------------------------------------------*/
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+.container{
+    width: 970px;
+}
+
+/* ----------------------------------------
+                start booking page
+--------------------------------------------*/
+
+
+body#booking_page .star {
+  margin-bottom: 0;
+}
+.mainmenu .nav.navbar-nav > li > a {
+    padding: 14px 15px;
+}
+body#home_one .mainmenu .nav.navbar-nav > li > a{
+  padding: 14px 11px;
+  font-size: 13px;
+}
+#menu2.dropdown-menu > li > a, #menu1.dropdown-menu > li > a {
+  font-size: 11px;
+}
+.breadcrumb_main_area .special_offer_sub p, .breadcrumb_main_area .special_offer_sub h3 {
+    left: 15%;
+}
+.breadcrumb_main_area .special_offer_sub h3 {
+    left: 18%;
+}
+body#booking_page .facilities_name .section_title {
+  margin-bottom: 15px;
+}
+.breadcrumb_main_area .special_offer_sub h2 {
+    left: 23%;
+}
+.breadcrumb_main_area .special_offer_sub > span {
+    left: 39.5%;
+}
+.contact_us p {
+    font-size: 17px; 
+}
+.contact_us .news_letter > input {
+    font-size: 0.85em;
+}
+.contact_us .social_icons ul li a {
+    padding-left: 18px;
+}
+body#booking_page .single_facilities_name > li > img, body#room_detail_page .single_facilities_name > li > img {
+  margin-right: 2px;
+}
+body#booking_page .single_facilities_name > li > p, body#room_detail_page .single_facilities_name > li > p {
+  font-size: 12px;
+}
+
+
+/* ----------------------------------------
+                end booking page
+--------------------------------------------*/
+
+
+/* ----------------------------------------
+                start home page
+--------------------------------------------*/
+
+
+body#home_one .hotel_booking_area {
+  left: calc(50% - 485px);
+}
+body#home_one .special_offer_dbl_sub, body#home_two .special_offer_dbl_sub, body#about_us_page .special_offer_dbl_sub {
+  right: -20%;
+  width: 70%;
+}
+.hotel_booking {
+  padding: 26px 0px;
+}
+.hotel_booking_area input#datepicker, .hotel_booking_area input#datepicker1, .hotel_booking_area select#room, .hotel_booking_area select#adult, .hotel_booking_area select#child {
+  font-size: 11px;
+}
+.hotel_booking_area input#datepickerx, .hotel_booking_area input#datepickery, .hotel_booking_area select#room, .hotel_booking_area select#adult, .hotel_booking_area select#child {
+  font-size: 11px;
+}
+.icon_arrow::after {
+  font-size: 11px;
+}
+.hotel_facilities_content .nav-tabs > li > a {
+  padding: 10px 3px;
+  width: 106px;
+}
+body#home_two .special_offer_main {
+  right: calc(0% + -0.2%);
+}
+body#home_two .select_room .room_quality, body#accomodation_page .select_room .room_quality {
+  padding-right: 5px;
+}
+body#home_two .select_room .small_room_thumb .room_quality > h5, body#accomodation_page .select_room .small_room_thumb .room_quality > h5 {
+  font-size: 14px;
+}
+body#home_two .select_room .small_room_thumb .room_rent > p, body#accomodation_page .select_room .small_room_thumb .room_rent > p {
+  font-size: 13px;
+  padding-left: 6px;
+}
+a.btn.btn-black {
+    padding: 6px 12px;
+}
+body#home_one .single_wrapper_details h5, body#accomodation_page .single_wrapper_details h5 {
+  font-size: 16px;
+}
+body#home_one .single_wrapper_details p, body#accomodation_page .single_wrapper_details p {
+  font-size: 13px;
+  margin: 5px 0;
+}
+body#home_one .single_wrapper_details .single_room_cost p, body#accomodation_page .single_wrapper_details .single_room_cost p {
+  font-size: 15px;
+}
+body#home_one .single_wrapper_details .single_room_cost .btn, body#accomodation_page .single_wrapper_details .single_room_cost .btn {
+  margin-bottom: -56px;
+}
+
+
+
+
+/* ----------------------------------------
+                end home page
+--------------------------------------------*/
+
+
+/* ----------------------------------------
+                start about us page
+--------------------------------------------*/
+
+body#about_us_page .single_facilities_name > li > p {
+  font-size: 13px;
+}
+body#about_us_page .single_staff .uk-overlay-background, body#staff_page .single_staff .uk-overlay-background {
+  padding: 20px;
+}
+body#about_us_page .single_staff .single_staff_details span {
+  margin-bottom: 10px;
+}
+body#about_us_page .single_staff .single_staff_details span, body#staff_page .single_staff .single_staff_details span {
+  font-size: 15px;
+}
+body#about_us_page .single_staff .single_staff_details p, body#staff_page .single_staff .single_staff_details p {
+  font-size: 13px;
+}
+
+
+/* ----------------------------------------
+                end about us page
+--------------------------------------------*/
+
+
+/* ----------------------------------------
+                start accomodation page
+--------------------------------------------*/
+
+body#accomodation_page .range_slider .range input {
+  width: 43%;
+}
+
+/* ----------------------------------------
+                end accomodation page
+--------------------------------------------*/
+
+/* ----------------------------------------
+                start Gallery page
+--------------------------------------------*/
+body#gallery_page .other_room ul.nav-tabs > li > a {
+  padding: 2px 13px;
+}
+
+/* ----------------------------------------
+                end Gallery page
+--------------------------------------------*/
+
+.blog_text_box ul li {
+  margin-right: 3px;
+}
+.blog_text_box ul li a {
+  font-size: 12px;
+}
+body#single_blog_page .recent_post_details > h6 {
+  font-size: 13px;
+}
+
+
+
+}
+
+
+/* --------------------------------------------------------
+                   End Medium Layout: 992px
+-----------------------------------------------------------*/
+
+
+/* --------------------------------------------------------
+                    Start Tablet Layout: 768px
+-----------------------------------------------------------*/
+
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+.container{
+    width:750px;
+}
+.mainmenu .nav.navbar-nav > li > a {
+  font-size: 10px;
+  padding: 14px 10px;
+}
+#menu2.dropdown-menu > li > a, #menu1.dropdown-menu > li > a {
+  font-size: 8px;
+}
+body#home_one .mainmenu .nav.navbar-nav > li > a{
+  font-size: 9px;
+  padding: 14px 8.7px;
+}
+body#home_one .emergency_number a {
+  font-size: 12px;
+}
+.emergency_number a {
+  font-size: 12px;
+}
+body#home_one .header_login > ul > li > a {
+  font-size: 9px;
+}
+.breadcrumb_main_area .special_offer_sub {
+    left: 12%;
+}
+.breadcrumb_main_area .special_offer_sub p, .breadcrumb_main_area .special_offer_sub h3 {
+    left: 20%;
+}
+.breadcrumb_main_area .special_offer_sub h3 {
+  left: 22.7%;
+}
+.breadcrumb_main_area .special_offer_sub h2 {
+  left: 29.3%;
+}
+.breadcrumb_main_area .special_offer_sub > span {
+  left: 51%;
+}
+body#about_us_page .single_facilities_name > li:first-child, body#room_detail_page .single_facilities_name > li:first-child, body#booking_page .single_facilities_name > li:first-child {
+  margin-bottom: 10px;
+}
+.room_book h6 {
+  font-size: 13px;
+}
+.room_book p {
+  font-size: 20px;
+}
+.hotel_booking_area select > option {
+  padding: 5px;
+}
+.icon_arrow::after {
+  right: 16%;
+}
+.contact_us p {
+  font-size: 13px;
+}
+.contact_us .news_letter > input {
+  font-size: 8.4px;
+  line-height: 23px;
+  padding: 8px 1px;
+}
+.contact_us .news_letter > a.btn-blue {
+  right: 9%;
+  top: 28%;
+}
+.contact_us .social_icons ul li a {
+  padding-left: 9px;
+}
+.contact_us .social_icons ul li a i, body#contact_us_page .social_icons > ul > li > i {
+  font-size: 14px;
+}
+body#booking_page .facilities_name .section_title {
+  margin-bottom: 10px;
+}
+
+
+/* ----------------------------------------
+                start home page
+--------------------------------------------*/
+
+body#home_one .hotel_booking_area {
+  left: calc(50% - 375px);
+}
+.hotel_booking {
+  padding: 26px 0px;
+}
+.custdt{
+  background-color: rgba(0,0,0,0);  border: 0px;  margin-top: 8%;  color: navajowhite;
+}
+.hotel_booking_area input#datepicker, .hotel_booking_area input#datepicker1, .hotel_booking_area select#room, .hotel_booking_area select#adult, .hotel_booking_area select#child {
+  font-size: 13px;
+  height: 35px;
+}
+body#home_one .special_offer_dbl_sub, body#home_two .special_offer_dbl_sub, body#about_us_page .special_offer_dbl_sub {
+  right: 0%;
+  width: 95%;
+}
+body#home_one .welcome .left_room_title > h6, .accomodation_single_room .left_room_title > h6 {
+  font-size: 14px;
+}
+body#home_one .welcome .left_room_title > p, .accomodation_single_room .left_room_title > p {
+  font-size: 13px;
+}
+.hotel_facilities_content .nav-tabs > li > a {
+  width: 80px;
+  padding: 5px;
+  font-size: 11px;
+}
+.hotel_facilities_content .single-tab-details > h6 {
+  margin-bottom: 5px;
+  margin-top: 0px;
+}
+.hotel_facilities_content .single-tab-details > h3 {
+  margin-bottom: 10px;
+}
+.hotel_facilities_content .single-tab-details > p {
+  margin-bottom: 0px;
+  margin-top: 0;
+}
+body#home_one .hotel_facilities .our_services a {
+  margin-right: 17px;
+  font-size: 11px;
+}
+body#home_one .about_us .post_media > a, body#home_two .about_us .post_media > a {
+  display: inline-block;
+  margin-bottom: 10px;
+}
+div#customer_says_slider .customer_comment {
+  padding: 10px;
+}
+div#customer_says_slider .customer_comment > p {
+  padding-bottom: 0px;
+}
+body#home_one .about_us .post_content, body#home_two .about_us .post_content {
+  margin-bottom: 10px;
+}
+body#home_one .about_us .single_content, body#home_two .about_us .single_content {
+    margin-top: 10px;
+}
+body#home_one .about_us .news .post_title > h6, body#home_two .about_us .news .post_title > h6 {
+  font-size: 13px;
+}
+#menu1 {
+  top: 164.6%;
+}
+body#home_two .special_offer_main {
+  right: calc(0% + 0.5%);
+}
+body#home_two .select_room .room_details {
+  margin: 0 6px;
+}
+body#home_two .select_room .small_room_thumb .room_details, body#accomodation_page .select_room .small_room_thumb .room_details {
+  left: 0.5%;
+  padding: 5px;
+}
+body#home_two .select_room .room_quality, body#accomodation_page .select_room .room_quality {
+  padding-right: 3px;
+}
+body#home_two .select_room .small_room_thumb .room_quality > h5, body#accomodation_page .select_room .small_room_thumb .room_quality > h5 {
+  font-size: 11px;
+}
+body#home_two .select_room .small_room_thumb .room_rent > p, body#accomodation_page .select_room .small_room_thumb .room_rent > p {
+  font-size: 9px;
+  padding-left: 3px;
+}
+body#home_two .select_room .small_room_thumb .about_room, body#accomodation_page .select_room .small_room_thumb .about_room {
+  margin-top: 8px;
+}
+body#home_two .hotel_showcase .owl-carousel .owl-item a i, body#accomodation_page .hotel_showcase .owl-carousel .owl-item a i {
+  padding: 11px 0;
+}
+body#home_one .single_wrapper_details .single_wrapper_details_pad, body#accomodation_page .single_wrapper_details .single_wrapper_details_pad{
+  padding: 13px;
+}
+body#home_one .single_wrapper_details h5, body#accomodation_page .single_wrapper_details h5 {
+  font-size: 12px;
+}
+body#home_one .single_wrapper_details p, body#accomodation_page .single_wrapper_details p {
+  font-size: 9px;
+  margin: 6px 0;
+}
+body#home_one .single_wrapper_details .single_room_cost p, body#accomodation_page .single_wrapper_details .single_room_cost p {
+  font-size: 11px;
+}
+body#home_one .single_wrapper_details .single_room_cost p span, body#accomodation_page .single_wrapper_details .single_room_cost p span{
+  font-size: 9px;
+}
+body#home_one .single_wrapper_details .single_room_cost .btn, body#accomodation_page .single_wrapper_details .single_room_cost .btn {
+  font-size: 10px;
+  margin-bottom: -58px;
+  margin-right: -14px;
+}
+
+
+
+
+
+
+
+/* ----------------------------------------
+                end home page
+--------------------------------------------*/
+
+
+/* ----------------------------------------
+               start about us page
+--------------------------------------------*/
+
+
+body#about_us_page .single_facilities_name > li > img {
+  margin-right: 2px;
+}
+body#about_us_page .single_facilities_name > li > p {
+  font-size: 13px;
+}
+body#about_us_page .single_staff .uk-overlay-background, body#staff_page .single_staff .uk-overlay-background {
+  padding: 15px;
+}
+body#about_us_page .single_staff .single_staff_details h6, body#staff_page .single_staff .single_staff_details h6 {
+  font-size: 13px;
+}
+body#about_us_page .single_staff .single_staff_details span, body#staff_page .single_staff .single_staff_details span {
+  font-size: 13px;
+  margin-bottom: 0px;
+}
+body#about_us_page .single_staff .single_staff_details p, body#staff_page .single_staff .single_staff_details p {
+  font-size: 11px;
+  line-height: 15px;
+}
+body#about_us_page .single_staff .social_icons ul li a, body#staff_page .single_staff .social_icons ul li a {
+  margin: 5px 10px 5px 0;
+}
+body#about_us_page .single_staff .social_icons ul li a i, body#staff_page .single_staff .social_icons ul li a i {
+  font-size: 15px;
+}
+body#about_us_page .facilities_name .col-md-2, body#about_us_page .facilities_name .col-lg-2 {
+  width: 25%;
+}
+
+
+
+/* ----------------------------------------
+                end about us page
+--------------------------------------------*/
+
+
+/* ----------------------------------------
+                start accomodation page
+--------------------------------------------*/
+
+body#accomodation_page .range_slider span, body#accomodation_page .range_slider label {
+  font-size: 10px;
+}
+body#accomodation_page .range_slider .range input {
+  margin: 0 3px;
+  width: 40%;
+}
+
+/* ----------------------------------------
+                end accomodation page
+--------------------------------------------*/
+
+
+/* ----------------------------------------
+                start Gallery page
+--------------------------------------------*/
+
+body#gallery_page .other_room ul.nav-tabs > li > a {
+  padding: 2px 10px;
+}
+
+body#gallery_page .accomodation_single_room .demo {
+  margin-bottom: 30px;
+}
+
+/* ----------------------------------------
+                end Gallery page
+--------------------------------------------*/
+
+body#room_detail_page .room_detail_main .customer_says {
+  margin-top: 0;
+}
+.blog_text_box ul li {
+  margin-right: 3px;
+}
+.blog_text_box ul li a {
+  font-size: 9px;
+}
+body#single_blog_page .right_sidebar_area{
+    margin-top: 30px;
+}
+
+
+
+
+
+}
+
+
+/* --------------------------------------------------------
+                    End Tablet Layout: 768px
+-----------------------------------------------------------*/
+
+
+/* --------------------------------------------------------
+                    Start Mobile Layout: 320px
+-----------------------------------------------------------*/
+
+
+@media only screen and (max-width: 767px) {
+.container {
+    width:315px;
+}
+body#booking_page .facilities_name .section_title {
+  margin-bottom: 10px;
+}
+.right_header_top .nav.navbar-nav > li {
+  float: left;
+}
+.header_top_area a {
+  font-size: 9px;
+}
+.right_header_top .nav a {
+  padding: 0 5px;
+}
+.breadcrumb_main_area .special_offer_main {
+  width: 100%;
+  left: -11%;
+}
+.breadcrumb_main_area .special_offer_sub {
+  right: -21%;
+  top: -21%;
+}
+.breadcrumb_main_area .special_offer_sub p, .breadcrumb_main_area .special_offer_sub h3 {
+  left: 15.5%;
+}
+.breadcrumb_main_area .special_offer_sub h3 {
+  left: 17.5%;
+}
+.breadcrumb_main_area .special_offer_sub h2 {
+  left: 23.3%;
+}
+.breadcrumb_main_area .special_offer_sub > span {
+  left: 40%;
+}
+body#booking_page .booking ul.nav-tabs > li > a {
+  font-size: 11px;
+  padding: 10px;
+}
+body#booking_page .booking ul.nav-tabs > li > a > i {
+  padding: 11px 16px 11px 15px;
+}
+body#booking_page .booking_info_area .section_title{
+    margin-top: 23px;
+}
+body#about_us_page .single_facilities_name > li > img, body#room_detail_page .single_facilities_name > li > img, body#booking_page .single_facilities_name > li > img {
+  margin-right: 2px;
+}
+body#about_us_page .single_facilities_name > li > p, body#room_detail_page .single_facilities_name > li > p, body#booking_page .single_facilities_name > li > p {
+  font-size: 8px;
+}
+body#about_us_page .single_facilities_name > li:first-child, body#room_detail_page .single_facilities_name > li:first-child, body#booking_page .single_facilities_name > li:first-child {
+  margin-bottom: 0px;
+}
+body#booking_page .payment_info_area .right_pay_now {
+  margin-top: 35px;
+}
+body#booking_page .payment_info_area .payment_system ul li {
+  margin-bottom: 13px;
+}
+.contact_us_area {
+    text-align: center;
+}
+.contact_us_area .contact_us{
+    padding: 15px;
+}
+.contact_us_area .call, .contact_us_area .email_us, .contact_us_area .news_letter {
+    margin-bottom: 20px;
+}
+.contact_us_area .email_us p{
+    font-size: 18px;
+}
+.contact_us .news_letter > input {
+  font-size: 13.5px;
+}
+.contact_us .social_icons ul li a {
+  padding-left: 19px;
+}
+
+
+/* ----------------------------------------
+                start home page
+--------------------------------------------*/
+
+.mainmenu .navbar-brand {
+  padding: 0 5px 0 0;
+}
+.header_login ul{
+    padding: 0 0 0 5px;
+}
+.header_login > ul > li > a{
+    font-size: 11px;
+}
+.main_slider_area {
+ 
+}
+body#home_one .hotel_booking_area {
+  left: calc(50% - 150px);
+  top: calc( 0% + 128px );
+}
+body#home_one .hotel_booking .btn, body#home_two .hotel_booking .btn {
+  margin-top: 26px;
+  width: 100%;
+}
+body#home_one .special_offer_main {
+  height: auto;
+  right: 0%;
+  top: -35.5%;
+  width: 80px;
+}
+body#home_two .special_offer_main{
+    height: auto;
+    left: 0%;
+    top: 0%;
+    width: 100px;
+}
+body#home_one .welcome .section_description p {
+  font-size: 12px;
+}
+.hotel_facilities .nav.nav-tabs {
+  width: 100%;
+}
+.hotel_facilities_content .nav-tabs > li > a {
+  font-size: 8px;
+  height: auto;
+  padding: 1px;
+  width: 54px;
+}
+.hotel_facilities_content .single-tab-details > h3 {
+  font-size: 20px;
+}
+body#home_one .welcome .single_room_wrapper, body#home_two .welcome .single_room_wrapper {
+  margin-bottom: 30px;
+}
+body#home_one .about_us .post_media > a, body#home_two .about_us .post_media > a {
+  display: inline-block;
+  margin-bottom: 10px;
+}
+body#home_one .showcase, body#home_two .showcase {
+  margin-bottom: 70px;
+}
+
+body#home_two .main_slider_area {
+  padding-bottom: 100px;
+}
+body#home_two .select_room .select_room_content .room_thumb, body#accomodation_page .select_room .select_room_content .room_thumb{
+    margin-bottom: 35px;
+}
+body#home_two .select_room .room_details, body#home_two .select_room .small_room_thumb .room_details,  body#accomodation_page .select_room .room_details{
+  margin: 0 5px;
+  padding: 5px;
+}
+body#home_two .select_room .room_quality > h5, body#accomodation_page .select_room .room_quality > h5 {
+  font-size: 11px;
+}
+body#home_two .select_room .small_room_thumb .room_quality > h5, body#accomodation_page .select_room .small_room_thumb .room_quality > h5 {
+  font-size: 11px;
+}
+body#home_two .select_room .room_quality, body#accomodation_page .select_room .room_quality {
+  padding-right: 3px;
+}
+body#home_two .select_room .room_rent > p, body#accomodation_page .select_room .room_rent > p {
+  font-size: 8px;
+  padding-left: 3px;
+}
+a.btn.btn-black {
+  padding: 5px;
+  font-size: 10px;
+}
+body#home_two .select_room .small_room_thumb .about_room, body#home_two .select_room .room_thumb .about_room, body#accomodation_page .select_room .small_room_thumb .about_room {
+  margin-top: 4px;
+}
+body#home_two .select_room .small_room_thumb .room_details, body#accomodation_page .select_room .small_room_thumb .room_details {
+  left: 1%;
+}
+
+
+
+
+/* ----------------------------------------
+                end home page
+--------------------------------------------*/
+
+/* ----------------------------------------
+                start 404 page
+--------------------------------------------*/
+
+body#error_page .error {
+  padding-bottom: 100px;
+}
+body#error_page .error > p {
+  font-size: 150px;
+}
+body#error_page .btn.btn-warning {
+  margin-bottom: 50px;
+}
+
+
+/* ----------------------------------------
+                end 404 page
+--------------------------------------------*/
+
+
+/* ----------------------------------------
+                start about us page
+--------------------------------------------*/
+
+body#about_us_page .facilities_name .col-md-2, body#about_us_page .facilities_name .col-lg-2{
+    width: 50%;
+}
+body#about_us_page .single_facilities_name > li > p {
+  font-size: 8px;
+}
+body#about_us_page .hotel_stuff .single_staff {
+  margin-bottom: 30px;
+}
+body#about_us_page .single_facilities_name {
+  border-right: medium none;
+}
+
+
+/* ----------------------------------------
+                end about us page
+--------------------------------------------*/
+
+/* ----------------------------------------
+                start accomodation page
+--------------------------------------------*/
+
+
+body#accomodation_page .hotel_booking .btn {
+  width: 100%;
+}
+body#accomodation_page .single_room_wrapper .room_title {
+  border-bottom: none;
+}
+body#accomodation_page .accomodation_single_room .single_room_wrapper {
+  padding-bottom: 30px;
+}
+body#accomodation_page .breadcrumb_main.nice_title > h2{
+  font-size: 35px;
+}
+
+/* ----------------------------------------
+                end accomodation page
+--------------------------------------------*/
+
+
+/* ----------------------------------------
+                start Gallery page
+--------------------------------------------*/
+
+body#gallery_page .other_room ul.nav-tabs > li > a {
+  font-size: 13px;
+  padding: 5px;
+}
+body#gallery_page .accomodation_single_room .lSSlideWrapper.usingCss, body#gallery_page .accomodation_single_room .lSSlideOuter.vertical {
+  height: 250px !important;
+  margin-bottom: 35px;
+}
+.accomodation_single_room ul.pagination li a {
+  font-size: 10px;
+  padding: 10px;
+}
+
+/* ----------------------------------------
+                start room details page
+--------------------------------------------*/
+
+body#room_detail_page .breadcrumb_main.nice_title > h2 {
+  line-height: 40px;
+}
+body#room_detail_page .deluxe_room_detail .section_title h5 > span.price {
+  font-size: 16px;
+}
+
+
+/* ----------------------------------------
+                end room details page
+--------------------------------------------*/
+
+
+body#staff_page .facilities_main_part .single_staff {
+  margin-bottom: 30px;
+}
+body#single_blog_page ul.coments li ul li {
+  padding-left: 10px;
+}
+body#single_blog_page .comment_form input, body#single_blog_page .comment_form textarea {
+  width: 100%;
+}
+
+body#single_blog_page .recent_post_details > h6 {
+  font-size: 11px;
+}
+body#single_blog_page .recent_post_details > p {
+  font-size: 9px;
+}
+.comment_form {
+  margin-right: 0;
+}
+.sing_blog_heading ul li {
+  font-size: 9px;
+}
+.com_author_photo, .author_photo {
+  margin-bottom: 10px;
+}
+
+
+
+}
+
+
+/* --------------------------------------------------------
+                    End Mobile Layout: 320px
+-----------------------------------------------------------*/
+
+
+/* --------------------------------------------------------
+                    Start Wide Mobile Layout: 480px
+-----------------------------------------------------------*/
+
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+.container {
+    width:450px;
+}
+.mainmenu .nav.navbar-nav {
+  float: none;
+}
+.contact_us .news_letter > input{
+    text-align: center;
+}
+.contact_us .social_icons ul li a {
+  padding-left: 50px;
+}
+
+/* ----------------------------------------
+                start home page
+--------------------------------------------*/
+
+
+body#home_one .hotel_booking_area {
+  left: calc(50% - 225px);
+  top: calc( 0% + 195px );
+}
+body#home_one .special_offer_main {
+  top: -56.5%;
+  left: 70%;
+}
+.hotel_facilities_content .nav-tabs > li > a {
+  font-size: 12px;
+  width: 80px;
+}
+.hotel_facilities .nav.nav-tabs {
+  width: 95.3%;
+}
+.hotel_facilities_content .our_services > a{
+    margin-right: 7px;
+    font-size: 12px;
+}
+body#home_two .single_facities {
+  margin-bottom: 40px;
+}
+.room_thumb.small_room_thumb > a {
+  display: block;
+}
+body#home_two .room_thumb.small_room_thumb img, body#accomodation_page .room_thumb.small_room_thumb img {
+  height: auto;
+  width: 100%;
+}
+body#home_two .select_room .select_room_content .room_thumb {
+  margin-bottom: 40px;
+}
+body#home_one .welcome .single_room_wrapper, body#accomodation_page .accomodation_single_room .single_room_wrapper {
+  text-align: center;
+}
+
+
+
+/* ----------------------------------------
+                end home page
+--------------------------------------------*/
+
+
+/* ----------------------------------------
+                start 404 page
+--------------------------------------------*/
+
+body#error_page .error > p {
+  font-size: 240px;
+}
+
+/* ----------------------------------------
+                end 404 page
+--------------------------------------------*/
+
+
+/* ----------------------------------------
+                start about us page
+--------------------------------------------*/
+
+
+body#about_us_page .single_facilities_name > li > img {
+  margin-right: 10px;
+}
+body#about_us_page .single_facilities_name > li > p {
+  font-size: 13px;
+}
+
+
+
+/* ----------------------------------------
+                end about us page
+--------------------------------------------*/
+
+/* ----------------------------------------
+                start news page
+--------------------------------------------*/
+.style_blog_img_box > img {
+  height: auto;
+  width: 100%;
+}
+body#blog_page .b_link {
+  bottom: 0;
+}
+
+/* ----------------------------------------
+                end news page
+--------------------------------------------*/
+
+
+
+}
+
+
+
+/* --------------------------------------------------------
+                    End Wide Mobile Layout: 480px
+-----------------------------------------------------------*/

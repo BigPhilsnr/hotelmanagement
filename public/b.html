@@ -1,0 +1,261 @@
+
+<div class="row"><button class="btn btn-dark pull-right margin-right-33" ng-click="logOut()">logout </button>
+</div>
+<hr>
+<div class="row">
+    <div class="col-md-3">
+
+            <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">Booking</h3>
+                    </div>
+                    <div class="panel-body">
+                            <div class="col-lg-12 col-md-12 col-sm-12" ng-if="room.name">
+                                    <div class="single_room_wrapper clearfix padding-bottom-30">
+                                        <figure class="uk-overlay uk-overlay-hover">
+                                            <div class="room_media">
+                                                <a ><img src="{{room.img|wraps}}" style="height:120px; width:240px"  alt=""></a>
+                                            </div>
+                                            <div class="room_title border-bottom-whitesmoke clearfix">
+                                                    <div class="left_room_title floatleft">
+                                                        <h6>{{room.name}}</h6>
+                                                        <p>Ksh{{room.price}}/ <span>night</span></p>
+                                                    </div>
+                                                    <div class="left_room_title floatright">
+                                                        <a ng-if="currentBooking.paid==1"  class="btn btn-blue " ng-click="cancel()">Cancel</a>
+                                                        <a ng-if="currentBooking.paid==0" class="btn btn-danger" ng-click="approve()">Approve</a>
+                                                    </div>
+                                                </div>
+                                            <div class=" ng-hide uk-overlay-panel uk-overlay-background single_wrapper_details clearfix animated bounceInDown">
+                                                <div class="border-dark-1 padding-22 clearfix single_wrapper_details_pad">
+                                                    <h5>{{room.name}}</h5>
+                                                    <p>
+                                                       {{room.complements}}
+                                                    </p>
+                                                    
+                                                    <div class="single_room_cost clearfix">
+                                                        <div class="floatleft">
+                                                            <p>Ksh{{room.price}}/ <span>night</span></p>
+                                                        </div>
+                                                        <div class="floatright">
+                                                            <a  class="btn" ng-click="Cancel(room)">Cancel</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </figure>
+                                    </div>
+                                </div>
+                            <div>
+                            Booked by:{{user.firstname}}{{user.lastname}}
+                            <br>
+                            Time:{{currentBooking.date}}
+                            Expiry:{{currentBooking.to | cut:true:10:' '}}
+                            <hr>
+                            <b>Priviledges</b> <br>
+                            <span ng-repeat="p in currentBooking.expenses"> {{p.service}},</span>
+                            </div>
+                              
+                    </div>
+                  </div>
+        
+    </div>
+    <div class="col-md-9"><div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="row">
+                    <span class="panel-title">Hotel Bookings  
+                        </span>
+                <div class="col-md-5">
+                    <div class="row"></div>
+                    
+            <dir-pagination-controls
+            pagination-id="cust1"                       
+            max-size="5"
+            direction-links="true"
+            boundary-links="true" >
+            </dir-pagination-controls>
+        </div>
+                <div class="col-md-5 pull-right">  <input type="text" ng-model="searchx" class="pull-right form-control" placeholder="Search" name="" value="" ></div>
+            </div>
+          
+         
+        </div>
+        <div class="panel-body">
+          <table class="table table-striped">
+
+            <thead>
+                <th>id</th>
+                <th>Arrival</th>
+                <th>Depature</th>   
+                <th>room Id</th>
+                <th>User Id</th>        
+                <th> Amount</th>    
+                <th>Status</th>
+                <th>Date</th>   
+                <th>Operations</th>
+            </thead>
+            <tbody>
+                <tr  dir-paginate="booking in bookings | itemsPerPage:4|filter:searchx" pagination-id="cust1">
+                   <td>{{booking._id| cut:true:4:' ...'}}</td> 
+                   <td>{{booking.from | cut:true:10:' '}}</td> 
+                   <td>{{booking.to | cut:true:10:' '}}</td>
+                   <td>{{booking.roomId | cut:true:4:' ...'}}</td> 
+                   <td>{{booking.userId | cut:true:4:' ...'}}</td> 
+                   <td>{{booking.amount}}</td> 
+                   <td>{{booking.paid}}</td>  
+                   <td>{{booking.date}}</td>
+                   <td><button class=" btn btn-primary" ng-click="viewBooking(booking)">View </button>
+                    
+                </td>          
+                </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+     </div>
+</div>
+
+<div class="row">
+        <div class="col-md-3" >
+    
+                <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h3 class="panel-title">User</h3>
+                        </div>
+                        <div class="panel-body">
+                                <div class="col-md-12" ng-if="userc._id" >
+                                        <legend  id="anch1" class="">Update User</legend>
+                                       
+                                   
+                                        <form  onsubmit="return false"  id="frm" class="uploadImage" method="post" action="saveRoom" enctype="multipart/form-data" id="formRoom">
+                                            
+                                            <div class="form-group">
+                                                <label for="name" class="cols-sm-2 control-label">Name</label>
+                                                <div class="cols-sm-10">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                                        <input type="text" ng-model="userc.firstname" class="form-control" name="name" id="name" placeholder="First name">
+                                                        <input   type="text" ng-model="userc.lastname" class="form-control" name="id" id="id" placeholder="Last name">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                    <label for="name" class="cols-sm-2 control-label">Contacts</label>
+                                                    <div class="cols-sm-10">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                                            <input type="email" ng-model="userc.email" class="form-control" name="name" id="name" placeholder="email">
+                                                            <input   type="text" ng-model="userc.number" class="form-control" name="id"  placeholder="number">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <label for="password" class="cols-sm-2 control-label">With pet</label>
+                                                <div class="cols-sm-10">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-star-half-full fa-lg" aria-hidden="true"></i></span>
+                                                        <select class="form-control" ng-change="unitChanged()" ng-model="userc.withpet">
+                                                            <option ng-selected="data.unit == item.id" ng-repeat="item in status" ng-value="item.id">{{item.label}}</option>
+                                                       </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                
+                                            <div class="form-group col-md-6">
+                                                <label for="confirm" class="cols-sm-2 control-label">Parking</label>
+                                                <div class="cols-sm-10">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                                        <select class="form-control" ng-change="unitChanged()" ng-model="userc.parking">
+                                                            <option ng-selected="data.unit == item.id" ng-repeat="item in status" ng-value="item.id">{{item.label}}</option>
+                                                       </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                            
+                                            
+                                            <div class="form-group">
+                                                <label for="confirm" class="cols-sm-2 control-label">Request</label>
+                                                <div class="cols-sm-10">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></span>
+                                                        <textarea ng-model="userc.request" name="complements" rows="2" cols="30" class="form-control">
+                                                          </textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                
+                                
+                                            <div class="form-group ">
+                                                    <input  type="button" class="form-control  btn btn-primary " value="Update" ng-click="update()" />
+                                                
+                                               
+                                            </div>
+                                            
+                                        </form>
+                                    </div>
+                        <div>
+                               
+                      </div>
+                                  
+                        </div>
+             </div>
+            
+        </div>
+        <div class="col-md-9"><div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                        <span class="panel-title">Users 
+                            </span>
+                    <div class="col-md-5">
+                        <div class="row"></div>
+                        
+                <dir-pagination-controls
+                pagination-id="cust"                       
+                max-size="5"
+                direction-links="true"
+                boundary-links="true" >
+                </dir-pagination-controls>
+            </div>
+                    <div class="col-md-5 pull-right">  <input type="text" ng-model="search" class="pull-right form-control" placeholder="Search" name="" value="" ></div>
+                </div>
+              
+             
+            </div>
+            <div class="panel-body">
+              <table class="table table-striped">
+    
+                <thead>
+                    <th>id</th>
+                    <th>firstname</th>
+                    <th>lastname</th>   
+                    <th>email</th>
+                    <th>number</th>        
+                    <th>with pet </th>    
+                    <th>Parking</th>
+                    
+                    </thead>
+                <tbody>
+                    <tr  dir-paginate="usr in users | itemsPerPage:4|filter:search" pagination-id="cust">
+                       <td>{{usr ._id| cut:true:4:' ...'}}</td> 
+                       <td>{{usr.firstname}}</td> 
+                       <td>{{usr.lastname}}</td>
+                       <td>{{usr.email}}</td> 
+                       <td>{{usr.number}}</td> 
+                       <td>{{usr.withpet }}</td> 
+                       <td>{{usr.parking}}</td>  
+                      
+                       <td><button class=" btn btn-primary" ng-click="getUser(usr)">View </button>
+                        
+                    </td>          
+                    </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+         </div>
+    </div>
+

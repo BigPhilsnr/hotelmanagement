@@ -1,0 +1,541 @@
+<style>
+        ::-webkit-inner-spin-button { display: none; }
+        </style>
+<div id="booking_page">
+
+        
+       
+        
+        <!-- start breadcrumb -->
+        <section class="breadcrumb_main_area margin-bottom-80">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="breadcrumb_main nice_title">
+                        <h2>Booking</h2>
+                        <!-- special offer start -->
+                        <div class="special_offer_main">
+                            <div class="container">
+                                <div class="special_offer_sub">
+                                    <img src="img/special-offer-yellow-main.png" alt="imf">
+                                </div>
+                            </div>
+                        </div>         
+                        <!-- end offer start -->
+                    </div>
+                </div>
+            </div>            
+        </section>
+        <!-- end breadcrunb -->
+
+        <!-- start other detect room section -->
+        <section class="booking_area">
+            <div class="container">
+                <div class="booking">
+                    <div role="tabpanel">
+                      <!-- Nav tabs -->
+                      <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" ng-click="tab(0)" ng-class="{ 'active': no==0}" >
+                            <a  aria-controls="booking_info" role="tab" ><i>1</i><span>booking info</span></a>
+                        </li>
+                        <li ng-click="tab(1)" role="presentation" ng-class="{ 'active': no==1}">
+                            <a   role="tab" data-toggle="tab"><i>2</i><span>personal info</span></a>
+                        </li>
+                        <li ng-click="tab(2)" role="presentation" ng-class="{ 'active': no==2}">
+                            <a  aria-controls="payment_info" role="tab" data-toggle="tab"><i>3</i><span>payment info</span></a>
+                        </li>
+                        <li  id="lastone" ng-click="tab(3)"role="presentation" ng-class="{ 'active': no==3}">
+                            <a aria-controls="booking_done" role="tab" data-toggle="tab"><i>4</i><span>booking done</span></a>
+                        </li>
+                      </ul>
+
+                      <!-- Tab panes -->
+                      <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane " ng-class="{ 'active': no==0}" id="booking_info">
+                            <div class="booking_info_area">
+                                <div class="facilities_name clearfix margin-bottom-150 margin-top-70">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-5">
+                                            <img src="{{currentRoom.img|wraps}}"  alt="">
+                                        </div>
+                                        <div class="col-lg-9 col-md-9 col-sm-7">
+                                            <div class="row">
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="section_title clearfix margin-bottom-5">
+                                                        <h5 class="floatleft">{{currentRoom.name}}<span class="price floatright margin-left-15">(Ksh {{currentRoom.price}}<sup class="day">/night</sup>)</span></h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="star margin-bottom-20">
+                                                        <a href="#" ng-repeat="x in rating"><i class="fa fa-star"></i></a>
+                                                       
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 no-padding-left">
+                                                    <ul class="single_facilities_name clearul">
+                                                        <li ng-click="ser('Break fast',10)" ng-class="{ 'yangu': bf}" ng-model="bf">
+                                                            <img ng-click="bf=!bf" src="img/home-facilities-icon-one.png" alt="">
+                                                            <p ng-click="bf=!bf">Breakfast</p>
+                                                        </li>
+                                                        <li ng-click="ser('Room service',10)" ng-class="{ 'yangu': rs}" ng-model="rs">
+                                                            <img ng-click="rs=!rs" src="img/home-facilities-icon-four.png" alt="">
+                                                            <p ng-click="rs=!rs">Room service</p>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                                                    <ul class="single_facilities_name clearul">
+                                                        <li ng-click="ser('Laundry',10)" ng-class="{ 'yangu': ld}" ng-model="ld">
+                                                            <img  ng-click="ld=!ld"src="img/home-facilities-icon-two.png" alt="">
+                                                            <p ng-click="ld=!ld"> Laundry</p>
+                                                        </li>
+                                                        <li ng-click="ser('Gym facility',10)" ng-class="{ 'yangu': gf}" ng-model="gf">
+                                                            <img ng-click="gf=!gf" src="img/home-facilities-icon-ten.png" alt="">
+                                                            <p ng-click="gf=!gf">GYM facility</p>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                                                    <ul class="single_facilities_name clearul">
+                                                        <li ng-click="ser('Airport pickup',10)" ng-class="{ 'yangu': ap}" ng-model="ap">
+                                                            <img  ng-click="ap=!ap" src="img/home-facilities-icon-eight.png" alt="">
+                                                            <p ng-click="ap=!ap"> Airport pick up</p>
+                                                        </li>
+                                                        <li ng-click="ser('Computer Access',10)" ng-class="{ 'yangu': ca}" ng-model="ca">
+                                                            <img  ng-click="ca=!ca" src="img/home-facilities-icon-five.png" alt="">
+                                                            <p ng-click="ca=!ca">Comp Access</p>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                                                    <ul class="single_facilities_name clearul">
+                                                        <li ng-click="ser('Pet care',10)"  ng-class="{ 'yangu': pa}" ng-model="pa">
+                                                            <img ng-click="pa=!pa" src="img/home-facilities-icon-three.png" alt="">
+                                                            <p ng-click="pa=!pa">Pet Care</p>
+                                                        </li>
+                                                        <li ng-click="ser('Wi-fi service',10)"  ng-class="{ 'yangu': ws}" ng-model="ws">
+                                                            <img ng-click="ws=!ws" src="img/home-facilities-icon-twelve.png" alt="">
+                                                            <p ng-click="ws=!ws" >Wi-fi service</p>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <!-- start hotel booking -->
+                                        <div class="hotel_booking_area">
+                                            <div class="container">
+                                                <div class="hotel_booking margin-top-45">
+                                                    <form role="form" action="#" class="">
+                                                        <div class="col-lg-2 col-md-2 col-sm-2">
+                                                            <div class="room_book border-right-dark-1">
+                                                                <h6>total price</h6>
+                                                                <p>{{currentRoom.price*nights+expense}}Ksh</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-lg-3 col-md-3 col-sm-3">
+                                                            <div class="input-group border-bottom-dark-2">
+                                                                <input ng-model="from"  style="background-color: rgba(0,0,0,0);  border: 0px;  margin-top: 4%;  color: navajowhite; "  class="date-picker" id="datepicker3" placeholder="Arrival" type="date"/>
+                                                                <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group col-lg-3 col-md-3 col-sm-3">
+                                                            <div class="input-group border-bottom-dark-2">
+                                                                <input   style="background-color: rgba(0,0,0,0);  border: 0px;  margin-top: 4%;  color: navajowhite; "   ng-model="to" class="date-picker xd" id="datepicker4" placeholder="Departure" type="date"/>
+                                                                <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-4 col-md-4 col-sm-4">
+                                                            <div class="row">
+                                                                <div class="form-group col-lg-12 col-md-12 col-sm-12 ">
+                                                                        <div class="input-group border-bottom-dark-2">
+                                                                                <input  disabled="disabled" style="background-color: rgba(0,0,0,0);  border: 0px;  margin-top: 4%;  color: navajowhite; " value="{{currentRoom.beds}}  BED(S)"  class="datepickerx" id="datepickerx "  type="text"/>
+                                                                                <div class="input-group-addon"><i class="fa fa-suitcase"></i></div>
+                                                                            </div>
+                                                                </div>
+                                                               
+                                                                
+                                                               
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end hotel booking -->
+                                    </div>
+                                    <div class="row">
+                                        <div class="about_booking_room clearfix margin-top-30">
+                                            <div class="col-lg-7 col-md-7 col-sm-6">
+                                                <div class="booking_room_details">
+                                                    <p>
+                                                            The Hotel features a dedicated resident's lounge on the ground floor. The Bambara Lounge offers guests café service, newspapers and private seating 
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-5 col-md-5 col-sm-6">
+                                                <div class="room_cost">
+                                                    <div class="row">
+                                                        <div class="col-lg-12 col-md-12">
+                                                            <div class="table-responsive">
+                                                                <table class="table table-bordered">
+                                                                    <tr class="room_table">
+                                                                        <td class=""><span class="imp_table_text">1 Room</span> <br></td>
+                                                                        <td class=""><span class="imp_table_text">Ksh {{currentRoom.price}}</span> <br> rate</td>
+                                                                        <td class="">{{nights}}<br>night(s)</td>
+                                                                        <td class=""><span class="imp_table_text">{{currentRoom.price*nights}}Ksh </span></td>
+                                                                    </tr>
+                                                                    <tr class="tax_table">
+                                                                        <td class=""><span class="imp_table_text">tax</span> <br> 10% already inclusive</td>
+                                                                        <!-- <td class=""></td>
+                                                                        <td class=""></td> -->
+                                                                        <td class="" colspan="3"><span class="imp_table_text">{{currentRoom.price*nights/10}}Ksh </span></td>
+                                                                    </tr>
+                                                                    <tr class="total_table"ng-repeat="service in services">
+                                                                        <td class=""><span class="imp_table_text">{{service.service}}</span></td>                                                                        
+                                                                        <td class="" colspan="3"><span class="imp_table_text">{{service.amount}}Ksh </span></td>
+                                                                    </tr>
+                                                                    <tr class="total_table">
+                                                                        <td class=""><span class="imp_table_text">total</span></td>
+                                                                        <!-- <td class=""></td>
+                                                                        <td class=""></td> -->
+                                                                        <td class="" style="background: yellow" colspan="3"><span class="imp_table_text">{{currentRoom.price*nights+expense}}Ksh  </span></td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="booking_next_btn padding-top-30 margin-top-20 clearfix border-top-whitesmoke">
+                                                <a ng-click="goto()" class="btn btn-warning btn-sm floatright">Next</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" ng-class="{ 'active': no==1}"  id="personal_info">
+                            <div class="personal_info_area">
+                                <div class="hotel_booking_area">
+                                    <div class="hotel_booking margin-top-70 margin-bottom-125">
+                                        <form role="form" action="#" class="">
+                                            <div class="row">
+                                                <div class="form-group col-lg-4 col-md-4 col-sm-4 icon_arrow">
+                                                    <div class="input-group">
+                                                        <input  ng-model="firstname" type="text" class="form-control" placeholder="First Name">               
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-lg-4 col-md-4 col-sm-4 icon_arrow">
+                                                    <div class="input-group">
+                                                        <input type="text" ng-model="lastname" class="form-control" placeholder="Last Name">               
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-lg-4 col-md-4 col-sm-4 icon_arrow">
+                                                    <div class="input-group">
+                                                        <input ng-model="email"  style="text-transform:lowercase" type="email" class="form-control" placeholder="Email">               
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-lg-3 col-md-3 col-sm-3 icon_arrow">
+                                                    <div class="input-group">
+                                                        <input ng-model="number" type="number" class="form-control" placeholder="0728148643">               
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="form-group col-lg-3 col-md-3 col-sm-3 icon_arrow">
+                                                    <div class="input-group">
+                                                        <select class="form-control" name="room" id="parking_select">
+                                                          <option selected="selected" disabled="disabled">Parking</option>
+                                                          <option value="1">Yes</option>
+                                                          <option value="0">No</option>
+                                                         
+                                                        </select>               
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-lg-3 col-md-3 col-sm-3 icon_arrow">
+                                                    <div class="input-group">
+                                                        <select class="form-control" name="room" id="with_pet_select">
+                                                          <option selected="selected" disabled="disabled">with Pet</option>
+                                                          <option value="1">Yes</option>
+                                                          <option value="0">No</option>
+                                                          
+                                                        </select>               
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="container">
+                                                    <div class="form-group">
+                                                      <textarea  ng-model="specialRequest" class="form-control" rows="5" id="comment" placeholder="Any Specific request"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="booking_next_btn padding-top-30 margin-top-50 clearfix border-top-whitesmoke">
+                                                     
+                                                        <a ng-click="next()" class="btn btn-warning btn-sm floatright">Next</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" ng-class="{ 'active': no==2}" id="payment_info">
+                            <div class="payment_info_area">
+                                <div class="hotel_booking_area">
+                                    <div class="hotel_booking margin-top-70 margin-bottom-125">
+                                        <form role="form" action="#" class="">
+                                            <div class="row">
+                                                <div class="container">
+                                                    <div class="payment_info_details margin-bottom-50">
+                                                        <p>
+                                                            Enjoy fast and secure payments using Stripe, its fast its easy and it secure every payment is recorded and feedback send to user's email,
+                                                            all the details will be contained in the payment id for reference, Salient does not store credit card information 
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-lg-3 col-md-3 col-sm-3 icon_arrow">
+                                                    <div class="input-group">
+                                                        <input id="cardnumber_c" type="number" class="form-control" placeholder=" Enter Creadit Card Number">               
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-lg-3 col-md-3 col-sm-3 icon_arrow">
+                                                    <div class="input-group">
+                                                        <input id="cvc_c" type="number" class="form-control" placeholder="Enter Credit Card cvc">               
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-lg-3 col-md-3 col-sm-3 icon_arrow">
+                                                    <div class="input-group">
+                                                            <input id="month_c" type="number" class="form-control" placeholder="Credit Card expiry month">         
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-lg-3 col-md-3 col-sm-3 icon_arrow">
+                                                    <div class="input-group">
+                                                            <input id="year_c" type="number" class="form-control" placeholder="Credit Card expiry year">               
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="container">
+                                                    <div class="payment_system clearfix">
+                                                        <div class="left_payment_system clearfix floatleft">
+                                                            <ul class="clearul">
+                                                                <li><a href="#"><img src="img/american-express.png" alt=""></a></li>
+                                                                <li><a href="#"><img src="img/discover.png" alt=""></a></li>
+                                                                <li><a href="#"><img src="img/paypal.png" alt=""></a></li>
+                                                                <li><a href="#"><img src="img/visa.png" alt=""></a></li>
+                                                                <li><a href="#"><img src="img/maestro.png" alt=""></a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="right_pay_now floatright">
+                                                            <a ng-click="pay()" class="btn btn-warning btn-sm btn-success">Pay Now</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12 col-md-12">
+                                                    <div class="booking_next_btn padding-top-30 margin-top-40 clearfix border-top-whitesmoke">
+                                                        
+                                                       
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" ng-class="{ 'active': no==3}" id="booking_done">
+                            <div class="booking_done_area margin-top-65 margin-bottom-70">
+                                <div class="row">
+                                    <div class="col-lg-7 col-md-7 col-sm-6">
+                                        <div class="booking_done_info">
+                                            <p>
+                                                Your Room has been successfully reserved please check your email for the details and receipt, for any refund or mis payment call our contact numbers for assistance
+                                            </p>
+                                            <form role="form">
+                                                <div class="checkbox booking_done_confirmation">
+                                                  <a href="#"> <i class="fa fa-check-circle"></i> Your reservation was succefully submited!! </a>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5 col-md-5 col-sm-6">
+                                        <div class="room_cost">
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered">
+                                                    <tr class="room_table">
+                                                        <td class=""><span class="imp_table_text">1 Room</span> <br></td>
+                                                        <td class=""><span class="imp_table_text">Ksh {{currentRoom.price}}</span> <br> rate</td>
+                                                        <td class="">{{nights}}<br>night(s)</td>
+                                                        <td class=""><span class="imp_table_text">{{currentRoom.price*nights}}Ksh </span></td>
+                                                    </tr>
+                                                    <tr class="tax_table">
+                                                        <td class=""><span class="imp_table_text">tax</span> <br> 10% already inclusive</td>
+                                                        <!-- <td class=""></td>
+                                                        <td class=""></td> -->
+                                                        <td class="" colspan="3"><span class="imp_table_text">{{currentRoom.price*nights/10}}Ksh </span></td>
+                                                    </tr>
+                                                    <tr class="total_table" >
+                                                        <td class=""><span class="imp_table_text">Additional charges</span></td>                                                                        
+                                                        <td class="" colspan="3"><span class="imp_table_text">{{expense}}Ksh </span></td>
+                                                    </tr>
+                                                    <tr class="total_table">
+                                                        <td class=""><span class="imp_table_text">total</span></td>
+                                                        <!-- <td class=""></td>
+                                                        <td class=""></td> -->
+                                                        <td class="" style="background: yellow" colspan="3"><span class="imp_table_text">{{currentRoom.price*nights+expense}}Ksh </span></td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- end other detect room section -->
+
+
+        <!-- start contact us area -->
+    <section class="contact_us_area content-left">
+            <div class="container">
+                <div class="contact_us clearfix">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <div class="call clearfix">
+                            <h6>Call Us</h6>
+                            <p>+25478957854</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <div class="email_us clearfix">
+                            <h6>Email us</h6>
+                            <p>sales@maxtoursandsafaris.com </p>
+                        </div>
+                    </div>
+                  
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <div class="social_icons clearfix">
+                            <ul>
+                                <li><a href="https://www.facebook.com/salientmagazine/"><i class="fa fa-facebook"> facebook page</i></a></li>
+                               
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end contact us area -->
+    
+        
+    
+           <!-- start footer -->
+    <footer class="footer_area">
+            <div class="container">
+                <div class="footer">
+                    <div class="footer_top padding-top-80 clearfix">
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="footer_widget">
+                                <div class="footer_logo">
+                                    <a href="#"><img src="img/footer-logo-one.png" alt="img"></a>
+                                </div>
+                                <p> For maginificent suits world class service and elegant outdoor experience choose Maxwell safaris</p>
+                                <ul>
+                                    <li>
+                                        <P><i class="fa fa-map-marker"></i> Off Nairobi Uganda road, <br> Kapsoya Estate Eldoret</P>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="row">
+                                <div class="footer_widget clearfix">
+                                    <h5 class="padding-left-15">Quick Links</h5>
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <ul>
+                                            <li><a >Rooms</a></li>
+                                            <li><a >Food & Drinks</a></li>
+                                            <li><a >Swimming Pool</a></li>
+                                            
+                                        </ul>  
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 sol-sm-6">
+                                        <ul>
+                                            <li><a >Fitness</a></li>
+                                            <li><a >Network</a></li>
+                                            <li><a >Grow</a></li>
+                                           
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="footer_widget">
+                                <h5>We Are Global</h5>
+                                <div class="footer_map">
+                                    <a href="#"><img src="img/footer-map-two.jpg" alt="img"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="container">
+                            <div class="footer_copyright margin-tb-50 content-center">
+                                <p>© 2018 <a href="#">Salient Systems</a>. All rights reserved</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- end footer -->
+		
+		
+		
+        <!-- jquery library -->
+        <script src="js/jquery-1.11.2.min.js"></script>
+        <!-- bootstrap -->
+        <script src="js/bootstrap.min.js"></script>
+		
+      
+        <!-- easing -->
+		<script src="js/jquery.easing.1.3.min.js"></script>
+        
+        <!-- scroll up -->
+        <script src="js/jquery.scrollUp.min.js"></script>
+        <!-- owlcarousel -->
+        <script src="js/owl.carousel.min.js"></script>
+        <!-- lightslider -->
+        <script src="js/lightslider.js"></script>
+        <!-- wow Animation -->
+        <script src="js/wow.min.js"></script>
+        <!--Activating WOW Animation only for modern browser-->
+        <!--[if !IE]><!-->
+        <script type="text/javascript">new WOW().init();</script>
+        
+
+
+        <!-- my js -->
+        <script src="js/main.js"></script>
+		
+    </div>
+</div>

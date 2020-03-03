@@ -1,0 +1,372 @@
+<div class="row">
+
+    <div class="col-md-10 col-md-offset-1">
+        <div class="panel panel-default">
+            <div class="panel-heading"  ng-click="sh=!sh">
+                    <span class="panel-title">Home Content </span>
+                    <i class="fa fa-adjust pull-right "></i>
+            </div>
+            <div class="panel-body" ng-if="sh">
+                <div class="col-md-4" >
+                    <legend ng-if="!rm._id" id="anch1" class="">Header Banner</legend>
+             
+               
+                    <form  onsubmit="return false"  id="banner" class="uploadImage" method="post" action="saveBanner" enctype="multipart/form-data" id="formRoom">
+                        
+                        <div class="form-group">
+                            <label for="name" class="cols-sm-2 control-label">Header 1</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                    <input type="text"  class="form-control" name="line1" id="name" placeholder="Enter title1">
+                          
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="cols-sm-2 control-label">Header 2</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                    <input type="text"  class="form-control" name="line2" id="name" placeholder="Enter title 2">
+                                   
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirm" class="cols-sm-2 control-label">Select Image</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-upload fa-lg" aria-hidden="true"></i></span>
+                                    <input type="file"   name="img"  class="form-control"/>
+                                </div>
+                            </div>
+                        </div>
+                        
+                      
+            
+            
+                        <div class="form-group ">
+                            <div class="row">
+                                    <input  type="button" class=" col-md-3 btn btn-primary form-control" value="Update" ng-click="updateBanner()"/>
+
+                            </div>
+                           
+                        </div>
+                        
+                    </form>
+                </div>
+                <div class="col-md-4">
+                    <legend ng-if="!rm._id" id="anch1" class="">Welcome Message</legend>
+             
+               
+                    <form  onsubmit="return false"  id="welcome" class="uploadImage" method="post" action="saveRoom" enctype="multipart/form-data" id="formRoom">
+                        
+                        <div class="form-group">
+                            <label for="name" class="cols-sm-2 control-label">Heading</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                    <input ng-model="welcomeText.title" type="text" class="form-control" name="title" id="name" placeholder="Enter home title">
+                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm" class="cols-sm-2 control-label">Content</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></span>
+                                    <textarea ng-model="welcomeText.details"  name="details" rows="8" cols="30" class="form-control">
+                                      </textarea>
+                                </div>
+                            </div>
+                        </div>                                             
+                      
+            
+            
+                        <div class="form-group ">
+                            <div class="row">
+                                    <input  id="saveMe" type="button" class=" col-md-3 btn btn-primary " value="Update" ng-click="updateWelcome()" />
+            
+                                   
+                                   
+                            </div>
+                           
+                        </div>
+                        
+                    </form>
+                </div>
+                <div class="col-md-4">
+                    <legend ng-if="!rm._id" id="anch1" class="">Create news feed</legend>
+                   
+               
+                    <form  onsubmit="return false"  id="news" class="uploadImage" method="post" action="saveNews" enctype="multipart/form-data" id="formRoom">
+                        
+                        <div class="form-group">
+                            <label for="name" class="cols-sm-2 control-label">Title</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                    <input type="text" ng-model="name" class="form-control" name="title" placeholder="Enter title name">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    
+                        
+                  
+                        <div class="form-group">
+                            <label for="confirm" class="cols-sm-2 control-label">Upload Image</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-upload fa-lg" aria-hidden="true"></i></span>
+                                    <input type="file"  name="img"  id="file" class="form-control"/>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="confirm" class="cols-sm-2 control-label">News content</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></span>
+                                    <textarea ng-model="rm.complements" name="content" rows="6" cols="30" class="form-control">
+                                      </textarea>
+                                </div>
+                            </div>
+                        </div>
+            
+            
+                        <div class="form-group ">
+                                <input  type="button" class="form-control  btn btn-primary " value="Create" ng-click="updateNews()" />
+                            <div class="row">
+                                
+            
+                                   
+                                 
+                                    <input ng-if="rm._id" id="saveMe" type="submit" class="col-md-4  btn btn-primary " value="New" ng-click="new()" />
+                                    <input ng-if="rm._id"  type="submit" class=" col-md-4  btn btn-primary " value="Delete" ng-click="delete()" />
+                                   
+                            </div>
+                           
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+          </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-offset-1 col-md-10"> 
+    <div class="panel panel-default ">
+        <div class="panel-heading"  ng-click="sd=!sd">
+          <span class="panel-title">Hotel Facilities </span>
+          <i class="fa fa-pencil pull-right"></i>
+        </div>
+        <div class="panel-body"  ng-if="!sd">
+            <div class="row">
+                <div class="col-md-3">  
+                        <div class="form-group">
+                                <label for="confirm" class="cols-sm-2 control-label">Gym</label>
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></span>
+                                        <textarea ng-model="cms.gym"  name="details" rows="8" cols="30" class="form-control">
+                                          </textarea>
+                                    </div>
+                                </div>
+                            </div>     
+                </div>
+                <div class="col-md-3">  
+                        <div class="form-group">
+                                <label for="confirm" class="cols-sm-2 control-label">Restaurant</label>
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></span>
+                                        <textarea ng-model="cms.rest"  name="details" rows="8" cols="30" class="form-control">
+                                          </textarea>
+                                    </div>
+                                </div>
+                            </div>     
+                </div>
+                <div class="col-md-3">  
+                        <div class="form-group">
+                                <label for="confirm" class="cols-sm-2 control-label">Vallet</label>
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></span>
+                                        <textarea ng-model="cms.vallet"  name="details" rows="8" cols="30" class="form-control">
+                                          </textarea>
+                                    </div>
+                                </div>
+                            </div>     
+                </div><div class="col-md-3">  
+                        <div class="form-group">
+                                <label for="confirm" class="cols-sm-2 control-label">Sports Club</label>
+                                <div class="cols-sm-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></span>
+                                        <textarea ng-model="cms.sc"  name="details" rows="8" cols="30" class="form-control">
+                                          </textarea>
+                                    </div>
+                                </div>
+                            </div>     
+                </div>
+            </div>
+            
+        </div>
+        <div  class="panel-footer">
+                <button class="btn btn-primary" ng-click="updateHs()"> Update</button>
+        </div>
+        </div>
+    </div>
+    </div>
+    <div class="row">
+           
+    </div>
+</div>
+<hr>
+
+<div class="row">
+        <div class="col-md-3" >
+    
+                <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h3 class="panel-title">Feed back</h3>
+                          
+                        </div>
+                        <div class="panel-body">
+                                <div class="col-md-12" >
+                                                                              
+                                   
+                                        <form  onsubmit="return false"  id="frm" class="uploadImage" method="post" action="saveRoom" enctype="multipart/form-data" id="formRoom">
+                                            
+                                            <div class="form-group">
+                                                <label for="name" class="cols-sm-2 control-label">Name</label>
+                                                <div class="cols-sm-10">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                                        <input type="text" ng-model="em.firstname" class="form-control" name="name" id="name" placeholder="First name">
+                                                        <input   type="text" ng-model="em.lastname" class="form-control" name="id" id="id" placeholder="Last name">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                    <label for="name" class="cols-sm-2 control-label">Details</label>
+                                                    <div class="cols-sm-10">
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                                            <input type="email" ng-model="em.email" class="form-control" name="name" id="name" placeholder="email">
+                                                            <input   type="number" ng-model="em.phone" class="form-control" name="id"  placeholder="number">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                        <label for="confirm" class="cols-sm-2 control-label">Message</label>
+                                                        <div class="cols-sm-10">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></span>
+                                                                <textarea ng-model="em.message"  name="details" rows="4" cols="30" class="form-control">
+                                                                  </textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div> 
+
+                                                    <div class="form-group">
+                                                            <label for="confirm" class="cols-sm-2 control-label">Reply</label>
+                                                            <div class="cols-sm-10">
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></span>
+                                                                    <textarea ng-model="em.reply"  name="details" rows="4" cols="30" class="form-control">
+                                                                      </textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div> 
+                                        <div class="row">
+                                            <div class="form-group col-md-12">
+                                                
+                                                <div class="cols-sm-10">
+                                                    
+                                                </div>
+                                            </div>
+                                
+                                           
+                                        </div>
+                                            
+                                            
+                                        
+                                
+                                
+                                            <div class="form-group ">
+                                                    <input  type="button" class="form-control  btn btn-primary " value="reply" ng-click="reply()" />
+                                                    <input  type="button" class="form-control  btn btn-primary " value="Delete" ng-click="deleteRep()" />
+                                                
+                                               
+                                            </div>
+                                            
+                                        </form>
+                                    </div>
+                        <div>
+                               
+                      </div>
+                                  
+                        </div>
+             </div>
+            
+        </div>
+        <div class="col-md-9"><div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                        <span class="panel-title">Users 
+                            </span>
+                    <div class="col-md-5">
+                        <div class="row"></div>
+                        
+                <dir-pagination-controls
+                pagination-id="custcx"                       
+                max-size="5"
+                direction-links="true"
+                boundary-links="true" >
+                </dir-pagination-controls>
+            </div>
+                    <div class="col-md-5 pull-right">  <input type="text" ng-model="search" class="pull-right form-control" placeholder="Search" name="" value="" ></div>
+                </div>
+              
+             
+            </div>
+            <div class="panel-body">
+              <table class="table table-striped">
+    
+                <thead>
+                    <th>id</th>
+                    <th>firstname</th>
+                    <th>lastname</th>   
+                    <th>email</th>
+                    <th>number</th>        
+                    <th>message </th>    
+                    
+                    
+                    </thead>
+                <tbody>
+                    <tr  dir-paginate="usr in feedback | itemsPerPage:4|filter:search" pagination-id="cust">
+                       <td>{{usr ._id| cut:true:4:' ...'}}</td> 
+                       <td>{{usr.firstname}}</td> 
+                       <td>{{usr.lastname}}</td>
+                       <td>{{usr.email}}</td> 
+                       <td>{{usr.number}}</td> 
+                       <td>{{usr.message }}</td> 
+                       
+                      
+                       <td><button class=" btn btn-primary" ng-click="getFb(usr)">View </button>
+                        
+                    </td>          
+                    </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+         </div>
+    </div>

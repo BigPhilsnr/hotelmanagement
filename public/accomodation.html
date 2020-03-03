@@ -1,0 +1,278 @@
+ 
+        
+<div id="accomodation_page">
+        
+
+        <!-- start breadcrumb -->
+        <section class="breadcrumb_main_area margin-bottom-80">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="breadcrumb_main nice_title">
+                        <h2>Accomodation</h2>
+                        <!-- special offer start -->
+                        <div class="special_offer_main">
+                            <div class="container">
+                                <div class="special_offer_sub">
+                                    <img src="img/special-offer-yellow-main.png" alt="imf">
+                                </div>
+                            </div>
+                        </div>         
+                        <!-- end offer start -->
+                    </div>
+                </div>
+            </div>            
+        </section>
+        <!-- end breadcrunb -->
+        
+        
+        
+
+
+        <!-- start other detect room section -->
+        <section class="other_room_area">
+            <div class="container">
+                <div class="row">
+                    <div class="other_room">
+                        <div class="section_title nice_title content-center">
+                            <h3>Select Your Room</h3>
+                        </div>
+                        <div class="section_content">
+                            <!-- start hotel booking -->
+                            <div class="hotel_booking_area">
+                                <div class="container">
+                                    <div class="hotel_booking margin-bottom-30">
+                                        <form id="form1" role="form" action="accomodation.html#" class="">
+                                            <div class="col-lg-2 col-md-2 col-sm-2">
+                                                <div class="room_book border-right-dark-1">
+                                                    <h6>Book Your</h6>
+                                                    <p>Rooms</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                <div class="row">
+                                                   
+                                                    <div class="form-group col-lg-6 col-md-6 col-sm-6 icon_arrow">
+                                                        <div class="input-group border-bottom-dark-2">
+                                                            <select class="form-control" name="room" id="rating">
+                                                              
+                                                              <option  selected="selected" value="1">One Star</option>
+                                                              <option value="2">Two Star</option>
+                                                              <option value="3">three Star</option>
+                                                              <option value="4">Four Star</option>
+                                                              <option value="5">Five Star</option>
+                                                             
+                                                            </select>               
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-lg-6 col-md-6 col-sm-6 icon_arrow">
+                                                        <div class="input-group border-bottom-dark-2">
+                                                            <select class="form-control" name="room" id="child">
+                                                              
+                                                              <option  selected="selected" value="1">Single Bed</option>
+                                                              <option value="2">2 Beds</option>
+                                                              <option value="3">3 Beds</option>
+                                                              <option value="4">4 Beds</option>
+                                                              
+                                                            </select>               
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-lg-2 col-md-2 col-sm-2">
+                                                <div class="input-group range_slider">
+                                                      <div data-role="rangeslider">
+                                                        <span>Price Range:Ksh </span>
+                                                        <label>5 - {{range}}</label>
+                                                        <div class="range">
+                                                            <span class="floatleft">5Ksh </span><span class="floatright">500Ksh </span>
+                                                            <input ng-model="range" class="margin-rl-5" type="range" name="price-min" id="price-min" value="10" min="50" max="5000">
+                                                        </div>
+                                                      </div>        
+                                                </div>
+                                            </div>                  
+                                            <div class="col-lg-2 col-md-2 col-sm-2 clearfix">
+                                                <a class="btn btn-warning btn-md floatright" ng-click="filter()">Filter</a>
+                                            </div>
+                                            
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end hotel booking -->
+
+                            <!-- start single room details -->
+                            <div class="accomodation_single_room">
+                                <div class="container">
+                                    <div class="row">
+
+                                        <div class="col-lg-3 col-md-3 col-sm-3" dir-paginate="room in rooms | itemsPerPage:8| filter:byRange('price', 0, range)">
+                                            <div class="single_room_wrapper clearfix padding-bottom-30">
+                                                <figure class="uk-overlay uk-overlay-hover">
+                                                    <div class="room_media">
+                                                        <a href="accomodation.html#"><img src="{{room.img|wraps}}" style="height:150px; width:300px"  alt=""></a>
+                                                    </div>
+                                                    <div class="room_title border-bottom-whitesmoke clearfix">
+                                                            <div class="left_room_title floatleft">
+                                                                <h6>{{room.name}}</h6>
+                                                                <p>Ksh {{room.price}}/ <span>night</span></p>
+                                                            </div>
+                                                            <div class="left_room_title floatright">
+                                                                <a href="accomodation.html#" class="btn">Book</a>
+                                                            </div>
+                                                        </div>
+                                                    <div class="uk-overlay-panel uk-overlay-background single_wrapper_details clearfix animated bounceInDown">
+                                                        <div class="border-dark-1 padding-22 clearfix single_wrapper_details_pad">
+                                                            <h5>{{room.name}}</h5>
+                                                            <p>
+                                                               {{room.complements}}
+                                                            </p>
+                                                            
+                                                            <div class="single_room_cost clearfix">
+                                                                <div class="floatleft">
+                                                                    <p>Ksh {{room.price}}/ <span>night</span></p>
+                                                                </div>
+                                                                <div class="floatright">
+                                                                    <a href="#!book" class="btn" ng-click="bookRoom(room)">Book</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </figure>
+                                            </div>
+                                        </div>
+                                      
+                                    </div>
+                                    <div class="row">
+                                        <nav class="text-center margin-top-65 margin-bottom-75">
+                                                <dir-pagination-controls
+                                               
+                                                max-size="5"
+                                                direction-links="true"
+                                                boundary-links="true" >
+                                                </dir-pagination-controls>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end single room details -->
+
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+        <!-- end other detect room section -->
+
+
+         <!-- start contact us area -->
+    <section class="contact_us_area content-left">
+            <div class="container">
+                <div class="contact_us clearfix">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <div class="call clearfix">
+                            <h6>Call Us</h6>
+                            <p>+25478957854</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <div class="email_us clearfix">
+                            <h6>Email us</h6>
+                            <p>sales@maxtoursandsafaris.com </p>
+                        </div>
+                    </div>
+                  
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <div class="social_icons clearfix">
+                            <ul>
+                                <li><a href="https://www.facebook.com/salientmagazine/"><i class="fa fa-facebook"> facebook page</i></a></li>
+                               
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end contact us area -->
+    
+        
+    
+           <!-- start footer -->
+    <footer class="footer_area">
+            <div class="container">
+                <div class="footer">
+                    <div class="footer_top padding-top-80 clearfix">
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="footer_widget">
+                                <div class="footer_logo">
+                                    <a href="#"><img src="img/footer-logo-one.png" alt="img"></a>
+                                </div>
+                                <p> For maginificent suits world class service and elegant outdoor experience choose Maxwell safaris</p>
+                                <ul>
+                                    <li>
+                                        <P><i class="fa fa-map-marker"></i> Off Nairobi Uganda road, <br> Kapsoya Estate Eldoret</P>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="row">
+                                <div class="footer_widget clearfix">
+                                    <h5 class="padding-left-15">Quick Links</h5>
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <ul>
+                                            <li><a >Rooms</a></li>
+                                            <li><a >Food & Drinks</a></li>
+                                            <li><a >Swimming Pool</a></li>
+                                            
+                                        </ul>  
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 sol-sm-6">
+                                        <ul>
+                                            <li><a >Fitness</a></li>
+                                            <li><a >Network</a></li>
+                                            <li><a >Grow</a></li>
+                                           
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                            <div class="footer_widget">
+                                <h5>We Are Global</h5>
+                                <div class="footer_map">
+                                    <a href="#"><img src="img/footer-map-two.jpg" alt="img"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="container">
+                            <div class="footer_copyright margin-tb-50 content-center">
+                                <p>© 2018 <a href="#">Salient Systems</a>. All rights reserved</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- end footer -->
+		
+    </div>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- rev slider -->
+    <script src="js/jquery.themepunch.plugins.min.js"></script>
+    <script src="js/jquery.themepunch.revolution.js"></script>
+ 
+   
+   
+    <!-- scroll up -->
+   
+  
+    
+		
+		
+		
+       
+       

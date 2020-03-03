@@ -1,0 +1,559 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Hotel Booking</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" href="favicon.ico" sizes="16x16">
+
+        <!-- fonts -->
+		<link href='css.css' rel='stylesheet' type='text/css'>
+        <link href='css_3.css' rel='stylesheet' type='text/css'>
+        <link href='css_2.css' rel='stylesheet' type='text/css'>
+
+      <link rel="icon" href="img/favicon.ico" sizes="16x16">
+		
+        <!-- fonts -->
+		<link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,900' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Karla:700,400' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Lora:400,700' rel='stylesheet' type='text/css'>
+
+       
+
+        <!-- bootstrap -->
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+         <!-- fontawesome -->
+		<link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+        <!-- uikit -->
+        <link rel="stylesheet" href="css/uikit.min.css" />
+
+        <!-- animate -->
+        <link rel="stylesheet" href="css/animate.css" />
+        <link rel="stylesheet" href="css/datepicker.css" />
+        <!-- Owl carousel 2 css -->
+        <link rel="stylesheet" href="css/owl.carousel.css">
+        <!-- rev slider -->
+        <link rel="stylesheet" href="css/settings.css" />
+        <!-- lightslider -->
+        <link rel="stylesheet" href="css/lightslider.css">
+        <!-- Theme -->
+        <link rel="stylesheet" href="css/reset.css">
+        
+        <!-- custom css -->
+		<link rel="stylesheet" href="css/style.css" />
+        <!-- responsive -->
+		<link rel="stylesheet" href="css/responsive.css" />
+
+
+    </head>
+    <body id="accomodation_page">
+
+        
+        <!-- start header -->
+        <header class="header_area">
+
+            <!-- start header top -->
+            <div class="header_top_area">
+                <div class="container">
+                    <div class="row">
+                        <div class="header_top clearfix">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+                                <div class="left_header_top">
+                                    <ul>
+                                        <li><a href="accomodation.html#"><img src="img/temp-icon.png" alt="temp-icon">Eldoret SALIENT HOTEL</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 floatright">
+                                <div class="right_header_top clearfix floatright">
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li class="">
+                                            <a class="border-right-dark-4" href="/login">log out</a></li>
+                                        <li role="presentation" class="dropdown">
+                                            <a id="drop1" href="/login" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
+                                              Admin
+                                              <span class="caret"></span>
+                                            </a>
+                                            <!-- <ul id="menu2" class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                                              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                                              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                                            </ul> -->
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end header top  -->
+
+            <!-- start main header -->
+            <div class="main_header_area">
+                <div class="container">
+                    <!-- start mainmenu & logo -->
+                    <div class="mainmenu">
+                        <div id="nav">
+                            <nav class="navbar navbar-default">
+                                <!-- Brand and toggle get grouped for better mobile display -->
+                                <div class="navbar-header">
+                                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                  </button>
+                                  <div class="site_logo fix">
+                                      <a id="brand" class="clearfix navbar-brand" href="index.html"><img src="img/site-logo.png" alt="Trips"></a>
+                                      <!-- <div class="header_login floatleft">
+                                          <ul>
+                                              <li><a href="#">Login</a></li>
+                                              <li><a href="#">Register</a></li>
+                                          </ul>
+                                      </div>   -->         
+                                  </div>
+                                </div>
+
+                                <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+                                  <ul class="nav navbar-nav">
+                                    <li role="presentation" class="dropdown">
+                                        <a id="drop-one" href="accomodation.html#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
+                                          Home
+                                        </a>
+                                        <ul id="menu1" class="dropdown-menu" role="menu">
+                                          <li role="presentation"><a role="menuitem" tabindex="-1" href="index-two.html">Home Page two</a></li>
+                                        </ul>
+                                    </li>        
+                                    <li><a href="accomodation.html">Accomodation</a></li>
+                                    <li><a href="gallery.html">Gallery</a></li>
+                                    <li role="presentation" class="dropdown">
+                                        <a id="drop2" href="accomodation.html#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
+                                          Features
+                                        </a>
+                                        <ul id="menu2" class="dropdown-menu" role="menu">
+                                          <li role="presentation"><a role="menuitem" tabindex="-1" href="about-us.html">About US</a></li>
+                                          <li role="presentation"><a role="menuitem" tabindex="-1" href="booking.html">Booking</a></li>
+                                          <li role="presentation"><a role="menuitem" tabindex="-1" href="room-details.html">Room Details</a></li>
+                                          <li role="presentation"><a role="menuitem" tabindex="-1" href="staff.html">Our Staff</a></li>
+                                          <li role="presentation"><a role="menuitem" tabindex="-1" href="404.html">404 Page</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="blog.html">News</a></li>
+                                    <li><a href="contact-us.html">Contacts</a></li>
+                                  </ul>
+                                  <div class="emergency_number">
+                                      <a href="tel:1234567890"><img src="img/call-icon.png" alt="">Admin Panel</a>
+                                  </div>
+                                </div><!-- /.navbar-collapse -->
+                            </nav>
+                        </div>
+                    </div>
+                    <!-- end mainmenu and logo -->
+                </div>
+            </div>
+            <!-- end main header -->
+
+        </header>
+        <!-- end header -->
+        <div class="row" style="margin-left:20%; margin-bottom:15%">
+            <div class="col-md-7">
+                <legend id="anch1" class="">Create a room</legend>
+                <div class="row main">
+            <div class="main-login main-center">
+            <h5>Fill all the fields below</h5>
+                <form class="uploadImage" method="post" action="/upload" enctype="multipart/form-data" id="formRoom">
+                    
+                    <div class="form-group">
+                        <label for="name" class="cols-sm-2 control-label">Room name</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="name" id="name" placeholder="Enter room name">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="cols-sm-2 control-label">Price  per night in dollars</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-money fa" aria-hidden="true"></i></span>
+                                <input type="number" class="form-control" name="price" id="price" placeholder="Price..">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="username" class="cols-sm-2 control-label">Beds count</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                                <input type="number" class="form-control" name="beds" id="beds" placeholder="Number of beds">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="cols-sm-2 control-label">Rating</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-star-half-full fa-lg" aria-hidden="true"></i></span>
+                                <select name="rating" class="form-control" id="rating">
+                                <option value="1">One star</option>
+                                <option value="2">Two star</option>
+                                <option value="3">Three star</option>
+                                <option value="4">Four star</option>
+                                <option value="5">Five star</option>
+                                
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirm" class="cols-sm-2 control-label">Vacant</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                <select name="status" class="form-control">
+                                <option value="yes">YES</option>
+                                <option value="no">NO</option>
+                                
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirm" class="cols-sm-2 control-label">Upload Image</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-upload fa-lg" aria-hidden="true"></i></span>
+                                <input type="file"  name="img" class="form-control"/>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirm" class="cols-sm-2 control-label">Complements</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></span>
+                                <textarea name="complements" rows="4" cols="30" class="form-control">
+                                  </textarea>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group ">
+                        <input type="submit" class="btn btn-primary form-control" value="Create" id="submit"/>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+       <hr style="width:90%"/>
+       <br>
+
+
+        <!-- start other detect room section -->
+        <section class="other_room_area">
+            <div class="container">
+                <div class="row">
+                    <div class="other_room">
+                        <div class="section_title nice_title content-center">
+                            <h3>Search For Rooms</h3>
+                        </div>
+                        <div class="section_content">
+                            <!-- start hotel booking -->
+                            <div class="hotel_booking_area">
+                                <div class="container">
+                                    <div class="hotel_booking margin-bottom-30">
+                                        <form id="form1" role="form" action="accomodation.html#" class="">
+                                            <div class="col-lg-2 col-md-2 col-sm-2">
+                                                <div class="room_book border-right-dark-1">
+                                                    <h6>Book Your</h6>
+                                                    <p>Rooms</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                <div class="row">
+                                                    <div class="form-group col-lg-4 col-md-4 col-sm-4 icon_arrow">
+                                                        <div class="input-group border-bottom-dark-2">
+                                                            <select class="form-control" name="room" id="room">
+                                                              <option selected="selected" disabled="disabled">Rooms</option>
+                                                              <option value="Single">2 Room</option>
+                                                              <option value="Double">3 Room</option>
+                                                              <option value="Deluxe">4 Room</option>
+                                                            </select>               
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-lg-4 col-md-4 col-sm-4 icon_arrow">
+                                                        <div class="input-group border-bottom-dark-2">
+                                                            <select class="form-control" name="room" id="adult">
+                                                              <option selected="selected" disabled="disabled">Rating</option>
+                                                              <option value="Single">One Star</option>
+                                                              <option value="Double">Two Star</option>
+                                                              <option value="Deluxe">three Star</option>
+                                                            </select>               
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-lg-4 col-md-4 col-sm-4 icon_arrow">
+                                                        <div class="input-group border-bottom-dark-2">
+                                                            <select class="form-control" name="room" id="child">
+                                                              <option selected="selected" disabled="disabled">Beds</option>
+                                                              <option value="Single">Single Bed</option>
+                                                              <option value="Double">3 Beds</option>
+                                                              <option value="Deluxe">5 Beds</option>
+                                                            </select>               
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-lg-2 col-md-2 col-sm-2">
+                                                <div class="input-group range_slider">
+                                                      <div data-role="rangeslider">
+                                                        <span>Price:</span>
+                                                        <label>range:</label>
+                                                        <div class="range">
+                                                            <span class="floatleft">50$</span><span class="floatright">5000$</span>
+                                                            <input class="margin-rl-5" type="range" name="price-min" id="price-min" value="200" min="0" max="1000">
+                                                        </div>
+                                                      </div>        
+                                                </div>
+                                            </div>                  
+                                            <div class="col-lg-2 col-md-2 col-sm-2 clearfix">
+                                                <a class="btn btn-warning btn-md floatright">Filter</a>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end hotel booking -->
+
+                            <!-- start single room details -->
+                            <div class="accomodation_single_room">
+                                <div class="container">
+                                    <div class="row">
+                                        
+                                        <% for (i = rooms.length-1; i > 0; i--) { %>
+                                        <div class="col-lg-3 col-md-3 col-sm-3">
+                                            <div class="single_room_wrapper clearfix padding-bottom-30">
+                                                <figure class="uk-overlay uk-overlay-hover">
+                                                    <div class="room_media">
+                                                        <a href="accomodation.html#"><img src="uploads/<%= rooms[i].img %>" alt=""></a>
+                                                    </div>
+                                                    <div class="room_title border-bottom-whitesmoke clearfix">
+                                                            <div class="left_room_title floatleft">
+                                                                <h6><%= rooms[i].name %></h6>
+                                                                <p><%= rooms[i].price %>/ <span>night</span></p>
+                                                            </div>
+                                                            <div class="left_room_title floatright">
+                                                                <a href="accomodation.html#" class="btn">Book</a>
+                                                            </div>
+                                                        </div>
+                                                    <div class="uk-overlay-panel uk-overlay-background single_wrapper_details clearfix animated bounceInDown">
+                                                        <div class="border-dark-1 padding-22 clearfix single_wrapper_details_pad">
+                                                            <h5><%= rooms[i].name %></h5>
+                                                          
+                                                            <p>
+                                                                <%= rooms[i].complements %>
+                                                            </p>
+                                                            <div class="single_room_cost clearfix">
+                                                                <div class="floatleft">
+                                                                    <p><%= rooms[i].price%>/ <span>night</span></p>
+                                                                </div>
+                                                                <div class="floatright">
+                                                                    <a href="accomodation.html#" class="btn">Book</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </figure>
+                                            </div>
+                                        </div>
+                                        <%}%>
+                                        <div class="col-lg-3 col-md-3 col-sm-3">
+                                            <div class="single_room_wrapper clearfix padding-bottom-30">
+                                                <figure class="uk-overlay uk-overlay-hover">
+                                                    <div class="room_media">
+                                                        <a href="accomodation.html#"><img src="img/room-image-thirteen.jpg" alt=""></a>
+                                                    </div>
+                                                    <div class="room_title border-bottom-whitesmoke clearfix">
+                                                            <div class="left_room_title floatleft">
+                                                                <h6>DoubleRoom</h6>
+                                                                <p>$200/ <span>night</span></p>
+                                                            </div>
+                                                            <div class="left_room_title floatright">
+                                                                <a href="accomodation.html#" class="btn">Book</a>
+                                                            </div>
+                                                        </div>
+                                                    <div class="uk-overlay-panel uk-overlay-background single_wrapper_details clearfix animated bounceInDown">
+                                                        <div class="border-dark-1 padding-22 clearfix single_wrapper_details_pad">
+                                                            <h5>Double Room</h5>
+                                                            <p>
+                                                                Semper ac dolor vitae accumsan. interdum hendrerit lacinia.
+                                                            </p>
+                                                            <p>
+                                                                Phasellus accumsan urna vitae molestie interdum.
+                                                            </p>
+                                                            <div class="single_room_cost clearfix">
+                                                                <div class="floatleft">
+                                                                    <p>$200/ <span>night</span></p>
+                                                                </div>
+                                                                <div class="floatright">
+                                                                    <a href="accomodation.html#" class="btn">Book</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </figure>
+                                            </div>
+                                        </div>
+                                       
+                                        
+                                    </div>
+                                    <div class="row">
+                                        <nav class="text-center margin-top-65 margin-bottom-75">
+                                          <ul class="pagination">
+                                            <li>
+                                              <a href="accomodation.html#" aria-label="Previous">
+                                                <i class="fa fa-angle-left"></i>prev
+                                              </a>
+                                            </li>
+                                            <li class="active"><a href="accomodation.html#">1</a></li>
+                                            <li><a href="accomodation.html#">2</a></li>
+                                            <li><a href="accomodation.html#">3</a></li>
+                                            <li><a href="accomodation.html#">4</a></li>
+                                            <li><a href="accomodation.html#">5</a></li>
+                                            <li>
+                                              <a href="accomodation.html#" aria-label="Next">next
+                                                <i class="fa fa-angle-right"></i>
+                                              </a>
+                                            </li>
+                                          </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end single room details -->
+
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+        <!-- end other detect room section -->
+
+
+        <!-- start contact us area -->
+        <section class="contact_us_area content-left">
+            <div class="container">
+                <div class="contact_us clearfix">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <div class="call clearfix">
+                            <h6>Call Us</h6>
+                            <p id="cct">123 456 7890</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <div class="email_us clearfix">
+                            <h6>Email us</h6>
+                            <p>info@ salienthotelbooking.com</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <div class="news_letter clearfix">
+                            <input type="text" placeholder="Enter ID  for News Letter">
+                            <a href="accomodation.html#" class="btn btn-blue">go</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <div class="social_icons clearfix">
+                            <ul>
+                                <li><a href="accomodation.html#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="accomodation.html#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="accomodation.html#"><i class="fa fa-google-plus"></i></a></li>
+                                <li><a href="accomodation.html#"><i class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- end contact us area -->
+
+        
+    
+        
+		
+		
+		
+        <!-- jquery library -->
+        <script src="js/jquery-1.11.2.min.js"></script>
+        <!-- bootstrap -->
+        <script src="js/bootstrap.min.js"></script>
+		
+        <!-- uikit -->
+        <script src="js/uikit.min.js"></script>
+        <!-- easing -->
+		<script src="js/jquery.easing.1.3.min.js"></script>
+        <script src="js/datepicker.js"></script>
+        <!-- scroll up -->
+        <script src="js/jquery.scrollUp.min.js"></script>
+        <!-- owlcarousel -->
+        <script src="js/owl.carousel.min.js"></script>
+        <!-- lightslider -->
+        <script src="js/lightslider.js"></script>
+        <!-- wow Animation -->
+        <script src="js/wow.min.js"></script>
+        <!--Activating WOW Animation only for modern browser-->
+        <!--[if !IE]><!-->
+        <script type="text/javascript">new WOW().init();</script>
+        <!--<![endif]-->
+
+        <!--Oh Yes, IE 9+ Supports animation, lets activate for IE 9+-->
+        <!--[if gte IE 9]>
+            <script type="text/javascript">new WOW().init();</script>
+        <![endif]-->         
+
+        <!--Opacity & Other IE fix for older browser-->
+        <!--[if lte IE 8]>
+            <script type="text/javascript" src="img/js/ie-opacity-polyfill.js"></script>
+        <![endif]-->
+
+
+
+        
+<script>
+   $('.uploadImage').submit(function(e){
+    
+     
+     var data =  $('.uploadImage').serialize();
+     
+     $(this).ajaxSubmit({
+       data: data,
+       contentType: 'application/json',
+       success: function(response){
+       
+      
+    $(this).closest('form').find("input[type=text], textarea").val("");
+
+    
+            
+       }
+   });
+     return false;
+});
+</script>
+		
+    </body>
+</html>

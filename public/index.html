@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Maxwell Safaris</title>
+       
+       
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="google-signin-client_id" content="844234767015-1127ic7qk3g8lpc63taaqboiif8l4vv8.apps.googleusercontent.com">
+
+        <link rel="icon" href="img/favicon.ico" sizes="16x16">
+
+		
+        <!-- fonts -->
+		<link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,900' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Karla:700,400' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Lora:400,700' rel='stylesheet' type='text/css'>
+
+        <link rel="stylesheet" href="css/sty.css">
+        <!-- bootstrap -->
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        
+         <!-- fontawesome -->
+		<link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+        <!-- uikit -->
+        <link rel="stylesheet" href="css/uikit.min.css" />
+
+        <!-- animate -->
+        <link rel="stylesheet" href="css/animate.css" />
+        <link rel="stylesheet" href="css/datepicker.css" />
+        <!-- Owl carousel 2 css -->
+        <link rel="stylesheet" href="css/owl.carousel.css">
+        <!-- rev slider -->
+        <link rel="stylesheet" href="css/settings.css" />
+        <!-- lightslider -->
+        <link rel="stylesheet" href="css/lightslider.css">
+        <!-- Theme -->
+        <link rel="stylesheet" href="css/reset.css">      
+        
+        
+        <!-- custom css --> 
+		<link rel="stylesheet" href="css/style.css" />
+        <!-- responsive -->
+        <link rel="stylesheet" href="css/responsive.css" />
+        <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+        
+        <script src="js/stripe.js"></script>
+        <!-- jquery library -->
+        <script src="js/jquery-1.11.2.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        <script src="https://unpkg.com/sweetalert2@7.19.1/dist/sweetalert2.all.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.10/lodash.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+      <script src="js/dirPagination.js"></script>
+   <script>
+       var app = angular.module('myApp', ['ngRoute','angularUtils.directives.dirPagination']);
+      app.config(function($routeProvider,$locationProvider) {
+    $routeProvider
+    .when("/contact", {
+        templateUrl : "contactus.html",
+        controller : "Contact"
+    })
+    .when("/about", {
+        templateUrl : "about.html",
+        controller : "Contact"
+    })
+    .when("/book", {
+        templateUrl : "booking.html",
+        controller : "Booking"
+    })
+    .when("/acc", {
+        templateUrl : "accomodation.html",
+        controller : "acc"
+    })
+    .when("/home", {
+        templateUrl : "home.html",
+        controller : "home"
+    })
+    .when("/", {
+        templateUrl : "home.html",
+        controller : "home"
+    });
+  
+});
+   </script>
+   <script src="factory.js"></script>
+      <script src="mainController.js"></script>
+      
+    </head>
+    <body>
+         <!-- start preloader -->
+         
+         <!-- start header -->
+         <header class="header_area">
+
+                <!-- start main header -->
+                <div class="main_header_area">
+                    <div class="container">
+                        <!-- start mainmenu & logo -->
+                        <div class="mainmenu">
+                            <div id="nav">
+                                <nav class="navbar navbar-default">
+                                    <!-- Brand and toggle get grouped for better mobile display -->
+                                    <div class="navbar-header">
+                                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" style="margin-left:10px">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                      </button>
+                                      <div class="site_logo fix">
+                                          <a id="brand" class="clearfix navbar-brand border-right-whitesmoke" href="index.html"><img height="43px" width="143px" src="img/logo-icon.png" alt="Trips" ></a>
+                                          <div class="header_login floatright" style="margin-left: 10px;">
+                                              <ul>
+                                                  <li id="n" class="floatleft"><a >MAXWELL</a></li>
+                                                  <li><a class="floatleft">TOURS</a></li>
+                                              </ul>
+                                          </div>
+                                      </div>
+                                    </div>
+    
+                                    <!-- Collect the nav links, forms, and other content for toggling -->
+                                    <div class="collapse navbar-collapse navbar-left" id="bs-example-navbar-collapse-1">
+                                      <ul class="nav navbar-nav">
+                                      <li><a href="#!home">Home</a></li>
+                                        <li><a href="#!acc">Accomodation</a></li>
+                                        <li><a href="#!book">Book</a></li>                                    
+                                        <li><a href="#!about">About us</a></li>  
+                                        <li><a href="#!contact">Contacts</a></li>
+                                      </ul>
+                                      <div class="emergency_number">
+                                          
+                                          <a href="#mane"><img src="img/call-icon.png" alt="">0728148643</a>
+                                      </div>
+                                    </div><!-- /.navbar-collapse -->
+                                </nav>
+                            </div>
+                        </div>
+                        <!-- end mainmenu and logo -->
+                    </div>
+                </div>
+                <!-- end main header -->
+    
+            </header>
+            <!-- end header -->
+            <div id="loader-wrapper">
+                    <div class="logo"><a href="#"><span>Maxwell</span>-Tours</a></div>
+                    <div id="loader">
+                    </div>
+                </div>
+                <!-- end preloader -->
+        
+         <ng-view>
+
+         </ng-view>
+         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                        <div class="" style="background: rgba(0, 0, 0, 0);">
+            
+                                <div class="row">
+                                        <div class="form-box" style="/* background: rgba(0, 0, 0, 1) */">
+                                            <div class="form-top" style="  background: cadetblue;">
+                                                <div class="form-top-left">
+                                                    <h3>User Login</h3>
+                                                    <p>Enter your email and password to log on:</p>
+                                                </div>
+                                                <div class="form-top-right">
+                                                    <i class="fa fa-lock"></i>
+                                                </div>
+                                            </div>
+                                            <div class="form-bottom" style="background: rgba(0,0,0,0.8);">
+                                                <form role="form" action="/login" method="post" class="login-form ng-pristine ng-valid">
+                                                    <div class="form-group">
+                                                        <label class="sr-only" for="form-username">Username</label>
+                                                        <input type="text" name="email" placeholder="Username..." class="form-username form-control" id="username">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="sr-only" for="form-password">Password</label>
+                                                        <input type="password" name="password" placeholder="Password..." class="form-password form-control" id="password">
+                                                    </div>
+                
+                                                    <button type="button" id="submit" class="btn btn-primary">Sign in!</button>
+                                                    <div class="pull-right">
+                                                    
+                                               </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                        </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+          
+         <script>
+         setTimeout(function () {
+             
+             $('#loader-wrapper').hide();
+     
+           },5000)
+         </script>
+         
+         <script>
+           
+          </script>
+         
+        
+       
+        
+  
+    </body>
+    <script>
+        function onSignIn(googleUser) {
+  var profile = googleUser.getBasicProfile();
+  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  console.log('Name: ' + profile.getName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+}
+    </script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+</html>

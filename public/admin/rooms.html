@@ -1,0 +1,290 @@
+ <!-- end header -->
+ <div class="row" style="margin-left:2%; margin-bottom:15%">
+    <div class="col-md-4">
+        <legend id="anch1" class="">Create a room</legend>
+   
+        
+        <h5>Fill all the fields below</h5>
+        <form class="uploadImage" method="post" action="/upload" enctype="multipart/form-data" id="formRoom">
+            
+            <div class="form-group">
+                <label for="name" class="cols-sm-2 control-label">Room name</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                        <input type="text" class="form-control" name="name" id="name" placeholder="Enter room name">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email" class="cols-sm-2 control-label">Price  per night in dollars</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-money fa" aria-hidden="true"></i></span>
+                        <input type="number" class="form-control" name="price" id="price" placeholder="Price..">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="username" class="cols-sm-2 control-label">Beds count</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                        <input type="number" class="form-control" name="beds" id="beds" placeholder="Number of beds">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="cols-sm-2 control-label">Rating</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-star-half-full fa-lg" aria-hidden="true"></i></span>
+                        <select name="rating" class="form-control" id="rating">
+                        <option value="1">One star</option>
+                        <option value="2">Two star</option>
+                        <option value="3">Three star</option>
+                        <option value="4">Four star</option>
+                        <option value="5">Five star</option>
+                        
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="confirm" class="cols-sm-2 control-label">Vacant</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                        <select name="status" class="form-control">
+                        <option value="yes">YES</option>
+                        <option value="no">NO</option>
+                        
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="confirm" class="cols-sm-2 control-label">Upload Image</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-upload fa-lg" aria-hidden="true"></i></span>
+                        <input type="file"  name="img" class="form-control"/>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="confirm" class="cols-sm-2 control-label">Complements</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></span>
+                        <textarea name="complements" rows="4" cols="30" class="form-control">
+                          </textarea>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group ">
+                <input type="submit" class="btn btn-primary form-control" value="Create" id="submit"/>
+            </div>
+            
+        </form>
+    </div>
+    <div class="col-md-7"> 
+      <!-- start other detect room section -->
+<section class="other_room_area">
+    <div class="container">
+        <div class="row">
+            <div class="other_room">
+                
+                <div class="section_content">
+                    <!-- start hotel booking -->
+                    <div class="hotel_booking_area">
+                        <div class="container">
+                            <div class="hotel_booking margin-bottom-30">
+                                <form id="form1" role="form" action="accomodation.html#" class="">
+                                    <div class="col-lg-2 col-md-2 col-sm-2">
+                                        <div class="room_book border-right-dark-1">
+                                            <h6>Manage</h6>
+                                            <p>Rooms</p>
+                                        </div>
+                                    </div>
+                                    <div class=" col-md-4">
+                                        <div class="row">
+                                            <div class="form-group col-lg-4 col-md-4 col-sm-4 icon_arrow">
+                                                <div class="input-group border-bottom-dark-2">
+                                                    <select class="form-control" name="room" id="room">
+                                                      <option selected="selected" disabled="disabled">Rooms</option>
+                                                      <option value="Single">2 Room</option>
+                                                      <option value="Double">3 Room</option>
+                                                      <option value="Deluxe">4 Room</option>
+                                                    </select>               
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-lg-4 col-md-4 col-sm-4 icon_arrow">
+                                                <div class="input-group border-bottom-dark-2">
+                                                    <select class="form-control" name="room" id="adult">
+                                                      <option selected="selected" disabled="disabled">Rating</option>
+                                                      <option value="Single">One Star</option>
+                                                      <option value="Double">Two Star</option>
+                                                      <option value="Deluxe">three Star</option>
+                                                    </select>               
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-lg-4 col-md-4 col-sm-4 icon_arrow">
+                                                <div class="input-group border-bottom-dark-2">
+                                                    <select class="form-control" name="room" id="child">
+                                                      <option selected="selected" disabled="disabled">Beds</option>
+                                                      <option value="Single">Single Bed</option>
+                                                      <option value="Double">3 Beds</option>
+                                                      <option value="Deluxe">5 Beds</option>
+                                                    </select>               
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-lg-2 col-md-2 col-sm-2">
+                                        <div class="input-group range_slider">
+                                              <div data-role="rangeslider">
+                                                <span>Price:</span>
+                                                
+                                                <div class="range">
+                                                    
+                                                    <input class="margin-rl-5" type="range" name="price-min" id="price-min" value="200" min="0" max="1000">
+                                                </div>
+                                              </div>        
+                                        </div>
+                                    </div>                  
+                                    <div class="col-lg-2 col-md-2 col-sm-2 clearfix">
+                                        <a class="btn btn-warning btn-md floatright">Filter</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end hotel booking -->
+
+                    <!-- start single room details -->
+                    <div class="accomodation_single_room">
+                        <div class="container">
+                            <div class="row">
+                                
+                                <% for (i = rooms.length-1; i > 0; i--) { %>
+                                <div class="col-lg-3 col-md-3 col-sm-3">
+                                    <div class="single_room_wrapper clearfix padding-bottom-30">
+                                        <figure class="uk-overlay uk-overlay-hover">
+                                            <div class="room_media">
+                                                <a href="accomodation.html#"><img src="uploads/<%= rooms[i].img %>" alt=""></a>
+                                            </div>
+                                            <div class="room_title border-bottom-whitesmoke clearfix">
+                                                    <div class="left_room_title floatleft">
+                                                        <h6><%= rooms[i].name %></h6>
+                                                        <p><%= rooms[i].price %>/ <span>night</span></p>
+                                                    </div>
+                                                    <div class="left_room_title floatright">
+                                                        <a href="accomodation.html#" class="btn">Book</a>
+                                                    </div>
+                                                </div>
+                                            <div class="uk-overlay-panel uk-overlay-background single_wrapper_details clearfix animated bounceInDown">
+                                                <div class="border-dark-1 padding-22 clearfix single_wrapper_details_pad">
+                                                    <h5><%= rooms[i].name %></h5>
+                                                  
+                                                    <p>
+                                                        <%= rooms[i].complements %>
+                                                    </p>
+                                                    <div class="single_room_cost clearfix">
+                                                        <div class="floatleft">
+                                                            <p><%= rooms[i].price%>/ <span>night</span></p>
+                                                        </div>
+                                                        <div class="floatright">
+                                                            <a href="accomodation.html#" class="btn">Book</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </figure>
+                                    </div>
+                                </div>
+                                <%}%>
+                                <div class="col-lg-3 col-md-3 col-sm-3">
+                                    <div class="single_room_wrapper clearfix padding-bottom-30">
+                                        <figure class="uk-overlay uk-overlay-hover">
+                                            <div class="room_media">
+                                                <a href="accomodation.html#"><img src="img/room-image-thirteen.jpg" alt=""></a>
+                                            </div>
+                                            <div class="room_title border-bottom-whitesmoke clearfix">
+                                                    <div class="left_room_title floatleft">
+                                                        <h6>DoubleRoom</h6>
+                                                        <p>$200/ <span>night</span></p>
+                                                    </div>
+                                                    <div class="left_room_title floatright">
+                                                        <a href="accomodation.html#" class="btn">Book</a>
+                                                    </div>
+                                                </div>
+                                            <div class="uk-overlay-panel uk-overlay-background single_wrapper_details clearfix animated bounceInDown">
+                                                <div class="border-dark-1 padding-22 clearfix single_wrapper_details_pad">
+                                                    <h5>Double Room</h5>
+                                                    <p>
+                                                        Semper ac dolor vitae accumsan. interdum hendrerit lacinia.
+                                                    </p>
+                                                    <p>
+                                                        Phasellus accumsan urna vitae molestie interdum.
+                                                    </p>
+                                                    <div class="single_room_cost clearfix">
+                                                        <div class="floatleft">
+                                                            <p>$200/ <span>night</span></p>
+                                                        </div>
+                                                        <div class="floatright">
+                                                            <a href="accomodation.html#" class="btn">Book</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </figure>
+                                    </div>
+                                </div>
+                               
+                                
+                            </div>
+                            <div class="row">
+                                <nav class="text-center margin-top-65 margin-bottom-75">
+                                  <ul class="pagination">
+                                    <li>
+                                      <a href="accomodation.html#" aria-label="Previous">
+                                        <i class="fa fa-angle-left"></i>prev
+                                      </a>
+                                    </li>
+                                    <li class="active"><a href="accomodation.html#">1</a></li>
+                                    <li><a href="accomodation.html#">2</a></li>
+                                    <li><a href="accomodation.html#">3</a></li>
+                                    <li><a href="accomodation.html#">4</a></li>
+                                    <li><a href="accomodation.html#">5</a></li>
+                                    <li>
+                                      <a href="accomodation.html#" aria-label="Next">next
+                                        <i class="fa fa-angle-right"></i>
+                                      </a>
+                                    </li>
+                                  </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end single room details -->
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+<!-- end other detect room section -->
+    </div>
+</div>
+<hr style="width:90%"/>
+<br>
