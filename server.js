@@ -217,19 +217,10 @@ app.get("/HomeDetails", (req, res) => {
                 rooms: rooms
               });
             })
-
           })
-
         })
-
-
       });
-
-
-
     })
-
-
   })
 
 
@@ -505,7 +496,6 @@ app.post('/h2', upload.single('img'), function (req, res, next) {
   welcomeinfo.save();
   console.log("welcome info changed");
   res.render("dash.ejs");
-
 
   // req.body will hold the text fields, if there were any
 });
