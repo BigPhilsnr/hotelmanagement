@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+var mongoose = require("mongoose");
 
 var BookingSchema = mongoose.Schema({
     from: {
@@ -9,25 +9,26 @@ var BookingSchema = mongoose.Schema({
         type: Date,
         required: true
     },
-    roomId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Room'
+    room: { type: mongoose.Schema.Types.ObjectId, ref: "Room" },
+    user: {
+        type: String,
+        required: true
     },
-    userId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+    email: {
+        type: String,
+        required: true
     },
     amount: {
         type: Number,
         required: true
     },
-    code: {
+    phone: {
         type: Number
     },
     paid: {
         type: Number,
-        default:0,
-        required: true
+        default: 0,
+        required: false
     },
     date: {
         type: Date,
@@ -40,11 +41,11 @@ var BookingSchema = mongoose.Schema({
         type: Number
     },
     children: {
-        type: Number,
+        type: Number
     },
     expenses: [{
         service: String,
         amount: Number
     }]
 });
-var Booking = module.exports = mongoose.model('Booking', BookingSchema);
+var Booking = (module.exports = mongoose.model("Booking", BookingSchema));
