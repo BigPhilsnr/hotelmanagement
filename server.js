@@ -34,7 +34,7 @@ var section = require("./Models/section");
 var News = require("./Models/news");
 
 //set up database
-mongoose.connect("mongodb://saf:ademba4@ds119660.mlab.com:19660/hostel", function (err) {
+mongoose.connect("mongodb://saf:ademba4@ds119258.mlab.com:19258/royal", function (err) {
   if (err) {
     console.log(err)
   } else {
@@ -42,7 +42,7 @@ mongoose.connect("mongodb://saf:ademba4@ds119660.mlab.com:19660/hostel", functio
   }
 
 });
-var db = mongoose.connection;
+
 //initialize app
 var app = express();
 app.use(cors());
@@ -56,20 +56,7 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-var http = require('http').Server(app);
-var socketIO = require('socket.io');
-var io = socketIO(http);
 
-io.on('connection', function (socket) {
-  console.log("connected")
-
-  socket.emit('news', {
-    hello: 'world'
-  });
-  socket.on('my other event', function (data) {
-    console.log(data);
-  });
-});
 //end of middleware 
 
 //routes
@@ -107,8 +94,6 @@ app.get("/x", (req, res) => {
 
 
   })
-
-
 });
 
 var sendEmail = function (rec, body, subject) {
@@ -160,11 +145,11 @@ app.post("/sendMail", (req, res) => {
       })
     }
   })
+});
 
-})
 app.get("/at", function (req, res) {
   res.send(atob('SGVsbG8sIFdvcmxkIQ=='));
-})
+});
 
 //imap
 
@@ -175,6 +160,9 @@ app.get("/HomeDetails", (req, res) => {
     if (err) return console.error(err);
     var nth = header.length - 1;
     var item = header[nth];
+    if (!item) {
+      item = {}
+    }
 
     var I2Item = {};
     I2.find((err, items) => {
@@ -235,10 +223,11 @@ app.post('/philip', function (req, res) {
   res.send("heloow");
 
 });
-app.get('/login', function (req, res) {
 
+app.get('/login', function (req, res) {
   res.render("login.ejs")
 });
+
 app.get('/getRooms', function (req, res) {
   Room.find((err, rms) => {
     console.log("getting rooms");
@@ -263,8 +252,6 @@ app.post("/loginx", function (req, res) {
         user: err.message
       });
     } else {
-
-
       console.log(em);
       // bcrypt.compareSync(password, hash); 
       if (em != null) {
@@ -316,9 +303,6 @@ app.post('/loginPost', function (req, res) {
   } else {
     res.render('login.ejs')
   }
-
-
-
 })
 
 app.post('/upload', upload.single('img'), function (req, res, next) {
@@ -385,7 +369,6 @@ app.post('/saveRoom', upload.single('img'), function (req, res, next) {
       $set: req.body
     }, function (err, update) {
       if (err) {
-
         console.log(err.message)
       } else {
         console.log(req.body);
@@ -395,6 +378,7 @@ app.post('/saveRoom', upload.single('img'), function (req, res, next) {
 
     });
   } else {
+    console.log(req.body)
     new Room(req.body).save(function (err) {
       if (err) {
         console.log(err.message);
@@ -403,41 +387,103 @@ app.post('/saveRoom', upload.single('img'), function (req, res, next) {
     });
   }
 })
-app.post('/cms', function (req, res) {
 
-
-});
-app.post('/saveRoom1', upload.single('img'), function (req, res, next) {
+app.post('/saveRoom1', upload.single('img'), async function (req, res, next) {
   // req.file is the `avatar` file
 
-  var name = req.body.name;
-  var price = req.body.price;
-  var beds = req.body.beds;
-  var status = req.body.status;
-  var src = req.file.originalname;
-  var rating = req.body.rating;
-  var complements = req.body.complements;
-  var room = new Room({
-    name: name,
-    price: price,
-    beds: beds,
-    status: status,
-    rating: rating,
-    complements: complements,
-    img: src
-  });
-  room.save(function (err) {
-    Room.find((err, rooms) => {
-      if (err) return console.error(err);
+  try {
+    console.log(req.body.id);
+    var name = req.body.name;
+    var price = req.body.price;
+    var beds = req.body.beds;
 
-      res.render('admin.ejs', {
-        rooms: rooms
-      })
+    if (!req.body.id) {
+
+      var status = req.body.status;
+      if (req.body.status.includes("yes")) {
+        status = "Yes"
+      } else {
+        status = "No";
+      }
+      if (!req.file) {
+        res.status(500).send("Image not set");
+        return;
+      }
 
 
-    });
+      var src = req.file.originalname;
+      var rating = req.body.rating.replace("number:", "");
+      var complements = req.body.complements;
+      var detail = {
+        name: name,
+        price: price,
+        beds: beds,
+        status: status,
+        rating: rating,
+        complements: complements,
+        img: src
+      }
+      var room = new Room(detail);
 
-  });
+      room.save(function (err) {
+        if (err) {
+          res.status(500).send(err.responseJSON.message);
+          return;
+        }
+
+        Room.find((err, rooms) => {
+          if (err) {
+            res.status(500).send(err.responseJSON.message);
+            return;
+          }
+
+          res.status(200).send({
+            rooms: rooms
+          });
+
+        });
+
+      });
+    } else {
+
+      var status = req.body.status;
+      if (req.body.status.includes("yes")) {
+        status = "Yes"
+      } else {
+        status = "No";
+      }
+
+      var rating = req.body.rating.replace("number:", "");
+      var complements = req.body.complements;
+      var detail = {
+        name: name,
+        price: price,
+        beds: beds,
+        status: status,
+        rating: rating,
+        complements: complements,
+      }
+
+      const result = await Room.update({
+        _id: req.body.id
+      }, {
+        $set: detail
+      });
+
+      if (result) {
+        const rooms = await Room.find({});
+        res.status(200).send({
+          rooms: rooms
+        });
+      } else {
+        res.status(500).send("Update failed try again");
+      }
+    }
+  } catch (error) {
+    console.log(error)
+    res.status(500).send(error.message);
+  }
+
 
 });
 
@@ -553,6 +599,7 @@ app.post("/viewDetails", function (req, res) {
     }
   })
 })
+
 app.get("/ball", (req, res) => {
   Booking.find({}, function (err, result) {
     if (err) {
@@ -595,6 +642,8 @@ app.post("/deleteRep", function (req, res) {
   })
 
 })
+
+app
 
 app.post("/reply", function (req, res) {
   sendEmail(req.body.email, req.body.message, "salientke feedback repy");
@@ -654,10 +703,12 @@ app.post("/token", function (req, res, next) {
   })
 });
 // user crud
-app.post("/createUser", (req, res) => {
+app.post("/createUser", async (req, res) => {
   console.log(req.body)
+  req.body.isAdmin = 0;
   new User(req.body).save(function (err, result) {
     if (err) {
+      console.log(err)
       res.send({
         success: 0,
         message: err.name
@@ -672,6 +723,7 @@ app.post("/createUser", (req, res) => {
   })
 
 });
+
 app.get("/getEmployees", function (req, res) {
   Employee.find({}, function (err, emp) {
     if (err) {
@@ -878,59 +930,107 @@ app.post("/saveWelcome", function (req, res, next) {
 
 });
 
-app.post("/deleteRoom", (req, res) => {
-  Room.findByIdAndRemove(req.body.id, function (err, tank) {
-    if (err) {
-      console.log(err.message)
-    }
-    console.log("removed")
-    res.send(tank);
-  });
+app.post("/deleteRoom", async (req, res) => {
 
+  try {
+    const result = await Room.findByIdAndRemove(req.body.id);
+    if (!result) {
+      res.status(500).send('Not found');
+      return;
+    }
+    const rooms = await Room.find({});
+    res.status(200).send({
+      rooms: rooms
+    })
+
+
+  } catch (error) {
+    res.status(500).send(error.responseJSON.message);
+  }
+});
+
+app.post("/booking", async (req, res) => {
+
+  const data = req.body;
+  try {
+    const result = await Booking.save(data);
+    if (!result) {
+      res.status(500).send('Failed to save');
+      return;
+    }
+    const room = await Room.findOneAndUpdate({
+      _id: data.roomId
+    }, {
+      $set: {
+        status: "Yes",
+        nextFree: data.to
+      }
+    }, {
+      new: true
+    })
+    const bookings = await Booking.find({});
+    res.status(200).send({
+      bookings: bookings
+    })
+
+
+  } catch (error) {
+    res.status(500).send(error.responseJSON.message);
+  }
+});
+
+app.post("/checkout", async (req, res) => {
+
+  const data = req.body;
+  try {
+    const result = await Booking.findById(data.bookingId);
+    if (!result) {
+      res.status(500).send('Failed to find booking');
+      return;
+    }
+    const room = await Room.findOneAndUpdate({
+      _id: result.roomId
+    }, {
+      $set: {
+        status: "No",
+        nextFree: new Date()
+      }
+    }, {
+      new: true
+    })
+    const bookings = await Booking.find({});
+    res.status(200).send({
+      bookings: bookings
+    })
+
+
+  } catch (error) {
+    res.status(500).send(error.responseJSON.message);
+  }
+});
+
+app.post("/checkroom", async (req, res) => {
+  try {
+    const result = await Room.find({
+      nextFree: {
+        $gte: req.body.from
+      },status: "No"
+    });
+    res.status(200).send({
+      rooms: result
+    })
+  } catch (error) {
+    res.status(500).send(error.responseJSON.message);
+  }
 });
 app.post("/loginUser", (req, res) => {
 
   res.render('dash.ejs');
 
 });
-//Booking crud
-app.post("/createBooking", (req, res) => {
 
-  res.render('dash.ejs');
 
-});
-app.post("/deleteBooking", (req, res) => {
 
-  res.render('dash.ejs');
-
-});
-app.post("/updateBooking", (req, res) => {
-
-  res.render('dash.ejs');
-
-});
-//
-
-app.get('/acc', function (req, res) {
-  res.render('acc.ejs')
-
-});
-app.get('/gallery', function (req, res) {
-  res.render('galla.ejs')
-
-});
-app.get('/about', function (req, res) {
-  res.render('about.ejs')
-
-});
-app.get('/book', function (req, res) {
-  res.render('booking.ejs')
-
-});
-app.get('/details', function (req, res) {
-  res.render('details.ejs')
-
-});
 app.get('/admin', function (req, res) {
   Room.find((err, rooms) => {
     if (err) return console.error(err);
@@ -974,8 +1074,118 @@ app.get('/search', function (req, res) {
 
 //Start listening for requests
 var port = process.env.PORT || 7080;
-app.listen(port, function () {
+var server = app.listen(port, function () {
 
-  console.log("app runinng at  p 8000");
+  console.log("app runinng -p 7080");
 
 });
+
+
+// //moment js
+// var moment = require("moment");
+
+// var clientInfo = {};
+
+// //socket.io instantiation
+// const io = require("socket.io")(server)
+
+
+// // send current users to provided scoket
+// function sendCurrentUsers(socket) { // loading current users
+//   var info = clientInfo[socket.id];
+//   var users = [];
+//   if (typeof info === 'undefined') {
+//     return;
+//   }
+//   // filte name based on rooms
+//   Object.keys(clientInfo).forEach(function (socketId) {
+//     var userinfo = clientInfo[socketId];
+//     // check if user room and selcted room same or not
+//     // as user should see names in only his chat room
+//     if (info.room == userinfo.room) {
+//       users.push(userinfo.name);
+//     }
+
+//   });
+//   // emit message when all users list
+
+//   socket.emit("message", {
+//     name: "System",
+//     text: "Current Users : " + users.join(', '),
+//     timestamp: moment().valueOf()
+//   });
+
+// }
+
+
+// // io.on listens for events
+// io.on("connection", function (socket) {
+//   console.log("User is connected");
+
+//   //for disconnection
+//   socket.on("disconnect", function () {
+//     var userdata = clientInfo[socket.id];
+//     if (typeof (userdata !== undefined)) {
+//       socket.leave(userdata.room); // leave the room
+//       //broadcast leave room to only memebers of same room
+//       socket.broadcast.to(userdata.room).emit("message", {
+//         text: userdata.name + " has left",
+//         name: "System",
+//         timestamp: moment().valueOf()
+//       });
+
+//       // delete user data-
+//       delete clientInfo[socket.id];
+
+//     }
+//   });
+
+//   // for private chat
+//   socket.on('joinRoom', function (req) {
+//     clientInfo[socket.id] = req;
+//     socket.join(req.room);
+//     //broadcast new user joined room
+//     socket.broadcast.to(req.room).emit("message", {
+//       name: "System",
+//       text: req.name + ' has joined',
+//       timestamp: moment().valueOf()
+//     });
+
+//   });
+
+//   // to show who is typing Message
+
+//   socket.on('typing', function (message) { // broadcast this message to all users in that room
+//     socket.broadcast.to(clientInfo[socket.id].room).emit("typing", message);
+//   });
+
+//   // to check if user seen Message
+//   socket.on("userSeen", function (msg) {
+//     socket.broadcast.to(clientInfo[socket.id].room).emit("userSeen", msg);
+//     //socket.emit("message", msg);
+
+//   });
+
+//   socket.emit("message", {
+//     text: "Welcome to Chat Appliction !",
+//     timestamp: moment().valueOf(),
+//     name: "System"
+//   });
+
+//   // listen for client message
+//   socket.on("message", function (message) {
+//     console.log("Message Received : " + message.text);
+//     // to show all current users
+//     if (message.text === "@currentUsers") {
+//       sendCurrentUsers(socket);
+//     } else {
+//       //broadcast to all users except for sender
+//       message.timestamp = moment().valueOf();
+//       //socket.broadcast.emit("message",message);
+//       // now message should be only sent to users who are in same room
+//       socket.broadcast.to(clientInfo[socket.id].room).emit("message", message);
+//       //socket.emit.to(clientInfo[socket.id].room).emit("message", message);
+//     }
+
+//   });
+// });
