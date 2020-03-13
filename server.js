@@ -32,6 +32,7 @@ var Itab = require("./Models/Itab");
 var Booking = require("./Models/booking");
 var section = require("./Models/section");
 var News = require("./Models/news");
+var morgan = require('morgan')
 
 //set up database
 mongoose.connect("mongodb://saf:ademba4@ds119258.mlab.com:19258/royal", function (err) {
@@ -47,7 +48,9 @@ mongoose.connect("mongodb://saf:ademba4@ds119258.mlab.com:19258/royal", function
 var app = express();
 app.use(cors());
 app.options('*', cors());
-app.use(express.static(__dirname + '/public'));
+
+app.use(express.static(__dirname + '/www'));
+app.use(express.static(__dirname + '/public/uploads'));
 app.set('views', __dirname + '/views');
 
 //middleware
@@ -55,12 +58,19 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+app.use(morgan(function (tokens, req, res) {
+  return [
+    tokens.method(req, res),
+    tokens.url(req, res),
+    tokens.status(req, res),
+    tokens.res(req, res, 'content-length'), '-',
+    tokens['response-time'](req, res), 'ms'
+  ].join(' ')
+}))
 
+app.use('/admin', express.static(__dirname + '/public'));
+app.use('/images', express.static(__dirname + '/public/uploads'));
 
-//end of middleware 
-
-//routes
-var mdb = [];
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "public/index.html")
 })
@@ -92,9 +102,9 @@ app.get("/x", (req, res) => {
 
     })
 
-
   })
 });
+
 
 var sendEmail = function (rec, body, subject) {
   'use strict';
@@ -633,6 +643,21 @@ app.get("/feedback", (req, res) => {
   })
 
 });
+
+app.post("/feedback", async (req, res) => {
+  try {
+    const result = await new Feedback(req.body).save()
+    res.status(200).send({
+      rooms: result
+    })
+  } catch (error) {
+    res.status(500).send({
+      error: error.message
+    })
+  }
+})
+
+
 app.post("/deleteRep", function (req, res) {
   Feedback.findByIdAndRemove(req.body.id, function (err, ret) {
     if (err) {
@@ -943,7 +968,6 @@ app.post("/deleteRoom", async (req, res) => {
       rooms: rooms
     })
 
-
   } catch (error) {
     res.status(500).send(error.responseJSON.message);
   }
@@ -972,15 +996,12 @@ app.post("/booking", async (req, res) => {
     res.status(200).send({
       bookings: bookings
     })
-
-
   } catch (error) {
     res.status(500).send(error.responseJSON.message);
   }
 });
 
 app.post("/checkout", async (req, res) => {
-
   const data = req.body;
   try {
     const result = await Booking.findById(data.bookingId);
@@ -1014,7 +1035,8 @@ app.post("/checkroom", async (req, res) => {
     const result = await Room.find({
       nextFree: {
         $gte: req.body.from
-      },status: "No"
+      },
+      status: "No"
     });
     res.status(200).send({
       rooms: result
@@ -1041,13 +1063,6 @@ app.get('/admin', function (req, res) {
     //res.render('index.ejs',{line1:item.line1,line2:item.line2,src:item.src,H2:I2Item});
 
   });
-
-
-
-});
-app.get('/blog', function (req, res) {
-  res.render('blog.ejs')
-
 });
 
 
@@ -1056,21 +1071,14 @@ app.post('/maxbooking', function (req, res) {
   sendEmail("philmaxsnr@gmail.com", JSON.stringify(req.body), "salientke feedback repy");
   res.send("ok")
 });
-app.post('/contactmessage', function (req, res) {
+app.post('/contactmessage', function asyn(req, res) {
   console.log(req.body)
+
   res.send({
     success: 1
   })
 });
-app.get('/contact', function (req, res) {
-  res.render('contact.ejs')
 
-});
-app.get('/search', function (req, res) {
-  res.render('search.ejs')
-
-});
-//end routes
 
 //Start listening for requests
 var port = process.env.PORT || 7080;
