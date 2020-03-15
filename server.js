@@ -75,7 +75,7 @@ app.use(morgan(function(tokens, req, res) {
 app.use('/admin', express.static(__dirname + '/public'));
 app.use('/images', express.static(__dirname + '/public/uploads'));
 
-console.log("wawawa")
+console.log("wawaw   sdf wewa")
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "public/index.html")
 })
