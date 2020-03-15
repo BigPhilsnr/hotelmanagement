@@ -39,21 +39,12 @@ var Service = require('./Models/services')
 var Menu = require('./Models/menu')
 
 //set up database
-<<<<<<< HEAD
-mongoose.connect("mongodb://localhost:27017/royale", function (err) {
-  if (err) {
-    console.log(err)
-  } else {
-    console.log("database connected");
-  }
-=======
-mongoose.connect("mongodb://saf:ademba4@ds119258.mlab.com:19258/royal", function(err) {
+mongoose.connect("mongodb://localhost:27017/royale", function(err) {
     if (err) {
         console.log(err)
     } else {
         console.log("database connected");
     }
->>>>>>> 90c3fc0a9e634d7d93d5aa505a90a27c4b747e96
 
 });
 
@@ -84,7 +75,7 @@ app.use(morgan(function(tokens, req, res) {
 app.use('/admin', express.static(__dirname + '/public'));
 app.use('/images', express.static(__dirname + '/public/uploads'));
 
-console.log("wawawa")
+console.log("wawawa sdf ")
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "public/index.html")
 })
@@ -263,1495 +254,1571 @@ app.get('/getRooms', function(req, res) {
 
 });
 
-app.get('/admin/getRooms', function (req, res) {
-  Room.find((err, rms) => {
-    console.log("getting rooms");
-    res.send(rms);
-
-  });
-
-});
-
-app.get('/admin/photo', function (req, res) {
-  Photo.find((err, rms) => {
-    res.send(rms);
-
-  });
-
-});
-
-app.get('/admin/menu', function (req, res) {
-  Menu.find((err, rms) => {
-    res.send(rms);
-
-  });
-
-});
-
-app.get('/admin/service', async (req, res) => {
-
-  if (req.query.id) {
-    const service = await Service.findById(req.query.id);
-    if (!service) {
-      res.status(500).send("Service not found")
-      return
-    }
-
-    res.status(200).send({
-      service: service
-    })
-  } else {
-    Service.find((err, rms) => {
-      res.send(rms);
-
-    });
-  }
-
-
-});
-
-
-
-app.post("/loginx", function (req, res) {
-  var email = req.body.email;
-  var password = req.body.password;
-
-  Employee.findOne({
-    email: email
-  }, function (err, em) {
-    if (err) {
-      console.log(err.message)
-      res.send({
-        success: 0,
-        user: err.message
-      });
-    } else {
-      console.log(em);
-      // bcrypt.compareSync(password, hash); 
-      if (em != null) {
-
-        // Load hash from your password DB.
-        bcrypt.compare(password, em.password, function (err, correct) {
-          // res == true
-          if (correct == false) {
-            em.password = null;;
-            console.log({
-              success: 1,
-              user: em
-            });
-
-            res.send({
-              success: 1,
-              user: em
-            });
-          } else {
-            res.send({
-                success: 0,
-                user: err.message
-            });
-        } else {
-            console.log(em);
-            // bcrypt.compareSync(password, hash); 
-            if (em != null) {
-
-                // Load hash from your password DB.
-                bcrypt.compare(password, em.password, function(err, correct) {
-                    // res == true
-                    if (correct == false) {
-                        em.password = null;;
-                        console.log({
-                            success: 1,
-                            user: em
-                        });
-
-                        res.send({
-                            success: 1,
-                            user: em
-                        });
-                    } else {
-                        res.send({
-                            success: 0,
-                            user: "wrong username or email"
-                        });
-                    }
-
-                });
-            } else {
-                res.send("");
-            }
-
-        }
-    })
-});
-
-
-app.post('/loginPost', function(req, res) {
-    console.log(req.body);
-    var username = req.body.loginname;
-    var password = req.body.password;
-    if (username == "admin" && password == "admin123") {
-        Room.find((err, rms) => {
-
-            console.log("romm are there")
-            res.render('admin.ejs', {
-                rooms: rms
-            })
-
-        });
-    } else {
-        res.render('login.ejs')
-    }
-})
-
-app.post('/upload', upload.single('img'), function(req, res, next) {
-    // req.file is the `avatar` file
-    console.log(req.body)
-    var name = req.body.name;
-    var price = req.body.price;
-    var beds = req.body.beds;
-    var status = req.body.status;
-    var src = req.file.originalname;
-    var rating = req.body.rating;
-    var complements = req.body.complements;
-    var room = new Room({
-        name: name,
-        price: price,
-        beds: beds,
-        status: status,
-        rating: rating,
-        complements: complements,
-        img: src
-    });
-    room.save(function(err) {
-        Room.find((err, rooms) => {
-            if (err) return console.error(err);
-
-            res.render('admin.ejs', {
-                rooms: rooms
-            })
-
-
-        });
+app.get('/admin/getRooms', function(req, res) {
+    Room.find((err, rms) => {
+        console.log("getting rooms");
+        res.send(rms);
 
     });
 
 });
-var savefile = function(data) {
-    var fs = require('fs');
 
+app.get('/admin/photo', function(req, res) {
+    Photo.find((err, rms) => {
+        res.send(rms);
 
-
-    fs.writeFile('mynewfile3.jpg', data, function(err) {
-        if (err) throw err;
-        console.log('Replaced!');
-    })
-}
-<<<<<<< HEAD
-
-app.post('/saveRoom', upload.single('img'), function (req, res, next) {
-=======
-var ID = function() {
-
-    return '_' + Math.random().toString(36).substr(2, 9);
-};
-app.post('/saveRoom', upload.single('img'), function(req, res, next) {
->>>>>>> 90c3fc0a9e634d7d93d5aa505a90a27c4b747e96
-
-    if (req.body.id) {
-        var id = req.body.id;
-        delete req.body["id"];
-        if (req.file) {
-            req.body.img = req.file.originalname;
-            console.log("file available")
-
-        }
-
-        Room.update({
-            _id: id
-        }, {
-            $set: req.body
-        }, function(err, update) {
-            if (err) {
-                console.log(err.message)
-            } else {
-                console.log(req.body);
-            }
-            console.log(res.Url)
-                //res.send("good")
-
-        });
-    } else {
-        console.log(req.body)
-        new Room(req.body).save(function(err) {
-            if (err) {
-                console.log(err.message);
-            }
-
-        });
-    }
-})
-
-<<<<<<< HEAD
-app.post('/admin/saveRoom1', upload.single('img'), async function (req, res, next) {
-  try {
-    console.log(req.body.id);
-    var name = req.body.name;
-    var price = req.body.price;
-    var beds = req.body.beds;
-=======
-app.post('/saveRoom1', upload.single('img'), async function(req, res, next) {
-    // req.file is the `avatar` file
-
-    try {
-        console.log(req.body.id);
-        var name = req.body.name;
-        var price = req.body.price;
-        var beds = req.body.beds;
->>>>>>> 90c3fc0a9e634d7d93d5aa505a90a27c4b747e96
-
-        if (!req.body.id) {
-
-            var status = req.body.status;
-            if (req.body.status.includes("yes")) {
-                status = "Yes"
-            } else {
-                status = "No";
-            }
-            if (!req.file) {
-                res.status(500).send("Image not set");
-                return;
-            }
-
-
-            var src = req.file.originalname;
-            var rating = req.body.rating.replace("number:", "");
-            var complements = req.body.complements;
-            var detail = {
-                name: name,
-                price: price,
-                beds: beds,
-                status: status,
-                rating: rating,
-                complements: complements,
-                img: src
-            }
-            var room = new Room(detail);
-
-            room.save(function(err) {
-                if (err) {
-                    res.status(500).send(err.responseJSON.message);
-                    return;
-                }
-
-                Room.find((err, rooms) => {
-                    if (err) {
-                        res.status(500).send(err.responseJSON.message);
-                        return;
-                    }
-
-                    res.status(200).send({
-                        rooms: rooms
-                    });
-
-                });
-
-            });
-        } else {
-
-            var status = req.body.status;
-            if (req.body.status.includes("yes")) {
-                status = "Yes"
-            } else {
-                status = "No";
-            }
-
-            var rating = req.body.rating.replace("number:", "");
-            var complements = req.body.complements;
-            var detail = {
-                name: name,
-                price: price,
-                beds: beds,
-                status: status,
-                rating: rating,
-                complements: complements,
-            }
-
-            const result = await Room.update({
-                _id: req.body.id
-            }, {
-                $set: detail
-            });
-
-            if (result) {
-                const rooms = await Room.find({});
-                res.status(200).send({
-                    rooms: rooms
-                });
-            } else {
-                res.status(500).send("Update failed try again");
-            }
-        }
-    } catch (error) {
-        console.log(error)
-        res.status(500).send(error.message);
-    }
-
+    });
 
 });
 
-<<<<<<< HEAD
-app.post('/admin/photo', upload.single('img'), async function (req, res, next) {
-  // req.file is the `avatar` file
+app.get('/admin/menu', function(req, res) {
+    Menu.find((err, rms) => {
+        res.send(rms);
 
-  try {
-    console.log(req.body.id);
-    var name = req.body.name;
+    });
 
-    if (!req.body.id) {
+});
 
-      if (!req.file) {
-        res.status(500).send("Image not set");
-        return;
-      }
+app.get('/admin/service', async(req, res) => {
 
-      var src = req.file.originalname;
-
-      var complements = req.body.complements;
-      var detail = {
-        name: name,
-        complements: complements,
-        img: src
-      }
-      var photo = new Photo(detail);
-
-      photo.save(function (err) {
-        if (err) {
-          res.status(500).send(err.responseJSON.message);
-          return;
+    if (req.query.id) {
+        const service = await Service.findById(req.query.id);
+        if (!service) {
+            res.status(500).send("Service not found")
+            return
         }
 
-        Photo.find((err, rooms) => {
-          if (err) {
-            res.status(500).send(err.responseJSON.message);
-            return;
-          }
-
-          res.status(200).send({
-            rooms: rooms
-          });
-
-        });
-
-      });
-    } else {
-
-      var status = req.body.status;
-      var complements = req.body.complements;
-      var detail = {
-        name: name,
-        complements: complements,
-      }
-
-      if (!req.file) {
-        res.status(500).send("Image not set");
-        var src = req.file.originalname;
-        detail.img = src
-      }
-
-
-      const result = await Photo.update({
-        _id: req.body.id
-      }, {
-        $set: detail
-      });
-
-      if (result) {
-        const rooms = await Photo.find({});
         res.status(200).send({
-          rooms: rooms
-        });
-      } else {
-        res.status(500).send("Update failed try again");
-      }
-    }
-  } catch (error) {
-    console.log(error)
-    res.status(500).send(error.message);
-  }
-
-
-});
-
-
-app.post('/admin/service', upload.array('img', 10), async function (req, res, next) {
-
-  try {
-
-
-    var name = req.body.name;
-    console.log(req.files)
-    const files = req.files.map(x => {
-      return x.originalname
-    })
-  
-    console.log(files)
-    if (!req.body.id) {
-      if (!req.files) {
-        res.status(500).send("Image not set");
-        return;
-      }
-
-      var src = req.files[0].originalname;
-      var content = req.body.content;
-      var detail = {
-        name: name,
-        content: content,
-        img: src,
-        images: files,
-      }
-      if (req.body.perks) {
-        const perks = req.body.perks.split(',');
-        detail.unique = perks
-      }
-      var service = new Service(detail);
-
-      service.save(function (err) {
-        if (err) {
-          res.status(500).send(err.responseJSON.message);
-          return;
-        }
-
-        Service.find((err, rooms) => {
-          if (err) {
-            res.status(500).send(err.responseJSON.message);
-            return;
-          }
-
-          res.status(200).send({
-            rooms: rooms
-          });
-
-        });
-
-      });
-    } else {
-
-      var status = req.body.status;
-      var content = req.body.content;
-      var detail = {
-        name: name,
-        content: content,
-      }
-
-      const result = await Service.update({
-        _id: req.body.id
-      }, {
-        $set: detail
-      });
-
-      if (result) {
-        const rooms = await Service.find({});
-        res.status(200).send({
-          rooms: rooms
-        });
-      } else {
-        res.status(500).send("Update failed try again");
-      }
-    }
-  } catch (error) {
-    console.log(error)
-    res.status(500).send(error.message);
-  }
-
-
-});
-
-app.post('/admin/menu', upload.array('img', 10), async function (req, res, next) {
-
-  try {
-    console.log(req.body)
-    if (!req.body.id) {
-      if (req.files) {
-        var src = req.files[0].originalname;
-        req.body.img = src;
-
-      }
-
-      if (req.file) {
-        var src = req.file.originalname;
-        req.body.img = src;
-
-      }
-
-      var service = new Menu(req.body);
-      service.save(function (err) {
-        if (err) {
-          res.status(500).send(err);
-          return;
-        }
-
-        Menu.find((err, rooms) => {
-          if (err) {
-            res.status(500).send(err.responseJSON.message);
-            return;
-          }
-
-          res.status(200).send({
-            rooms: rooms
-          });
-
-        });
-
-      });
-    } else {
-
-
-      const result = await Menu.update({
-        _id: req.body.id
-      }, {
-        $set: req.body
-      });
-
-      if (result) {
-        const rooms = await Menu.find({});
-        res.status(200).send({
-          rooms: rooms
-        });
-      } else {
-        res.status(500).send("Update failed try again");
-      }
-    }
-  } catch (error) {
-    console.log(error)
-    res.status(500).send(JSON.stringify("Error"));
-  }
-
-
-});
-
-app.post('/saveNews', upload.single('img'), function (req, res, next) {
-  // req.file is the `avatar` file
-  console.log(req.body)
-  var news = {};
-  news.title = req.body.title;
-  news.src = req.file.originalname;
-  news.content = req.body.content;
-  news.src = req.file.originalname;
-
-  var room = new News(news);
-  room.save(function (err) {
-    if (err) {
-      console.log(err)
-    }
-    res.send("saved")
-=======
-app.post('/saveNews', upload.single('img'), function(req, res, next) {
-    // req.file is the `avatar` file
-    console.log(req.body)
-    var news = {};
-    news.title = req.body.title;
-    news.src = req.file.originalname;
-    news.content = req.body.content;
-    news.src = req.file.originalname;
-
-    var room = new News(news);
-    room.save(function(err) {
-        if (err) {
-            console.log(err)
-        }
-        res.send("saved")
->>>>>>> 90c3fc0a9e634d7d93d5aa505a90a27c4b747e96
-
-    });
-
-});
-
-app.post('/header', upload.single('img'), function(req, res, next) {
-    // req.file is the `avatar` file
-
-
-    var line1 = req.body.line1;
-    var line2 = req.body.line2;
-    var src = req.file.originalname;
-
-
-    var room = new Iheader({
-        line1: line1,
-        line2: line2,
-        src: src
-    });
-    room.save();
-    console.log("Iheader updated");
-    res.render("dash.ejs");
-
-
-    // req.body will hold the text fields, if there were any
-});
-
-app.post('/h2', upload.single('img'), function(req, res, next) {
-    // req.file is the `avatar` file
-    var title = req.body.title;
-    var details = req.body.details;
-
-
-    var welcomeinfo = new I2({
-        title: title,
-        details: details
-    });
-    welcomeinfo.save();
-    console.log("welcome info changed");
-    res.render("dash.ejs");
-
-    // req.body will hold the text fields, if there were any
-});
-
-<<<<<<< HEAD
-app.post('/admin/hf', async (req, res) => {
-  console.log(req.body)
-  Itab.deleteMany({})
-  const result = new Itab(req.body).save()
-  res.send("done")
-=======
-app.post('/hf', function(req, res, next) {
-    console.log(req.body)
-    Itab.update({
-        _id: "5aee68fe134c1630ccb04865"
-    }, {
-        $set: req.body
-    }, function(err, rez) {
-
-        if (err) {
-            console.log(err.message)
-        }
-        console.log(rez)
-    })
-
-    res.send("done")
->>>>>>> 90c3fc0a9e634d7d93d5aa505a90a27c4b747e96
-
-
-    // req.body will hold the text fields, if there were any
-});
-
-app.get("/dash", (req, res) => {
-
-    res.render('dash.ejs');
-
-});
-
-<<<<<<< HEAD
-app.get("/admin/getUsers", (req, res) => {
-  User.find({}, function (err, result) {
-    if (err) {
-      console.log(err.message);
-      res.send([])
-    } else {
-      res.send(result)
-    }
-=======
-app.get("/getUsers", (req, res) => {
-    User.find({}, function(err, result) {
-        if (err) {
-            console.log(err.message);
-            res.send([])
-        } else {
-            res.send(result)
-        }
->>>>>>> 90c3fc0a9e634d7d93d5aa505a90a27c4b747e96
-
-    })
-})
-
-app.post("/viewDetails", function(req, res) {
-    User.findById(req.body.sid, function(err, usr) {
-        if (err) {
-            usr = {}
-            console.log(err.message);
-        } else {
-            Room.findById(req.body.rid, function(err, room) {
-                res.send({
-                    user: usr,
-                    room: room
-                });
-            })
-        }
-    })
-})
-
-<<<<<<< HEAD
-app.get("/admin/ball", (req, res) => {
-  Booking.find({}, function (err, result) {
-    if (err) {
-      console.log(err.message)
-    } else {
-      res.send(result);
-    }
-  })
-});
-
-
-app.get("/admin/hfs", (req, res) => {
-  Itab.find({}, function (err, item) {
-    if (err) {
-      res.send({});
-=======
-app.get("/ball", (req, res) => {
-    Booking.find({}, function(err, result) {
-        if (err) {
-            console.log(err.message)
-        } else {
-            res.send(result);
-        }
-    })
-
-
-});
-app.get("/hfs", (req, res) => {
-    Itab.findById("5aee68fe134c1630ccb04865", function(err, item) {
-        if (err) {
-            res.send({});
->>>>>>> 90c3fc0a9e634d7d93d5aa505a90a27c4b747e96
-
-        } else {
-            res.send(item);
-        }
-    })
-
-});
-<<<<<<< HEAD
-app.get("/admin/feedback", (req, res) => {
-  Feedback.find({}, function (err, item) {
-    if (err) {
-      res.send({});
-=======
-app.get("/feedback", (req, res) => {
-    Feedback.find({}, function(err, item) {
-        if (err) {
-            res.send({});
->>>>>>> 90c3fc0a9e634d7d93d5aa505a90a27c4b747e96
-
-        } else {
-            res.send(item);
-        }
-    })
-
-});
-
-app.post("/feedback", async(req, res) => {
-    try {
-        const result = await new Feedback(req.body).save()
-        res.status(200).send({
-            rooms: result
+            service: service
         })
-    } catch (error) {
-        res.status(500).send({
-            error: error.message
-        })
+    } else {
+        Service.find((err, rms) => {
+            res.send(rms);
+
+        });
     }
-})
 
 
-<<<<<<< HEAD
-app.post("/admin/deleteRep", function (req, res) {
-  Feedback.findByIdAndRemove(req.body.id, function (err, ret) {
-    if (err) {
-      console.log(err.message)
-    }
-    res.send("ok")
-  })
-=======
-app.post("/deleteRep", function(req, res) {
-    Feedback.findByIdAndRemove(req.body.id, function(err, ret) {
-        if (err) {
-            console.log(err.message)
-        }
-        res.send("ok")
-    })
->>>>>>> 90c3fc0a9e634d7d93d5aa505a90a27c4b747e96
-
-})
+});
 
 
 
-<<<<<<< HEAD
-app.post("/admin/reply", function (req, res) {
-  sendEmail(req.body.email, req.body.message, "salientke feedback repy");
-  res.send("ok")
-=======
-app.post("/reply", function(req, res) {
-    sendEmail(req.body.email, req.body.message, "salientke feedback repy");
-    res.send("ok")
->>>>>>> 90c3fc0a9e634d7d93d5aa505a90a27c4b747e96
-})
-app.post("/token", function(req, res, next) {
-    var stripe = require("stripe")("sk_test_A98yWXNGWXcQZBMc3DkXLi3d");
-    let token = req.body.token;
-    console.log(token)
-    stripe.charges.create({
-        amount: 2000,
-        currency: "usd",
-        source: token, // obtained with Stripe.js
-        description: "Booking room"
-    }, function(err, charge) {
-        if (err) {
+app.post("/loginx", function(req, res) {
+            var email = req.body.email;
+            var password = req.body.password;
 
-            res.send("error")
-
-        } else {
-            console.log(charge);
-            var book = req.body.book;
-            book.paid = 1;
-            book.sid = charge._id;
-            new Booking(book).save(function(err, booking) {
-                if (err) {
-                    console.log(err);
-                } else {
-                    var subject = "booking room id#" + booking._id;
-                    sendEmail(req.body.email, req.body.mail, subject);
-                    Room.update({
-                        _id: req.body.roomId
-                    }, {
-                        $set: {
-                            status: 'no'
-                        }
-                    }, function(err, update) {
+            Employee.findOne({
+                        email: email
+                    }, function(err, em) {
                         if (err) {
-
                             console.log(err.message)
+                            res.send({
+                                success: 0,
+                                user: err.message
+                            });
                         } else {
-
-                        }
-
-
-
-                    });
-                }
-
-
-            })
-
-            res.send("charged")
-        }
-
-
-    })
-});
-// user crud
-app.post("/createUser", async(req, res) => {
-    console.log(req.body)
-    req.body.isAdmin = 0;
-    new User(req.body).save(function(err, result) {
-        if (err) {
-            console.log(err)
-            res.send({
-                success: 0,
-                message: err.name
-            })
-        } else {
-            console.log(result);
-            res.send({
-                success: 1,
-                id: result._id
-            })
-        }
-    })
-
-});
-
-app.get("/getEmployees", function(req, res) {
-    Employee.find({}, function(err, emp) {
-        if (err) {
-            console.log(err.message);
-            res.send([])
-        }
-        res.send(emp)
-    })
-});
-
-app.get("/createUser", async (req, res) => {
-  var data = {
-    firstname: "Admin",
-    lastname: "Royale",
-    isAdmin: 1,
-    email: "philmaxsnr@gmail.com",
-    phone: "0728148643",
-    password: bcrypt.hashSync("royaleadmin")
-  }
-  const result = new Employee(data).save();
-  if (result) {
-    res.status(200).send(result)
-    return
-  }
-
-  res.status(500).send("Failed")
-
-});
-app.post("/saveEmployee", (req, res) => {
-    if (req.body.password.length < 40) {
-        req.body.password = bcrypt.hashSync(req.body.password);
-    }
-
-    console.log(req.body);
-    var dd = req.body;
-    var id = null;
-    delete req.body["password2"]
-    if (req.body._id) {
-        id = req.body._id;
-        delete req.body["_id"]
-        Employee.update(id, {
-            $set: req.body
-        }, function(err, result) {
-            if (err) {
-                console.log(err.message);
-                res.send({
-                    success: 0,
-                    message: err.message
-                })
-            } else {
-                console.log(result);
-                res.send({
-                    success: 1,
-                    id: result._id
-                })
-            }
-        })
-
-    } else {
-        new Employee(req.body).save(function(err, result) {
-            if (err) {
-                console.log(err.message);
-                res.send({
-                    success: 0,
-                    message: err.message
-                })
-            } else {
-                console.log(result);
-                res.send({
-                    success: 1,
-                    id: result._id
-                })
-            }
-        })
-    }
-});
-
-app.post("/updateBooking", (req, res) => {
-    var id = null;
-    if (req.body._id) {
-        id = req.body._id;
-        delete req.body["_id"];
-
-
-        Booking.update({
-            _id: id
-        }, {
-            $set: req.body
-        }, function(err, update) {
-            if (err) {
-
-                console.log(err.message)
-            } else {
-                var status = null;
-                if (req.body.paid = 1) {
-                    status = 'no'
-                } else {
-                    status = 'yes'
-                }
-                Room.update({
-                    _id: req.body.roomId
-                }, {
-                    $set: {
-                        status: status
-                    }
-                }, function(err, update) {
-                    if (err) {
-
-                        console.log(err.message)
-                    } else {
-
-                    }
-
-                    res.send("good")
-
-                });
-            }
-
-
-
-        });
-    }
-
-});
-app.get("/cancelBooking", (req, res) => {
-    var id = null;
-    var rid = req.param('rid');
-
-
-
-    if (rid) {
-
-
-        Booking.update({
-            roomId: rid
-        }, {
-            $set: {
-                paid: 0
-            }
-        }, function(err, update) {
-            if (err) {
-
-                console.log(err.message)
-            } else {
-
-                Room.update({
-                    _id: rid
-                }, {
-                    $set: {
-                        status: 'yes'
-                    }
-                }, function(err, update) {
-                    if (err) {
-
-                        console.log(err.message)
-                    } else {
-
-                    }
-
-                    res.render("login.ejs")
-
-                });
-            }
-
-
-
-        });
-    }
-
-});
-app.post("/updateUser", (req, res) => {
-    var id = null;
-    if (req.body.user._id) {
-        id = req.body.user._id;
-        delete req.body.user["_id"];
-
-        User.update({
-            _id: id
-        }, {
-            $set: req.body.user
-        }, function(err, update) {
-            if (err) {
-
-                console.log(err.message)
-            } else {
-                console.log(update);
-            }
-
-            res.send("good")
-
-        });
-    }
-
-});
-app.post("/deleteUser", (req, res) => {
-
-    res.render('dash.ejs');
-
-});
-<<<<<<< HEAD
-app.post("/admin/saveBanner", upload.single('img'), function (req, res, next) {
-  req.body.src = req.file.originalname;
-  Iheader.deleteMany({});
-  new Iheader(req.body).save(function (err) {
-    if (err) {
-      console.log(err.message)
-    } else {
-      console.log("saved")
-    }
-  });
-  res.send("done")
-
-});
-
-app.post("/admin/saveWelcome", function (req, res, next) {
-  console.log(req.body)
-  new I2(req.body).save(function (err) {
-    if (err) {
-      console.log(err.message)
-    } else {
-      console.log("saved")
-    }
-  });
-  res.send("done")
-
-});
-
-app.post("/admin/deleteRoom", async (req, res) => {
-=======
-app.post("/saveBanner", upload.single('img'), function(req, res, next) {
-    req.body.src = req.file.originalname;
-    new Iheader(req.body).save(function(err) {
-        if (err) {
-            console.log(err.message)
-        } else {
-            console.log("saved")
-        }
-    });
-    res.send("done")
-
-});
-
-app.post("/saveWelcome", function(req, res, next) {
-    console.log(req.body)
-    new I2(req.body).save(function(err) {
-        if (err) {
-            console.log(err.message)
-        } else {
-            console.log("saved")
-        }
-    });
-    res.send("done")
-
-});
-
-app.post("/deleteRoom", async(req, res) => {
->>>>>>> 90c3fc0a9e634d7d93d5aa505a90a27c4b747e96
-
-    try {
-        const result = await Room.findByIdAndRemove(req.body.id);
-        if (!result) {
-            res.status(500).send('Not found');
-            return;
-        }
-        const rooms = await Room.find({});
-        res.status(200).send({
-            rooms: rooms
-        })
-
-    } catch (error) {
-        res.status(500).send(error.responseJSON.message);
-    }
-});
-
-<<<<<<< HEAD
-app.post("/admin/deletephoto", async (req, res) => {
-
-  try {
-    const result = await Photo.findByIdAndRemove(req.body.id);
-    if (!result) {
-      res.status(500).send('Not found');
-      return;
-    }
-    const rooms = await Photo.find({});
-    res.status(200).send({
-      rooms: rooms
-    })
-
-  } catch (error) {
-    res.status(500).send(error.responseJSON.message);
-  }
-});
-
-app.post("/admin/deleteservice", async (req, res) => {
-
-  try {
-    const result = await Service.findByIdAndRemove(req.body.id);
-    if (!result) {
-      res.status(500).send('Not found');
-      return;
-    }
-    const rooms = await Service.find({});
-    res.status(200).send({
-      rooms: rooms
-    })
-
-  } catch (error) {
-    res.status(500).send(error.responseJSON.message);
-  }
-})
-
-app.post("/admin/deletephoto", async (req, res) => {
-
-  try {
-    const result = await Photo.findByIdAndRemove(req.body.id);
-    if (!result) {
-      res.status(500).send('Not found');
-      return;
-    }
-    const rooms = await Photo.find({});
-    res.status(200).send({
-      rooms: rooms
-    })
-
-  } catch (error) {
-    res.status(500).send(error.responseJSON.message);
-  }
-});
-
-app.post("/booking", async (req, res) => {
-=======
-app.post("/booking", async(req, res) => {
->>>>>>> 90c3fc0a9e634d7d93d5aa505a90a27c4b747e96
-
-    const data = req.body;
-    try {
-        const result = await Booking.save(data);
-        if (!result) {
-            res.status(500).send('Failed to save');
-            return;
-        }
-        const room = await Room.findOneAndUpdate({
-            _id: data.roomId
-        }, {
-            $set: {
-                status: "Yes",
-                nextFree: data.to
-            }
-        }, {
-            new: true
-        })
-        const bookings = await Booking.find({});
-        res.status(200).send({
-            bookings: bookings
-        })
-    } catch (error) {
-        res.status(500).send(error.responseJSON.message);
-    }
-});
-
-<<<<<<< HEAD
-
-
-app.post("/checkout", async (req, res) => {
-  const data = req.body;
-  try {
-    const result = await Booking.findById(data.bookingId);
-    if (!result) {
-      res.status(500).send('Failed to find booking');
-      return;
-    }
-    const room = await Room.findOneAndUpdate({
-      _id: result.roomId
-    }, {
-      $set: {
-        status: "No",
-        nextFree: new Date()
-      }
-    }, {
-      new: true
-    })
-    const bookings = await Booking.find({});
-    res.status(200).send({
-      bookings: bookings
-    })
-=======
-app.post("/checkout", async(req, res) => {
-    const data = req.body;
-    try {
-        const result = await Booking.findById(data.bookingId);
-        if (!result) {
-            res.status(500).send('Failed to find booking');
-            return;
-        }
-        const room = await Room.findOneAndUpdate({
-            _id: result.roomId
-        }, {
-            $set: {
-                status: "No",
-                nextFree: new Date()
-            }
-        }, {
-            new: true
-        })
-        const bookings = await Booking.find({});
-        res.status(200).send({
-            bookings: bookings
-        })
->>>>>>> 90c3fc0a9e634d7d93d5aa505a90a27c4b747e96
-
-
-    } catch (error) {
-        res.status(500).send(error.responseJSON.message);
-    }
-});
-
-app.post("/checkroom", async(req, res) => {
-    try {
-        const result = await Room.find({
-            nextFree: {
-                $gte: req.body.from
-            },
-            status: "No"
-        });
-        res.status(200).send({
-            rooms: result
-        })
-    } catch (error) {
-        res.status(500).send(error.responseJSON.message);
-    }
-});
-app.post("/loginUser", (req, res) => {
-
-    res.render('dash.ejs');
-
-});
-
-
-
-<<<<<<< HEAD
-// app.get('/admin', function (req, res) {
-//   Room.find((err, rooms) => {
-//     if (err) return console.error(err);
-
-//     res.render('admin.ejs', {
-//       rooms: rooms
-//     })
-//     //res.render('index.ejs',{line1:item.line1,line2:item.line2,src:item.src,H2:I2Item});
-
-//   });
-// });
-=======
-app.get('/admin', function(req, res) {
-    Room.find((err, rooms) => {
-        if (err) return console.error(err);
-
-        res.render('admin.ejs', {
-                rooms: rooms
-            })
-            //res.render('index.ejs',{line1:item.line1,line2:item.line2,src:item.src,H2:I2Item});
-
-    });
-});
->>>>>>> 90c3fc0a9e634d7d93d5aa505a90a27c4b747e96
-
-
-
-app.post('/maxbooking', function(req, res) {
-    sendEmail("philmaxsnr@gmail.com", JSON.stringify(req.body), "salientke feedback repy");
-    res.send("ok")
-});
-app.post('/contactmessage', function asyn(req, res) {
-    console.log(req.body)
-
-    res.send({
-        success: 1
-    })
-});
-
-
-//Start listening for requests
-var port = process.env.PORT || 7080;
-var server = app.listen(port, function() {
-
-    console.log("app runinng -p 7080");
-
-});
-
-
-// //moment js
-// var moment = require("moment");
-
-// var clientInfo = {};
-
-// //socket.io instantiation
-// const io = require("socket.io")(server)
-
-
-// // send current users to provided scoket
-// function sendCurrentUsers(socket) { // loading current users
-//   var info = clientInfo[socket.id];
-//   var users = [];
-//   if (typeof info === 'undefined') {
-//     return;
-//   }
-//   // filte name based on rooms
-//   Object.keys(clientInfo).forEach(function (socketId) {
-//     var userinfo = clientInfo[socketId];
-//     // check if user room and selcted room same or not
-//     // as user should see names in only his chat room
-//     if (info.room == userinfo.room) {
-//       users.push(userinfo.name);
-//     }
-
-//   });
-//   // emit message when all users list
-
-//   socket.emit("message", {
-//     name: "System",
-//     text: "Current Users : " + users.join(', '),
-//     timestamp: moment().valueOf()
-//   });
-
-// }
-
-
-// // io.on listens for events
-// io.on("connection", function (socket) {
-//   console.log("User is connected");
-
-//   //for disconnection
-//   socket.on("disconnect", function () {
-//     var userdata = clientInfo[socket.id];
-//     if (typeof (userdata !== undefined)) {
-//       socket.leave(userdata.room); // leave the room
-//       //broadcast leave room to only memebers of same room
-//       socket.broadcast.to(userdata.room).emit("message", {
-//         text: userdata.name + " has left",
-//         name: "System",
-//         timestamp: moment().valueOf()
-//       });
-
-//       // delete user data-
-//       delete clientInfo[socket.id];
-
-//     }
-//   });
-
-//   // for private chat
-//   socket.on('joinRoom', function (req) {
-//     clientInfo[socket.id] = req;
-//     socket.join(req.room);
-//     //broadcast new user joined room
-//     socket.broadcast.to(req.room).emit("message", {
-//       name: "System",
-//       text: req.name + ' has joined',
-//       timestamp: moment().valueOf()
-//     });
-
-//   });
-
-//   // to show who is typing Message
-
-//   socket.on('typing', function (message) { // broadcast this message to all users in that room
-//     socket.broadcast.to(clientInfo[socket.id].room).emit("typing", message);
-//   });
-
-//   // to check if user seen Message
-//   socket.on("userSeen", function (msg) {
-//     socket.broadcast.to(clientInfo[socket.id].room).emit("userSeen", msg);
-//     //socket.emit("message", msg);
-
-//   });
-
-//   socket.emit("message", {
-//     text: "Welcome to Chat Appliction !",
-//     timestamp: moment().valueOf(),
-//     name: "System"
-//   });
-
-//   // listen for client message
-//   socket.on("message", function (message) {
-//     console.log("Message Received : " + message.text);
-//     // to show all current users
-//     if (message.text === "@currentUsers") {
-//       sendCurrentUsers(socket);
-//     } else {
-//       //broadcast to all users except for sender
-//       message.timestamp = moment().valueOf();
-//       //socket.broadcast.emit("message",message);
-//       // now message should be only sent to users who are in same room
-//       socket.broadcast.to(clientInfo[socket.id].room).emit("message", message);
-//       //socket.emit.to(clientInfo[socket.id].room).emit("message", message);
-//     }
-
-//   });
-// });
+                            console.log(em);
+                            // bcrypt.compareSync(password, hash); 
+                            if (em != null) {
+
+                                // Load hash from your password DB.
+                                bcrypt.compare(password, em.password, function(err, correct) {
+                                    // res == true
+                                    if (correct == false) {
+                                        em.password = null;;
+                                        console.log({
+                                            success: 1,
+                                            user: em
+                                        });
+
+                                        res.send({
+                                            success: 1,
+                                            user: em
+                                        });
+                                    } else {
+                                        res.send({
+                                            success: 0,
+                                            user: err.message
+                                        });
+                                    } else {
+                                        console.log(em);
+                                        // bcrypt.compareSync(password, hash); 
+                                        if (em != null) {
+
+                                            // Load hash from your password DB.
+                                            bcrypt.compare(password, em.password, function(err, correct) {
+                                                // res == true
+                                                if (correct == false) {
+                                                    em.password = null;;
+                                                    console.log({
+                                                        success: 1,
+                                                        user: em
+                                                    });
+
+                                                    res.send({
+                                                        success: 1,
+                                                        user: em
+                                                    });
+                                                } else {
+                                                    res.send({
+                                                        success: 0,
+                                                        user: "wrong username or email"
+                                                    });
+                                                }
+
+                                            });
+                                        } else {
+                                            res.send("");
+                                        }
+
+                                    }
+                                })
+                            });
+
+
+                        app.post('/loginPost', function(req, res) {
+                            console.log(req.body);
+                            var username = req.body.loginname;
+                            var password = req.body.password;
+                            if (username == "admin" && password == "admin123") {
+                                Room.find((err, rms) => {
+
+                                    console.log("romm are there")
+                                    res.render('admin.ejs', {
+                                        rooms: rms
+                                    })
+
+                                });
+                            } else {
+                                res.render('login.ejs')
+                            }
+                        })
+
+                        app.post('/upload', upload.single('img'), function(req, res, next) {
+                            // req.file is the `avatar` file
+                            console.log(req.body)
+                            var name = req.body.name;
+                            var price = req.body.price;
+                            var beds = req.body.beds;
+                            var status = req.body.status;
+                            var src = req.file.originalname;
+                            var rating = req.body.rating;
+                            var complements = req.body.complements;
+                            var room = new Room({
+                                name: name,
+                                price: price,
+                                beds: beds,
+                                status: status,
+                                rating: rating,
+                                complements: complements,
+                                img: src
+                            });
+                            room.save(function(err) {
+                                Room.find((err, rooms) => {
+                                    if (err) return console.error(err);
+
+                                    res.render('admin.ejs', {
+                                        rooms: rooms
+                                    })
+
+
+                                });
+
+                            });
+
+                        });
+                        var savefile = function(data) {
+                                var fs = require('fs');
+
+
+
+                                fs.writeFile('mynewfile3.jpg', data, function(err) {
+                                    if (err) throw err;
+                                    console.log('Replaced!');
+                                })
+                            } <<
+                            <<
+                            <<
+                            < HEAD
+
+                        app.post('/saveRoom', upload.single('img'), function(req, res, next) { ===
+                                    ===
+                                    =
+                                    var ID = function() {
+
+                                        return '_' + Math.random().toString(36).substr(2, 9);
+                                    };
+                                    app.post('/saveRoom', upload.single('img'), function(req, res, next) { >>>
+                                        >>>
+                                        >
+                                        90 c3fc0a9e634d7d93d5aa505a90a27c4b747e96
+
+                                        if (req.body.id) {
+                                            var id = req.body.id;
+                                            delete req.body["id"];
+                                            if (req.file) {
+                                                req.body.img = req.file.originalname;
+                                                console.log("file available")
+
+                                            }
+
+                                            Room.update({
+                                                _id: id
+                                            }, {
+                                                $set: req.body
+                                            }, function(err, update) {
+                                                if (err) {
+                                                    console.log(err.message)
+                                                } else {
+                                                    console.log(req.body);
+                                                }
+                                                console.log(res.Url)
+                                                    //res.send("good")
+
+                                            });
+                                        } else {
+                                            console.log(req.body)
+                                            new Room(req.body).save(function(err) {
+                                                if (err) {
+                                                    console.log(err.message);
+                                                }
+
+                                            });
+                                        }
+                                    })
+
+                                    <<
+                                    <<
+                                    <<
+                                    < HEAD
+                                    app.post('/admin/saveRoom1', upload.single('img'), async function(req, res, next) {
+                                                try {
+                                                    console.log(req.body.id);
+                                                    var name = req.body.name;
+                                                    var price = req.body.price;
+                                                    var beds = req.body.beds; ===
+                                                    ===
+                                                    =
+                                                    app.post('/saveRoom1', upload.single('img'), async function(req, res, next) {
+                                                        // req.file is the `avatar` file
+
+                                                        try {
+                                                            console.log(req.body.id);
+                                                            var name = req.body.name;
+                                                            var price = req.body.price;
+                                                            var beds = req.body.beds; >>>
+                                                            >>>
+                                                            >
+                                                            90 c3fc0a9e634d7d93d5aa505a90a27c4b747e96
+
+                                                            if (!req.body.id) {
+
+                                                                var status = req.body.status;
+                                                                if (req.body.status.includes("yes")) {
+                                                                    status = "Yes"
+                                                                } else {
+                                                                    status = "No";
+                                                                }
+                                                                if (!req.file) {
+                                                                    res.status(500).send("Image not set");
+                                                                    return;
+                                                                }
+
+
+                                                                var src = req.file.originalname;
+                                                                var rating = req.body.rating.replace("number:", "");
+                                                                var complements = req.body.complements;
+                                                                var detail = {
+                                                                    name: name,
+                                                                    price: price,
+                                                                    beds: beds,
+                                                                    status: status,
+                                                                    rating: rating,
+                                                                    complements: complements,
+                                                                    img: src
+                                                                }
+                                                                var room = new Room(detail);
+
+                                                                room.save(function(err) {
+                                                                    if (err) {
+                                                                        res.status(500).send(err.responseJSON.message);
+                                                                        return;
+                                                                    }
+
+                                                                    Room.find((err, rooms) => {
+                                                                        if (err) {
+                                                                            res.status(500).send(err.responseJSON.message);
+                                                                            return;
+                                                                        }
+
+                                                                        res.status(200).send({
+                                                                            rooms: rooms
+                                                                        });
+
+                                                                    });
+
+                                                                });
+                                                            } else {
+
+                                                                var status = req.body.status;
+                                                                if (req.body.status.includes("yes")) {
+                                                                    status = "Yes"
+                                                                } else {
+                                                                    status = "No";
+                                                                }
+
+                                                                var rating = req.body.rating.replace("number:", "");
+                                                                var complements = req.body.complements;
+                                                                var detail = {
+                                                                    name: name,
+                                                                    price: price,
+                                                                    beds: beds,
+                                                                    status: status,
+                                                                    rating: rating,
+                                                                    complements: complements,
+                                                                }
+
+                                                                const result = await Room.update({
+                                                                    _id: req.body.id
+                                                                }, {
+                                                                    $set: detail
+                                                                });
+
+                                                                if (result) {
+                                                                    const rooms = await Room.find({});
+                                                                    res.status(200).send({
+                                                                        rooms: rooms
+                                                                    });
+                                                                } else {
+                                                                    res.status(500).send("Update failed try again");
+                                                                }
+                                                            }
+                                                        } catch (error) {
+                                                            console.log(error)
+                                                            res.status(500).send(error.message);
+                                                        }
+
+
+                                                    });
+
+                                                    <<
+                                                    <<
+                                                    <<
+                                                    < HEAD
+                                                    app.post('/admin/photo', upload.single('img'), async function(req, res, next) {
+                                                        // req.file is the `avatar` file
+
+                                                        try {
+                                                            console.log(req.body.id);
+                                                            var name = req.body.name;
+
+                                                            if (!req.body.id) {
+
+                                                                if (!req.file) {
+                                                                    res.status(500).send("Image not set");
+                                                                    return;
+                                                                }
+
+                                                                var src = req.file.originalname;
+
+                                                                var complements = req.body.complements;
+                                                                var detail = {
+                                                                    name: name,
+                                                                    complements: complements,
+                                                                    img: src
+                                                                }
+                                                                var photo = new Photo(detail);
+
+                                                                photo.save(function(err) {
+                                                                    if (err) {
+                                                                        res.status(500).send(err.responseJSON.message);
+                                                                        return;
+                                                                    }
+
+                                                                    Photo.find((err, rooms) => {
+                                                                        if (err) {
+                                                                            res.status(500).send(err.responseJSON.message);
+                                                                            return;
+                                                                        }
+
+                                                                        res.status(200).send({
+                                                                            rooms: rooms
+                                                                        });
+
+                                                                    });
+
+                                                                });
+                                                            } else {
+
+                                                                var status = req.body.status;
+                                                                var complements = req.body.complements;
+                                                                var detail = {
+                                                                    name: name,
+                                                                    complements: complements,
+                                                                }
+
+                                                                if (!req.file) {
+                                                                    res.status(500).send("Image not set");
+                                                                    var src = req.file.originalname;
+                                                                    detail.img = src
+                                                                }
+
+
+                                                                const result = await Photo.update({
+                                                                    _id: req.body.id
+                                                                }, {
+                                                                    $set: detail
+                                                                });
+
+                                                                if (result) {
+                                                                    const rooms = await Photo.find({});
+                                                                    res.status(200).send({
+                                                                        rooms: rooms
+                                                                    });
+                                                                } else {
+                                                                    res.status(500).send("Update failed try again");
+                                                                }
+                                                            }
+                                                        } catch (error) {
+                                                            console.log(error)
+                                                            res.status(500).send(error.message);
+                                                        }
+
+
+                                                    });
+
+
+                                                    app.post('/admin/service', upload.array('img', 10), async function(req, res, next) {
+
+                                                        try {
+
+
+                                                            var name = req.body.name;
+                                                            console.log(req.files)
+                                                            const files = req.files.map(x => {
+                                                                return x.originalname
+                                                            })
+
+                                                            console.log(files)
+                                                            if (!req.body.id) {
+                                                                if (!req.files) {
+                                                                    res.status(500).send("Image not set");
+                                                                    return;
+                                                                }
+
+                                                                var src = req.files[0].originalname;
+                                                                var content = req.body.content;
+                                                                var detail = {
+                                                                    name: name,
+                                                                    content: content,
+                                                                    img: src,
+                                                                    images: files,
+                                                                }
+                                                                if (req.body.perks) {
+                                                                    const perks = req.body.perks.split(',');
+                                                                    detail.unique = perks
+                                                                }
+                                                                var service = new Service(detail);
+
+                                                                service.save(function(err) {
+                                                                    if (err) {
+                                                                        res.status(500).send(err.responseJSON.message);
+                                                                        return;
+                                                                    }
+
+                                                                    Service.find((err, rooms) => {
+                                                                        if (err) {
+                                                                            res.status(500).send(err.responseJSON.message);
+                                                                            return;
+                                                                        }
+
+                                                                        res.status(200).send({
+                                                                            rooms: rooms
+                                                                        });
+
+                                                                    });
+
+                                                                });
+                                                            } else {
+
+                                                                var status = req.body.status;
+                                                                var content = req.body.content;
+                                                                var detail = {
+                                                                    name: name,
+                                                                    content: content,
+                                                                }
+
+                                                                const result = await Service.update({
+                                                                    _id: req.body.id
+                                                                }, {
+                                                                    $set: detail
+                                                                });
+
+                                                                if (result) {
+                                                                    const rooms = await Service.find({});
+                                                                    res.status(200).send({
+                                                                        rooms: rooms
+                                                                    });
+                                                                } else {
+                                                                    res.status(500).send("Update failed try again");
+                                                                }
+                                                            }
+                                                        } catch (error) {
+                                                            console.log(error)
+                                                            res.status(500).send(error.message);
+                                                        }
+
+
+                                                    });
+
+                                                    app.post('/admin/menu', upload.array('img', 10), async function(req, res, next) {
+
+                                                        try {
+                                                            console.log(req.body)
+                                                            if (!req.body.id) {
+                                                                if (req.files) {
+                                                                    var src = req.files[0].originalname;
+                                                                    req.body.img = src;
+
+                                                                }
+
+                                                                if (req.file) {
+                                                                    var src = req.file.originalname;
+                                                                    req.body.img = src;
+
+                                                                }
+
+                                                                var service = new Menu(req.body);
+                                                                service.save(function(err) {
+                                                                    if (err) {
+                                                                        res.status(500).send(err);
+                                                                        return;
+                                                                    }
+
+                                                                    Menu.find((err, rooms) => {
+                                                                        if (err) {
+                                                                            res.status(500).send(err.responseJSON.message);
+                                                                            return;
+                                                                        }
+
+                                                                        res.status(200).send({
+                                                                            rooms: rooms
+                                                                        });
+
+                                                                    });
+
+                                                                });
+                                                            } else {
+
+
+                                                                const result = await Menu.update({
+                                                                    _id: req.body.id
+                                                                }, {
+                                                                    $set: req.body
+                                                                });
+
+                                                                if (result) {
+                                                                    const rooms = await Menu.find({});
+                                                                    res.status(200).send({
+                                                                        rooms: rooms
+                                                                    });
+                                                                } else {
+                                                                    res.status(500).send("Update failed try again");
+                                                                }
+                                                            }
+                                                        } catch (error) {
+                                                            console.log(error)
+                                                            res.status(500).send(JSON.stringify("Error"));
+                                                        }
+
+
+                                                    });
+
+                                                    app.post('/saveNews', upload.single('img'), function(req, res, next) {
+                                                                // req.file is the `avatar` file
+                                                                console.log(req.body)
+                                                                var news = {};
+                                                                news.title = req.body.title;
+                                                                news.src = req.file.originalname;
+                                                                news.content = req.body.content;
+                                                                news.src = req.file.originalname;
+
+                                                                var room = new News(news);
+                                                                room.save(function(err) {
+                                                                            if (err) {
+                                                                                console.log(err)
+                                                                            }
+                                                                            res.send("saved") ===
+                                                                                ===
+                                                                                =
+                                                                                app.post('/saveNews', upload.single('img'), function(req, res, next) {
+                                                                                    // req.file is the `avatar` file
+                                                                                    console.log(req.body)
+                                                                                    var news = {};
+                                                                                    news.title = req.body.title;
+                                                                                    news.src = req.file.originalname;
+                                                                                    news.content = req.body.content;
+                                                                                    news.src = req.file.originalname;
+
+                                                                                    var room = new News(news);
+                                                                                    room.save(function(err) {
+                                                                                        if (err) {
+                                                                                            console.log(err)
+                                                                                        }
+                                                                                        res.send("saved") >>>
+                                                                                            >>>
+                                                                                            >
+                                                                                            90 c3fc0a9e634d7d93d5aa505a90a27c4b747e96
+
+                                                                                    });
+
+                                                                                });
+
+                                                                            app.post('/header', upload.single('img'), function(req, res, next) {
+                                                                                // req.file is the `avatar` file
+
+
+                                                                                var line1 = req.body.line1;
+                                                                                var line2 = req.body.line2;
+                                                                                var src = req.file.originalname;
+
+
+                                                                                var room = new Iheader({
+                                                                                    line1: line1,
+                                                                                    line2: line2,
+                                                                                    src: src
+                                                                                });
+                                                                                room.save();
+                                                                                console.log("Iheader updated");
+                                                                                res.render("dash.ejs");
+
+
+                                                                                // req.body will hold the text fields, if there were any
+                                                                            });
+
+                                                                            app.post('/h2', upload.single('img'), function(req, res, next) {
+                                                                                // req.file is the `avatar` file
+                                                                                var title = req.body.title;
+                                                                                var details = req.body.details;
+
+
+                                                                                var welcomeinfo = new I2({
+                                                                                    title: title,
+                                                                                    details: details
+                                                                                });
+                                                                                welcomeinfo.save();
+                                                                                console.log("welcome info changed");
+                                                                                res.render("dash.ejs");
+
+                                                                                // req.body will hold the text fields, if there were any
+                                                                            });
+
+                                                                            <<
+                                                                            <<
+                                                                            <<
+                                                                            < HEAD
+                                                                            app.post('/admin/hf', async(req, res) => {
+                                                                                        console.log(req.body)
+                                                                                        Itab.deleteMany({})
+                                                                                        const result = new Itab(req.body).save()
+                                                                                        res.send("done") ===
+                                                                                            ===
+                                                                                            =
+                                                                                            app.post('/hf', function(req, res, next) {
+                                                                                                console.log(req.body)
+                                                                                                Itab.update({
+                                                                                                    _id: "5aee68fe134c1630ccb04865"
+                                                                                                }, {
+                                                                                                    $set: req.body
+                                                                                                }, function(err, rez) {
+
+                                                                                                    if (err) {
+                                                                                                        console.log(err.message)
+                                                                                                    }
+                                                                                                    console.log(rez)
+                                                                                                })
+
+                                                                                                res.send("done") >>>
+                                                                                                    >>>
+                                                                                                    >
+                                                                                                    90 c3fc0a9e634d7d93d5aa505a90a27c4b747e96
+
+
+                                                                                                // req.body will hold the text fields, if there were any
+                                                                                            });
+
+                                                                                        app.get("/dash", (req, res) => {
+
+                                                                                            res.render('dash.ejs');
+
+                                                                                        });
+
+                                                                                        <<
+                                                                                        <<
+                                                                                        <<
+                                                                                        < HEAD
+                                                                                        app.get("/admin/getUsers", (req, res) => {
+                                                                                                    User.find({}, function(err, result) {
+                                                                                                                if (err) {
+                                                                                                                    console.log(err.message);
+                                                                                                                    res.send([])
+                                                                                                                } else {
+                                                                                                                    res.send(result)
+                                                                                                                } ===
+                                                                                                                ===
+                                                                                                                =
+                                                                                                                app.get("/getUsers", (req, res) => {
+                                                                                                                    User.find({}, function(err, result) {
+                                                                                                                        if (err) {
+                                                                                                                            console.log(err.message);
+                                                                                                                            res.send([])
+                                                                                                                        } else {
+                                                                                                                            res.send(result)
+                                                                                                                        } >>>
+                                                                                                                        >>>
+                                                                                                                        >
+                                                                                                                        90 c3fc0a9e634d7d93d5aa505a90a27c4b747e96
+
+                                                                                                                    })
+                                                                                                                })
+
+                                                                                                                app.post("/viewDetails", function(req, res) {
+                                                                                                                    User.findById(req.body.sid, function(err, usr) {
+                                                                                                                        if (err) {
+                                                                                                                            usr = {}
+                                                                                                                            console.log(err.message);
+                                                                                                                        } else {
+                                                                                                                            Room.findById(req.body.rid, function(err, room) {
+                                                                                                                                res.send({
+                                                                                                                                    user: usr,
+                                                                                                                                    room: room
+                                                                                                                                });
+                                                                                                                            })
+                                                                                                                        }
+                                                                                                                    })
+                                                                                                                })
+
+                                                                                                                <<
+                                                                                                                <<
+                                                                                                                <<
+                                                                                                                < HEAD
+                                                                                                                app.get("/admin/ball", (req, res) => {
+                                                                                                                    Booking.find({}, function(err, result) {
+                                                                                                                        if (err) {
+                                                                                                                            console.log(err.message)
+                                                                                                                        } else {
+                                                                                                                            res.send(result);
+                                                                                                                        }
+                                                                                                                    })
+                                                                                                                });
+
+
+                                                                                                                app.get("/admin/hfs", (req, res) => {
+                                                                                                                            Itab.find({}, function(err, item) {
+                                                                                                                                        if (err) {
+                                                                                                                                            res.send({}); ===
+                                                                                                                                            ===
+                                                                                                                                            =
+                                                                                                                                            app.get("/ball", (req, res) => {
+                                                                                                                                                Booking.find({}, function(err, result) {
+                                                                                                                                                    if (err) {
+                                                                                                                                                        console.log(err.message)
+                                                                                                                                                    } else {
+                                                                                                                                                        res.send(result);
+                                                                                                                                                    }
+                                                                                                                                                })
+
+
+                                                                                                                                            });
+                                                                                                                                            app.get("/hfs", (req, res) => {
+                                                                                                                                                Itab.findById("5aee68fe134c1630ccb04865", function(err, item) {
+                                                                                                                                                    if (err) {
+                                                                                                                                                        res.send({}); >>>
+                                                                                                                                                        >>>
+                                                                                                                                                        >
+                                                                                                                                                        90 c3fc0a9e634d7d93d5aa505a90a27c4b747e96
+
+                                                                                                                                                    } else {
+                                                                                                                                                        res.send(item);
+                                                                                                                                                    }
+                                                                                                                                                })
+
+                                                                                                                                            }); <<
+                                                                                                                                            <<
+                                                                                                                                            <<
+                                                                                                                                            < HEAD
+                                                                                                                                            app.get("/admin/feedback", (req, res) => {
+                                                                                                                                                        Feedback.find({}, function(err, item) {
+                                                                                                                                                                    if (err) {
+                                                                                                                                                                        res.send({}); ===
+                                                                                                                                                                        ===
+                                                                                                                                                                        =
+                                                                                                                                                                        app.get("/feedback", (req, res) => {
+                                                                                                                                                                            Feedback.find({}, function(err, item) {
+                                                                                                                                                                                if (err) {
+                                                                                                                                                                                    res.send({}); >>>
+                                                                                                                                                                                    >>>
+                                                                                                                                                                                    >
+                                                                                                                                                                                    90 c3fc0a9e634d7d93d5aa505a90a27c4b747e96
+
+                                                                                                                                                                                } else {
+                                                                                                                                                                                    res.send(item);
+                                                                                                                                                                                }
+                                                                                                                                                                            })
+
+                                                                                                                                                                        });
+
+                                                                                                                                                                        app.post("/feedback", async(req, res) => {
+                                                                                                                                                                            try {
+                                                                                                                                                                                const result = await new Feedback(req.body).save()
+                                                                                                                                                                                res.status(200).send({
+                                                                                                                                                                                    rooms: result
+                                                                                                                                                                                })
+                                                                                                                                                                            } catch (error) {
+                                                                                                                                                                                res.status(500).send({
+                                                                                                                                                                                    error: error.message
+                                                                                                                                                                                })
+                                                                                                                                                                            }
+                                                                                                                                                                        })
+
+
+                                                                                                                                                                        <<
+                                                                                                                                                                        <<
+                                                                                                                                                                        <<
+                                                                                                                                                                        < HEAD
+                                                                                                                                                                        app.post("/admin/deleteRep", function(req, res) {
+                                                                                                                                                                                    Feedback.findByIdAndRemove(req.body.id, function(err, ret) {
+                                                                                                                                                                                            if (err) {
+                                                                                                                                                                                                console.log(err.message)
+                                                                                                                                                                                            }
+                                                                                                                                                                                            res.send("ok")
+                                                                                                                                                                                        }) ===
+                                                                                                                                                                                        ===
+                                                                                                                                                                                        =
+                                                                                                                                                                                        app.post("/deleteRep", function(req, res) {
+                                                                                                                                                                                            Feedback.findByIdAndRemove(req.body.id, function(err, ret) {
+                                                                                                                                                                                                    if (err) {
+                                                                                                                                                                                                        console.log(err.message)
+                                                                                                                                                                                                    }
+                                                                                                                                                                                                    res.send("ok")
+                                                                                                                                                                                                }) >>>
+                                                                                                                                                                                                >>>
+                                                                                                                                                                                                >
+                                                                                                                                                                                                90 c3fc0a9e634d7d93d5aa505a90a27c4b747e96
+
+                                                                                                                                                                                        })
+
+
+
+                                                                                                                                                                                    <<
+                                                                                                                                                                                    <<
+                                                                                                                                                                                    <<
+                                                                                                                                                                                    < HEAD
+                                                                                                                                                                                    app.post("/admin/reply", function(req, res) {
+                                                                                                                                                                                                sendEmail(req.body.email, req.body.message, "salientke feedback repy");
+                                                                                                                                                                                                res.send("ok") ===
+                                                                                                                                                                                                    ===
+                                                                                                                                                                                                    =
+                                                                                                                                                                                                    app.post("/reply", function(req, res) {
+                                                                                                                                                                                                        sendEmail(req.body.email, req.body.message, "salientke feedback repy");
+                                                                                                                                                                                                        res.send("ok") >>>
+                                                                                                                                                                                                            >>>
+                                                                                                                                                                                                            >
+                                                                                                                                                                                                            90 c3fc0a9e634d7d93d5aa505a90a27c4b747e96
+                                                                                                                                                                                                    })
+                                                                                                                                                                                                app.post("/token", function(req, res, next) {
+                                                                                                                                                                                                    var stripe = require("stripe")("sk_test_A98yWXNGWXcQZBMc3DkXLi3d");
+                                                                                                                                                                                                    let token = req.body.token;
+                                                                                                                                                                                                    console.log(token)
+                                                                                                                                                                                                    stripe.charges.create({
+                                                                                                                                                                                                        amount: 2000,
+                                                                                                                                                                                                        currency: "usd",
+                                                                                                                                                                                                        source: token, // obtained with Stripe.js
+                                                                                                                                                                                                        description: "Booking room"
+                                                                                                                                                                                                    }, function(err, charge) {
+                                                                                                                                                                                                        if (err) {
+
+                                                                                                                                                                                                            res.send("error")
+
+                                                                                                                                                                                                        } else {
+                                                                                                                                                                                                            console.log(charge);
+                                                                                                                                                                                                            var book = req.body.book;
+                                                                                                                                                                                                            book.paid = 1;
+                                                                                                                                                                                                            book.sid = charge._id;
+                                                                                                                                                                                                            new Booking(book).save(function(err, booking) {
+                                                                                                                                                                                                                if (err) {
+                                                                                                                                                                                                                    console.log(err);
+                                                                                                                                                                                                                } else {
+                                                                                                                                                                                                                    var subject = "booking room id#" + booking._id;
+                                                                                                                                                                                                                    sendEmail(req.body.email, req.body.mail, subject);
+                                                                                                                                                                                                                    Room.update({
+                                                                                                                                                                                                                        _id: req.body.roomId
+                                                                                                                                                                                                                    }, {
+                                                                                                                                                                                                                        $set: {
+                                                                                                                                                                                                                            status: 'no'
+                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                    }, function(err, update) {
+                                                                                                                                                                                                                        if (err) {
+
+                                                                                                                                                                                                                            console.log(err.message)
+                                                                                                                                                                                                                        } else {
+
+                                                                                                                                                                                                                        }
+
+
+
+                                                                                                                                                                                                                    });
+                                                                                                                                                                                                                }
+
+
+                                                                                                                                                                                                            })
+
+                                                                                                                                                                                                            res.send("charged")
+                                                                                                                                                                                                        }
+
+
+                                                                                                                                                                                                    })
+                                                                                                                                                                                                });
+                                                                                                                                                                                                // user crud
+                                                                                                                                                                                                app.post("/createUser", async(req, res) => {
+                                                                                                                                                                                                    console.log(req.body)
+                                                                                                                                                                                                    req.body.isAdmin = 0;
+                                                                                                                                                                                                    new User(req.body).save(function(err, result) {
+                                                                                                                                                                                                        if (err) {
+                                                                                                                                                                                                            console.log(err)
+                                                                                                                                                                                                            res.send({
+                                                                                                                                                                                                                success: 0,
+                                                                                                                                                                                                                message: err.name
+                                                                                                                                                                                                            })
+                                                                                                                                                                                                        } else {
+                                                                                                                                                                                                            console.log(result);
+                                                                                                                                                                                                            res.send({
+                                                                                                                                                                                                                success: 1,
+                                                                                                                                                                                                                id: result._id
+                                                                                                                                                                                                            })
+                                                                                                                                                                                                        }
+                                                                                                                                                                                                    })
+
+                                                                                                                                                                                                });
+
+                                                                                                                                                                                                app.get("/getEmployees", function(req, res) {
+                                                                                                                                                                                                    Employee.find({}, function(err, emp) {
+                                                                                                                                                                                                        if (err) {
+                                                                                                                                                                                                            console.log(err.message);
+                                                                                                                                                                                                            res.send([])
+                                                                                                                                                                                                        }
+                                                                                                                                                                                                        res.send(emp)
+                                                                                                                                                                                                    })
+                                                                                                                                                                                                });
+
+                                                                                                                                                                                                app.get("/createUser", async(req, res) => {
+                                                                                                                                                                                                    var data = {
+                                                                                                                                                                                                        firstname: "Admin",
+                                                                                                                                                                                                        lastname: "Royale",
+                                                                                                                                                                                                        isAdmin: 1,
+                                                                                                                                                                                                        email: "philmaxsnr@gmail.com",
+                                                                                                                                                                                                        phone: "0728148643",
+                                                                                                                                                                                                        password: bcrypt.hashSync("royaleadmin")
+                                                                                                                                                                                                    }
+                                                                                                                                                                                                    const result = new Employee(data).save();
+                                                                                                                                                                                                    if (result) {
+                                                                                                                                                                                                        res.status(200).send(result)
+                                                                                                                                                                                                        return
+                                                                                                                                                                                                    }
+
+                                                                                                                                                                                                    res.status(500).send("Failed")
+
+                                                                                                                                                                                                });
+                                                                                                                                                                                                app.post("/saveEmployee", (req, res) => {
+                                                                                                                                                                                                    if (req.body.password.length < 40) {
+                                                                                                                                                                                                        req.body.password = bcrypt.hashSync(req.body.password);
+                                                                                                                                                                                                    }
+
+                                                                                                                                                                                                    console.log(req.body);
+                                                                                                                                                                                                    var dd = req.body;
+                                                                                                                                                                                                    var id = null;
+                                                                                                                                                                                                    delete req.body["password2"]
+                                                                                                                                                                                                    if (req.body._id) {
+                                                                                                                                                                                                        id = req.body._id;
+                                                                                                                                                                                                        delete req.body["_id"]
+                                                                                                                                                                                                        Employee.update(id, {
+                                                                                                                                                                                                            $set: req.body
+                                                                                                                                                                                                        }, function(err, result) {
+                                                                                                                                                                                                            if (err) {
+                                                                                                                                                                                                                console.log(err.message);
+                                                                                                                                                                                                                res.send({
+                                                                                                                                                                                                                    success: 0,
+                                                                                                                                                                                                                    message: err.message
+                                                                                                                                                                                                                })
+                                                                                                                                                                                                            } else {
+                                                                                                                                                                                                                console.log(result);
+                                                                                                                                                                                                                res.send({
+                                                                                                                                                                                                                    success: 1,
+                                                                                                                                                                                                                    id: result._id
+                                                                                                                                                                                                                })
+                                                                                                                                                                                                            }
+                                                                                                                                                                                                        })
+
+                                                                                                                                                                                                    } else {
+                                                                                                                                                                                                        new Employee(req.body).save(function(err, result) {
+                                                                                                                                                                                                            if (err) {
+                                                                                                                                                                                                                console.log(err.message);
+                                                                                                                                                                                                                res.send({
+                                                                                                                                                                                                                    success: 0,
+                                                                                                                                                                                                                    message: err.message
+                                                                                                                                                                                                                })
+                                                                                                                                                                                                            } else {
+                                                                                                                                                                                                                console.log(result);
+                                                                                                                                                                                                                res.send({
+                                                                                                                                                                                                                    success: 1,
+                                                                                                                                                                                                                    id: result._id
+                                                                                                                                                                                                                })
+                                                                                                                                                                                                            }
+                                                                                                                                                                                                        })
+                                                                                                                                                                                                    }
+                                                                                                                                                                                                });
+
+                                                                                                                                                                                                app.post("/updateBooking", (req, res) => {
+                                                                                                                                                                                                    var id = null;
+                                                                                                                                                                                                    if (req.body._id) {
+                                                                                                                                                                                                        id = req.body._id;
+                                                                                                                                                                                                        delete req.body["_id"];
+
+
+                                                                                                                                                                                                        Booking.update({
+                                                                                                                                                                                                            _id: id
+                                                                                                                                                                                                        }, {
+                                                                                                                                                                                                            $set: req.body
+                                                                                                                                                                                                        }, function(err, update) {
+                                                                                                                                                                                                            if (err) {
+
+                                                                                                                                                                                                                console.log(err.message)
+                                                                                                                                                                                                            } else {
+                                                                                                                                                                                                                var status = null;
+                                                                                                                                                                                                                if (req.body.paid = 1) {
+                                                                                                                                                                                                                    status = 'no'
+                                                                                                                                                                                                                } else {
+                                                                                                                                                                                                                    status = 'yes'
+                                                                                                                                                                                                                }
+                                                                                                                                                                                                                Room.update({
+                                                                                                                                                                                                                    _id: req.body.roomId
+                                                                                                                                                                                                                }, {
+                                                                                                                                                                                                                    $set: {
+                                                                                                                                                                                                                        status: status
+                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                }, function(err, update) {
+                                                                                                                                                                                                                    if (err) {
+
+                                                                                                                                                                                                                        console.log(err.message)
+                                                                                                                                                                                                                    } else {
+
+                                                                                                                                                                                                                    }
+
+                                                                                                                                                                                                                    res.send("good")
+
+                                                                                                                                                                                                                });
+                                                                                                                                                                                                            }
+
+
+
+                                                                                                                                                                                                        });
+                                                                                                                                                                                                    }
+
+                                                                                                                                                                                                });
+                                                                                                                                                                                                app.get("/cancelBooking", (req, res) => {
+                                                                                                                                                                                                    var id = null;
+                                                                                                                                                                                                    var rid = req.param('rid');
+
+
+
+                                                                                                                                                                                                    if (rid) {
+
+
+                                                                                                                                                                                                        Booking.update({
+                                                                                                                                                                                                            roomId: rid
+                                                                                                                                                                                                        }, {
+                                                                                                                                                                                                            $set: {
+                                                                                                                                                                                                                paid: 0
+                                                                                                                                                                                                            }
+                                                                                                                                                                                                        }, function(err, update) {
+                                                                                                                                                                                                            if (err) {
+
+                                                                                                                                                                                                                console.log(err.message)
+                                                                                                                                                                                                            } else {
+
+                                                                                                                                                                                                                Room.update({
+                                                                                                                                                                                                                    _id: rid
+                                                                                                                                                                                                                }, {
+                                                                                                                                                                                                                    $set: {
+                                                                                                                                                                                                                        status: 'yes'
+                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                }, function(err, update) {
+                                                                                                                                                                                                                    if (err) {
+
+                                                                                                                                                                                                                        console.log(err.message)
+                                                                                                                                                                                                                    } else {
+
+                                                                                                                                                                                                                    }
+
+                                                                                                                                                                                                                    res.render("login.ejs")
+
+                                                                                                                                                                                                                });
+                                                                                                                                                                                                            }
+
+
+
+                                                                                                                                                                                                        });
+                                                                                                                                                                                                    }
+
+                                                                                                                                                                                                });
+                                                                                                                                                                                                app.post("/updateUser", (req, res) => {
+                                                                                                                                                                                                    var id = null;
+                                                                                                                                                                                                    if (req.body.user._id) {
+                                                                                                                                                                                                        id = req.body.user._id;
+                                                                                                                                                                                                        delete req.body.user["_id"];
+
+                                                                                                                                                                                                        User.update({
+                                                                                                                                                                                                            _id: id
+                                                                                                                                                                                                        }, {
+                                                                                                                                                                                                            $set: req.body.user
+                                                                                                                                                                                                        }, function(err, update) {
+                                                                                                                                                                                                            if (err) {
+
+                                                                                                                                                                                                                console.log(err.message)
+                                                                                                                                                                                                            } else {
+                                                                                                                                                                                                                console.log(update);
+                                                                                                                                                                                                            }
+
+                                                                                                                                                                                                            res.send("good")
+
+                                                                                                                                                                                                        });
+                                                                                                                                                                                                    }
+
+                                                                                                                                                                                                });
+                                                                                                                                                                                                app.post("/deleteUser", (req, res) => {
+
+                                                                                                                                                                                                    res.render('dash.ejs');
+
+                                                                                                                                                                                                }); <<
+                                                                                                                                                                                                <<
+                                                                                                                                                                                                <<
+                                                                                                                                                                                                < HEAD
+                                                                                                                                                                                                app.post("/admin/saveBanner", upload.single('img'), function(req, res, next) {
+                                                                                                                                                                                                    req.body.src = req.file.originalname;
+                                                                                                                                                                                                    Iheader.deleteMany({});
+                                                                                                                                                                                                    new Iheader(req.body).save(function(err) {
+                                                                                                                                                                                                        if (err) {
+                                                                                                                                                                                                            console.log(err.message)
+                                                                                                                                                                                                        } else {
+                                                                                                                                                                                                            console.log("saved")
+                                                                                                                                                                                                        }
+                                                                                                                                                                                                    });
+                                                                                                                                                                                                    res.send("done")
+
+                                                                                                                                                                                                });
+
+                                                                                                                                                                                                app.post("/admin/saveWelcome", function(req, res, next) {
+                                                                                                                                                                                                    console.log(req.body)
+                                                                                                                                                                                                    new I2(req.body).save(function(err) {
+                                                                                                                                                                                                        if (err) {
+                                                                                                                                                                                                            console.log(err.message)
+                                                                                                                                                                                                        } else {
+                                                                                                                                                                                                            console.log("saved")
+                                                                                                                                                                                                        }
+                                                                                                                                                                                                    });
+                                                                                                                                                                                                    res.send("done")
+
+                                                                                                                                                                                                });
+
+                                                                                                                                                                                                app.post("/admin/deleteRoom", async(req, res) => { ===
+                                                                                                                                                                                                            ===
+                                                                                                                                                                                                            =
+                                                                                                                                                                                                            app.post("/saveBanner", upload.single('img'), function(req, res, next) {
+                                                                                                                                                                                                                req.body.src = req.file.originalname;
+                                                                                                                                                                                                                new Iheader(req.body).save(function(err) {
+                                                                                                                                                                                                                    if (err) {
+                                                                                                                                                                                                                        console.log(err.message)
+                                                                                                                                                                                                                    } else {
+                                                                                                                                                                                                                        console.log("saved")
+                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                });
+                                                                                                                                                                                                                res.send("done")
+
+                                                                                                                                                                                                            });
+
+                                                                                                                                                                                                            app.post("/saveWelcome", function(req, res, next) {
+                                                                                                                                                                                                                console.log(req.body)
+                                                                                                                                                                                                                new I2(req.body).save(function(err) {
+                                                                                                                                                                                                                    if (err) {
+                                                                                                                                                                                                                        console.log(err.message)
+                                                                                                                                                                                                                    } else {
+                                                                                                                                                                                                                        console.log("saved")
+                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                });
+                                                                                                                                                                                                                res.send("done")
+
+                                                                                                                                                                                                            });
+
+                                                                                                                                                                                                            app.post("/deleteRoom", async(req, res) => { >>>
+                                                                                                                                                                                                                >>>
+                                                                                                                                                                                                                >
+                                                                                                                                                                                                                90 c3fc0a9e634d7d93d5aa505a90a27c4b747e96
+
+                                                                                                                                                                                                                try {
+                                                                                                                                                                                                                    const result = await Room.findByIdAndRemove(req.body.id);
+                                                                                                                                                                                                                    if (!result) {
+                                                                                                                                                                                                                        res.status(500).send('Not found');
+                                                                                                                                                                                                                        return;
+                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                    const rooms = await Room.find({});
+                                                                                                                                                                                                                    res.status(200).send({
+                                                                                                                                                                                                                        rooms: rooms
+                                                                                                                                                                                                                    })
+
+                                                                                                                                                                                                                } catch (error) {
+                                                                                                                                                                                                                    res.status(500).send(error.responseJSON.message);
+                                                                                                                                                                                                                }
+                                                                                                                                                                                                            });
+
+                                                                                                                                                                                                            <<
+                                                                                                                                                                                                            <<
+                                                                                                                                                                                                            <<
+                                                                                                                                                                                                            < HEAD
+                                                                                                                                                                                                            app.post("/admin/deletephoto", async(req, res) => {
+
+                                                                                                                                                                                                                try {
+                                                                                                                                                                                                                    const result = await Photo.findByIdAndRemove(req.body.id);
+                                                                                                                                                                                                                    if (!result) {
+                                                                                                                                                                                                                        res.status(500).send('Not found');
+                                                                                                                                                                                                                        return;
+                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                    const rooms = await Photo.find({});
+                                                                                                                                                                                                                    res.status(200).send({
+                                                                                                                                                                                                                        rooms: rooms
+                                                                                                                                                                                                                    })
+
+                                                                                                                                                                                                                } catch (error) {
+                                                                                                                                                                                                                    res.status(500).send(error.responseJSON.message);
+                                                                                                                                                                                                                }
+                                                                                                                                                                                                            });
+
+                                                                                                                                                                                                            app.post("/admin/deleteservice", async(req, res) => {
+
+                                                                                                                                                                                                                try {
+                                                                                                                                                                                                                    const result = await Service.findByIdAndRemove(req.body.id);
+                                                                                                                                                                                                                    if (!result) {
+                                                                                                                                                                                                                        res.status(500).send('Not found');
+                                                                                                                                                                                                                        return;
+                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                    const rooms = await Service.find({});
+                                                                                                                                                                                                                    res.status(200).send({
+                                                                                                                                                                                                                        rooms: rooms
+                                                                                                                                                                                                                    })
+
+                                                                                                                                                                                                                } catch (error) {
+                                                                                                                                                                                                                    res.status(500).send(error.responseJSON.message);
+                                                                                                                                                                                                                }
+                                                                                                                                                                                                            })
+
+                                                                                                                                                                                                            app.post("/admin/deletephoto", async(req, res) => {
+
+                                                                                                                                                                                                                try {
+                                                                                                                                                                                                                    const result = await Photo.findByIdAndRemove(req.body.id);
+                                                                                                                                                                                                                    if (!result) {
+                                                                                                                                                                                                                        res.status(500).send('Not found');
+                                                                                                                                                                                                                        return;
+                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                    const rooms = await Photo.find({});
+                                                                                                                                                                                                                    res.status(200).send({
+                                                                                                                                                                                                                        rooms: rooms
+                                                                                                                                                                                                                    })
+
+                                                                                                                                                                                                                } catch (error) {
+                                                                                                                                                                                                                    res.status(500).send(error.responseJSON.message);
+                                                                                                                                                                                                                }
+                                                                                                                                                                                                            });
+
+                                                                                                                                                                                                            app.post("/booking", async(req, res) => { ===
+                                                                                                                                                                                                                        ===
+                                                                                                                                                                                                                        =
+                                                                                                                                                                                                                        app.post("/booking", async(req, res) => { >>>
+                                                                                                                                                                                                                            >>>
+                                                                                                                                                                                                                            >
+                                                                                                                                                                                                                            90 c3fc0a9e634d7d93d5aa505a90a27c4b747e96
+
+                                                                                                                                                                                                                            const data = req.body;
+                                                                                                                                                                                                                            try {
+                                                                                                                                                                                                                                const result = await Booking.save(data);
+                                                                                                                                                                                                                                if (!result) {
+                                                                                                                                                                                                                                    res.status(500).send('Failed to save');
+                                                                                                                                                                                                                                    return;
+                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                const room = await Room.findOneAndUpdate({
+                                                                                                                                                                                                                                    _id: data.roomId
+                                                                                                                                                                                                                                }, {
+                                                                                                                                                                                                                                    $set: {
+                                                                                                                                                                                                                                        status: "Yes",
+                                                                                                                                                                                                                                        nextFree: data.to
+                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                }, {
+                                                                                                                                                                                                                                    new: true
+                                                                                                                                                                                                                                })
+                                                                                                                                                                                                                                const bookings = await Booking.find({});
+                                                                                                                                                                                                                                res.status(200).send({
+                                                                                                                                                                                                                                    bookings: bookings
+                                                                                                                                                                                                                                })
+                                                                                                                                                                                                                            } catch (error) {
+                                                                                                                                                                                                                                res.status(500).send(error.responseJSON.message);
+                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                        });
+
+                                                                                                                                                                                                                        <<
+                                                                                                                                                                                                                        <<
+                                                                                                                                                                                                                        <<
+                                                                                                                                                                                                                        < HEAD
+
+
+                                                                                                                                                                                                                        app.post("/checkout", async(req, res) => {
+                                                                                                                                                                                                                                    const data = req.body;
+                                                                                                                                                                                                                                    try {
+                                                                                                                                                                                                                                        const result = await Booking.findById(data.bookingId);
+                                                                                                                                                                                                                                        if (!result) {
+                                                                                                                                                                                                                                            res.status(500).send('Failed to find booking');
+                                                                                                                                                                                                                                            return;
+                                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                        const room = await Room.findOneAndUpdate({
+                                                                                                                                                                                                                                            _id: result.roomId
+                                                                                                                                                                                                                                        }, {
+                                                                                                                                                                                                                                            $set: {
+                                                                                                                                                                                                                                                status: "No",
+                                                                                                                                                                                                                                                nextFree: new Date()
+                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                        }, {
+                                                                                                                                                                                                                                            new: true
+                                                                                                                                                                                                                                        })
+                                                                                                                                                                                                                                        const bookings = await Booking.find({});
+                                                                                                                                                                                                                                        res.status(200).send({
+                                                                                                                                                                                                                                                bookings: bookings
+                                                                                                                                                                                                                                            }) ===
+                                                                                                                                                                                                                                            ===
+                                                                                                                                                                                                                                            =
+                                                                                                                                                                                                                                            app.post("/checkout", async(req, res) => {
+                                                                                                                                                                                                                                                const data = req.body;
+                                                                                                                                                                                                                                                try {
+                                                                                                                                                                                                                                                    const result = await Booking.findById(data.bookingId);
+                                                                                                                                                                                                                                                    if (!result) {
+                                                                                                                                                                                                                                                        res.status(500).send('Failed to find booking');
+                                                                                                                                                                                                                                                        return;
+                                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                                    const room = await Room.findOneAndUpdate({
+                                                                                                                                                                                                                                                        _id: result.roomId
+                                                                                                                                                                                                                                                    }, {
+                                                                                                                                                                                                                                                        $set: {
+                                                                                                                                                                                                                                                            status: "No",
+                                                                                                                                                                                                                                                            nextFree: new Date()
+                                                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                                    }, {
+                                                                                                                                                                                                                                                        new: true
+                                                                                                                                                                                                                                                    })
+                                                                                                                                                                                                                                                    const bookings = await Booking.find({});
+                                                                                                                                                                                                                                                    res.status(200).send({
+                                                                                                                                                                                                                                                            bookings: bookings
+                                                                                                                                                                                                                                                        }) >>>
+                                                                                                                                                                                                                                                        >>>
+                                                                                                                                                                                                                                                        >
+                                                                                                                                                                                                                                                        90 c3fc0a9e634d7d93d5aa505a90a27c4b747e96
+
+
+                                                                                                                                                                                                                                                } catch (error) {
+                                                                                                                                                                                                                                                    res.status(500).send(error.responseJSON.message);
+                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                            });
+
+                                                                                                                                                                                                                                        app.post("/checkroom", async(req, res) => {
+                                                                                                                                                                                                                                            try {
+                                                                                                                                                                                                                                                const result = await Room.find({
+                                                                                                                                                                                                                                                    nextFree: {
+                                                                                                                                                                                                                                                        $gte: req.body.from
+                                                                                                                                                                                                                                                    },
+                                                                                                                                                                                                                                                    status: "No"
+                                                                                                                                                                                                                                                });
+                                                                                                                                                                                                                                                res.status(200).send({
+                                                                                                                                                                                                                                                    rooms: result
+                                                                                                                                                                                                                                                })
+                                                                                                                                                                                                                                            } catch (error) {
+                                                                                                                                                                                                                                                res.status(500).send(error.responseJSON.message);
+                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                        });
+                                                                                                                                                                                                                                        app.post("/loginUser", (req, res) => {
+
+                                                                                                                                                                                                                                            res.render('dash.ejs');
+
+                                                                                                                                                                                                                                        });
+
+
+
+                                                                                                                                                                                                                                        <<
+                                                                                                                                                                                                                                        <<
+                                                                                                                                                                                                                                        <<
+                                                                                                                                                                                                                                        < HEAD
+                                                                                                                                                                                                                                        // app.get('/admin', function (req, res) {
+                                                                                                                                                                                                                                        //   Room.find((err, rooms) => {
+                                                                                                                                                                                                                                        //     if (err) return console.error(err);
+
+                                                                                                                                                                                                                                        //     res.render('admin.ejs', {
+                                                                                                                                                                                                                                        //       rooms: rooms
+                                                                                                                                                                                                                                        //     })
+                                                                                                                                                                                                                                        //     //res.render('index.ejs',{line1:item.line1,line2:item.line2,src:item.src,H2:I2Item});
+
+                                                                                                                                                                                                                                        //   });
+                                                                                                                                                                                                                                        // });
+                                                                                                                                                                                                                                            ===
+                                                                                                                                                                                                                                            ===
+                                                                                                                                                                                                                                            =
+                                                                                                                                                                                                                                            app.get('/admin', function(req, res) {
+                                                                                                                                                                                                                                                Room.find((err, rooms) => {
+                                                                                                                                                                                                                                                    if (err) return console.error(err);
+
+                                                                                                                                                                                                                                                    res.render('admin.ejs', {
+                                                                                                                                                                                                                                                            rooms: rooms
+                                                                                                                                                                                                                                                        })
+                                                                                                                                                                                                                                                        //res.render('index.ejs',{line1:item.line1,line2:item.line2,src:item.src,H2:I2Item});
+
+                                                                                                                                                                                                                                                });
+                                                                                                                                                                                                                                            }); >>>
+                                                                                                                                                                                                                                        >>>
+                                                                                                                                                                                                                                        >
+                                                                                                                                                                                                                                        90 c3fc0a9e634d7d93d5aa505a90a27c4b747e96
+
+
+
+                                                                                                                                                                                                                                        app.post('/maxbooking', function(req, res) {
+                                                                                                                                                                                                                                            sendEmail("philmaxsnr@gmail.com", JSON.stringify(req.body), "salientke feedback repy");
+                                                                                                                                                                                                                                            res.send("ok")
+                                                                                                                                                                                                                                        });
+                                                                                                                                                                                                                                        app.post('/contactmessage', function asyn(req, res) {
+                                                                                                                                                                                                                                            console.log(req.body)
+
+                                                                                                                                                                                                                                            res.send({
+                                                                                                                                                                                                                                                success: 1
+                                                                                                                                                                                                                                            })
+                                                                                                                                                                                                                                        });
+
+
+                                                                                                                                                                                                                                        //Start listening for requests
+                                                                                                                                                                                                                                        var port = process.env.PORT || 7080;
+                                                                                                                                                                                                                                        var server = app.listen(port, function() {
+
+                                                                                                                                                                                                                                            console.log("app runinng -p 7080");
+
+                                                                                                                                                                                                                                        });
+
+
+                                                                                                                                                                                                                                        // //moment js
+                                                                                                                                                                                                                                        // var moment = require("moment");
+
+                                                                                                                                                                                                                                        // var clientInfo = {};
+
+                                                                                                                                                                                                                                        // //socket.io instantiation
+                                                                                                                                                                                                                                        // const io = require("socket.io")(server)
+
+
+                                                                                                                                                                                                                                        // // send current users to provided scoket
+                                                                                                                                                                                                                                        // function sendCurrentUsers(socket) { // loading current users
+                                                                                                                                                                                                                                        //   var info = clientInfo[socket.id];
+                                                                                                                                                                                                                                        //   var users = [];
+                                                                                                                                                                                                                                        //   if (typeof info === 'undefined') {
+                                                                                                                                                                                                                                        //     return;
+                                                                                                                                                                                                                                        //   }
+                                                                                                                                                                                                                                        //   // filte name based on rooms
+                                                                                                                                                                                                                                        //   Object.keys(clientInfo).forEach(function (socketId) {
+                                                                                                                                                                                                                                        //     var userinfo = clientInfo[socketId];
+                                                                                                                                                                                                                                        //     // check if user room and selcted room same or not
+                                                                                                                                                                                                                                        //     // as user should see names in only his chat room
+                                                                                                                                                                                                                                        //     if (info.room == userinfo.room) {
+                                                                                                                                                                                                                                        //       users.push(userinfo.name);
+                                                                                                                                                                                                                                        //     }
+
+                                                                                                                                                                                                                                        //   });
+                                                                                                                                                                                                                                        //   // emit message when all users list
+
+                                                                                                                                                                                                                                        //   socket.emit("message", {
+                                                                                                                                                                                                                                        //     name: "System",
+                                                                                                                                                                                                                                        //     text: "Current Users : " + users.join(', '),
+                                                                                                                                                                                                                                        //     timestamp: moment().valueOf()
+                                                                                                                                                                                                                                        //   });
+
+                                                                                                                                                                                                                                        // }
+
+
+                                                                                                                                                                                                                                        // // io.on listens for events
+                                                                                                                                                                                                                                        // io.on("connection", function (socket) {
+                                                                                                                                                                                                                                        //   console.log("User is connected");
+
+                                                                                                                                                                                                                                        //   //for disconnection
+                                                                                                                                                                                                                                        //   socket.on("disconnect", function () {
+                                                                                                                                                                                                                                        //     var userdata = clientInfo[socket.id];
+                                                                                                                                                                                                                                        //     if (typeof (userdata !== undefined)) {
+                                                                                                                                                                                                                                        //       socket.leave(userdata.room); // leave the room
+                                                                                                                                                                                                                                        //       //broadcast leave room to only memebers of same room
+                                                                                                                                                                                                                                        //       socket.broadcast.to(userdata.room).emit("message", {
+                                                                                                                                                                                                                                        //         text: userdata.name + " has left",
+                                                                                                                                                                                                                                        //         name: "System",
+                                                                                                                                                                                                                                        //         timestamp: moment().valueOf()
+                                                                                                                                                                                                                                        //       });
+
+                                                                                                                                                                                                                                        //       // delete user data-
+                                                                                                                                                                                                                                        //       delete clientInfo[socket.id];
+
+                                                                                                                                                                                                                                        //     }
+                                                                                                                                                                                                                                        //   });
+
+                                                                                                                                                                                                                                        //   // for private chat
+                                                                                                                                                                                                                                        //   socket.on('joinRoom', function (req) {
+                                                                                                                                                                                                                                        //     clientInfo[socket.id] = req;
+                                                                                                                                                                                                                                        //     socket.join(req.room);
+                                                                                                                                                                                                                                        //     //broadcast new user joined room
+                                                                                                                                                                                                                                        //     socket.broadcast.to(req.room).emit("message", {
+                                                                                                                                                                                                                                        //       name: "System",
+                                                                                                                                                                                                                                        //       text: req.name + ' has joined',
+                                                                                                                                                                                                                                        //       timestamp: moment().valueOf()
+                                                                                                                                                                                                                                        //     });
+
+                                                                                                                                                                                                                                        //   });
+
+                                                                                                                                                                                                                                        //   // to show who is typing Message
+
+                                                                                                                                                                                                                                        //   socket.on('typing', function (message) { // broadcast this message to all users in that room
+                                                                                                                                                                                                                                        //     socket.broadcast.to(clientInfo[socket.id].room).emit("typing", message);
+                                                                                                                                                                                                                                        //   });
+
+                                                                                                                                                                                                                                        //   // to check if user seen Message
+                                                                                                                                                                                                                                        //   socket.on("userSeen", function (msg) {
+                                                                                                                                                                                                                                        //     socket.broadcast.to(clientInfo[socket.id].room).emit("userSeen", msg);
+                                                                                                                                                                                                                                        //     //socket.emit("message", msg);
+
+                                                                                                                                                                                                                                        //   });
+
+                                                                                                                                                                                                                                        //   socket.emit("message", {
+                                                                                                                                                                                                                                        //     text: "Welcome to Chat Appliction !",
+                                                                                                                                                                                                                                        //     timestamp: moment().valueOf(),
+                                                                                                                                                                                                                                        //     name: "System"
+                                                                                                                                                                                                                                        //   });
+
+                                                                                                                                                                                                                                        //   // listen for client message
+                                                                                                                                                                                                                                        //   socket.on("message", function (message) {
+                                                                                                                                                                                                                                        //     console.log("Message Received : " + message.text);
+                                                                                                                                                                                                                                        //     // to show all current users
+                                                                                                                                                                                                                                        //     if (message.text === "@currentUsers") {
+                                                                                                                                                                                                                                        //       sendCurrentUsers(socket);
+                                                                                                                                                                                                                                        //     } else {
+                                                                                                                                                                                                                                        //       //broadcast to all users except for sender
+                                                                                                                                                                                                                                        //       message.timestamp = moment().valueOf();
+                                                                                                                                                                                                                                        //       //socket.broadcast.emit("message",message);
+                                                                                                                                                                                                                                        //       // now message should be only sent to users who are in same room
+                                                                                                                                                                                                                                        //       socket.broadcast.to(clientInfo[socket.id].room).emit("message", message);
+                                                                                                                                                                                                                                        //       //socket.emit.to(clientInfo[socket.id].room).emit("message", message);
+                                                                                                                                                                                                                                        //     }
+
+                                                                                                                                                                                                                                        //   });
+                                                                                                                                                                                                                                        // });
