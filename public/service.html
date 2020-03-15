@@ -19,13 +19,24 @@
                      </div>
                  </div>
              </div>
+             <div class="form-group">
+                <label for="name" class="cols-sm-2 control-label">Price</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                        <input type="text" ng-model="rm.price" class="form-control" name="price" id="name"
+                            placeholder="Enter price">
+                        
+                    </div>
+                </div>
+            </div>
             
              <div class="form-group">
-                 <label for="confirm" class="cols-sm-2 control-label">Upload Image</label>
+                 <label for="confirm" class="cols-sm-2 control-label">Upload Images</label>
                  <div class="cols-sm-10">
                      <div class="input-group">
                          <span class="input-group-addon"><i class="fa fa-upload fa-lg" aria-hidden="true"></i></span>
-                         <input type="file" fileread="rm.file" name="img" id="file" class="form-control" />
+                         <input type="file" fileread="rm.file" name="img" id="file" class="form-control" multiple />
                      </div>
                  </div>
              </div>
@@ -35,13 +46,22 @@
                  <div class="cols-sm-10">
                      <div class="input-group">
                          <span class="input-group-addon"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></span>
-                         <textarea ng-model="rm.content" name="complements" rows="2" cols="30" class="form-control">
+                         <textarea ng-model="rm.content" name="content" rows="2" cols="30" class="form-control">
                           </textarea>
                      </div>
                  </div>
              </div>
 
-
+             <div class="form-group">
+                <label for="confirm" class="cols-sm-2 control-label">Package perks(coma seperated list)</label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></span>
+                        <textarea ng-model="rm.perks" name="perks" rows="2" cols="30" class="form-control">
+                         </textarea>
+                    </div>
+                </div>
+            </div>
              <div class="form-group ">
                  <input ng-if="!rm._id" type="button" class="form-control  btn btn-primary " value="Create"
                      ng-click="update()" />

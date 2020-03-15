@@ -32,7 +32,7 @@ jQuery(document).ready(function($){
 	
 	// start vertical lightslider
 	$('#vertical').lightSlider({
-      gallery:true,
+      menu:true,
       item:1,
       vertical:true,
       verticalHeight:320,
@@ -47,8 +47,8 @@ jQuery(document).ready(function($){
 
 
 	// start normal lightslider
-	$('#image-gallery').lightSlider({
-	      gallery:true,
+	$('#image-menu').lightSlider({
+	      menu:true,
 	      item:1,
 	      thumbItem:6,
 	      slideMargin: 0,
@@ -59,7 +59,7 @@ jQuery(document).ready(function($){
 	      auto:true,
 	      loop:true,
 	      onSliderLoad: function() {
-	          $('#image-gallery').removeClass('cS-hidden');
+	          $('#image-menu').removeClass('cS-hidden');
 	      }  
 	  });
 	// end normal lightslider

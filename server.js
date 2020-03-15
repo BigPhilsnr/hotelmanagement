@@ -165,6 +165,8 @@ app.get("/at", function (req, res) {
   res.send(atob('SGVsbG8sIFdvcmxkIQ=='));
 });
 
+
+
 //imap
 
 app.get("/HomeDetails", (req, res) => {
@@ -268,11 +270,33 @@ app.get('/admin/photo', function (req, res) {
 
 });
 
-app.get('/admin/service', function (req, res) {
-  Service.find((err, rms) => {
+app.get('/admin/menu', function (req, res) {
+  Menu.find((err, rms) => {
     res.send(rms);
 
   });
+
+});
+
+app.get('/admin/service', async (req, res) => {
+
+  if (req.query.id) {
+    const service = await Service.findById(req.query.id);
+    if (!service) {
+      res.status(500).send("Service not found")
+      return
+    }
+
+    res.status(200).send({
+      service: service
+    })
+  } else {
+    Service.find((err, rms) => {
+      res.send(rms);
+
+    });
+  }
+
 
 });
 
@@ -577,10 +601,10 @@ app.post('/admin/photo', upload.single('img'), async function (req, res, next) {
       if (!req.file) {
         res.status(500).send("Image not set");
         var src = req.file.originalname;
-        detail.img=src
+        detail.img = src
       }
 
-    
+
       const result = await Photo.update({
         _id: req.body.id
       }, {
@@ -605,26 +629,35 @@ app.post('/admin/photo', upload.single('img'), async function (req, res, next) {
 });
 
 
-app.post('/admin/service', upload.single('img'), async function (req, res, next) {
- 
+app.post('/admin/service', upload.array('img', 10), async function (req, res, next) {
+
   try {
-    console.log(req.body.id);
+
+
     var name = req.body.name;
-
+    console.log(req.files)
+    const files = req.files.map(x => {
+      return x.originalname
+    })
+  
+    console.log(files)
     if (!req.body.id) {
-
-      if (!req.file) {
+      if (!req.files) {
         res.status(500).send("Image not set");
         return;
       }
 
-      var src = req.file.originalname;
-
-      var complements = req.body.complements;
+      var src = req.files[0].originalname;
+      var content = req.body.content;
       var detail = {
         name: name,
-        complements: complements,
-        img: src
+        content: content,
+        img: src,
+        images: files,
+      }
+      if (req.body.perks) {
+        const perks = req.body.perks.split(',');
+        detail.unique = perks
       }
       var service = new Service(detail);
 
@@ -650,19 +683,12 @@ app.post('/admin/service', upload.single('img'), async function (req, res, next)
     } else {
 
       var status = req.body.status;
-      var complements = req.body.complements;
+      var content = req.body.content;
       var detail = {
         name: name,
-        complements: complements,
+        content: content,
       }
 
-      if (!req.file) {
-        res.status(500).send("Image not set");
-        var src = req.file.originalname;
-        detail.img=src
-      }
-
-    
       const result = await Service.update({
         _id: req.body.id
       }, {
@@ -681,6 +707,69 @@ app.post('/admin/service', upload.single('img'), async function (req, res, next)
   } catch (error) {
     console.log(error)
     res.status(500).send(error.message);
+  }
+
+
+});
+
+app.post('/admin/menu', upload.array('img', 10), async function (req, res, next) {
+
+  try {
+    console.log(req.body)
+    if (!req.body.id) {
+      if (req.files) {
+        var src = req.files[0].originalname;
+        req.body.img = src;
+
+      }
+
+      if (req.file) {
+        var src = req.file.originalname;
+        req.body.img = src;
+
+      }
+
+      var service = new Menu(req.body);
+      service.save(function (err) {
+        if (err) {
+          res.status(500).send(err);
+          return;
+        }
+
+        Menu.find((err, rooms) => {
+          if (err) {
+            res.status(500).send(err.responseJSON.message);
+            return;
+          }
+
+          res.status(200).send({
+            rooms: rooms
+          });
+
+        });
+
+      });
+    } else {
+
+
+      const result = await Menu.update({
+        _id: req.body.id
+      }, {
+        $set: req.body
+      });
+
+      if (result) {
+        const rooms = await Menu.find({});
+        res.status(200).send({
+          rooms: rooms
+        });
+      } else {
+        res.status(500).send("Update failed try again");
+      }
+    }
+  } catch (error) {
+    console.log(error)
+    res.status(500).send(JSON.stringify("Error"));
   }
 
 
@@ -745,20 +834,10 @@ app.post('/h2', upload.single('img'), function (req, res, next) {
   // req.body will hold the text fields, if there were any
 });
 
-app.post('/hf', function (req, res, next) {
+app.post('/admin/hf', async (req, res) => {
   console.log(req.body)
-  Itab.update({
-    _id: "5aee68fe134c1630ccb04865"
-  }, {
-    $set: req.body
-  }, function (err, rez) {
-
-    if (err) {
-      console.log(err.message)
-    }
-    console.log(rez)
-  })
-
+  Itab.deleteMany({})
+  const result = new Itab(req.body).save()
   res.send("done")
 
 
@@ -810,8 +889,8 @@ app.get("/admin/ball", (req, res) => {
 });
 
 
-app.get("/hfs", (req, res) => {
-  Itab.findById("5aee68fe134c1630ccb04865", function (err, item) {
+app.get("/admin/hfs", (req, res) => {
+  Itab.find({}, function (err, item) {
     if (err) {
       res.send({});
 
@@ -948,22 +1027,22 @@ app.get("/getEmployees", function (req, res) {
   })
 });
 
-app.get("/createUser",async(req,res)=>{
-  var data ={
-    firstname:"Admin",
-    lastname:"Royale",
-    isAdmin:1,
-    email:"philmaxsnr@gmail.com",
-    phone:"0728148643",
+app.get("/createUser", async (req, res) => {
+  var data = {
+    firstname: "Admin",
+    lastname: "Royale",
+    isAdmin: 1,
+    email: "philmaxsnr@gmail.com",
+    phone: "0728148643",
     password: bcrypt.hashSync("royaleadmin")
   }
-   const result =new Employee(data).save();
-   if(result){
+  const result = new Employee(data).save();
+  if (result) {
     res.status(200).send(result)
     return
-   }
- 
-   res.status(500).send("Failed")
+  }
+
+  res.status(500).send("Failed")
 
 });
 app.post("/saveEmployee", (req, res) => {
@@ -1137,8 +1216,9 @@ app.post("/deleteUser", (req, res) => {
   res.render('dash.ejs');
 
 });
-app.post("/saveBanner", upload.single('img'), function (req, res, next) {
+app.post("/admin/saveBanner", upload.single('img'), function (req, res, next) {
   req.body.src = req.file.originalname;
+  Iheader.deleteMany({});
   new Iheader(req.body).save(function (err) {
     if (err) {
       console.log(err.message)
@@ -1262,6 +1342,8 @@ app.post("/booking", async (req, res) => {
     res.status(500).send(error.responseJSON.message);
   }
 });
+
+
 
 app.post("/checkout", async (req, res) => {
   const data = req.body;

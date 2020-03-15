@@ -26,8 +26,8 @@
         vThumbWidth: 100,
         thumbItem: 10,
         pager: true,
-        gallery: false,
-        galleryMargin: 5,
+        menu: false,
+        menuMargin: 5,
         thumbMargin: 5,
         currentPagerPosition: 'middle',
         enableTouch: true,
@@ -355,7 +355,7 @@
                             }
                         }
                         var thumb = $children.eq(i * settings.slideMove).attr('data-thumb');
-                        if (settings.gallery === true) {
+                        if (settings.menu === true) {
                             pagers += '<li style="width:100%;' + property + ':' + thumbWidth + 'px;' + gutter + ':' + settings.thumbMargin + 'px"><a href="#"><img src="' + thumb + '" /></a></li>';
                         } else {
                             pagers += '<li><a href="#">' + (i + 1) + '</a></li>';
@@ -380,9 +380,9 @@
                     }
                     var $cSouter = $slide.parent();
                     $cSouter.find('.lSPager').html(pagers); 
-                    if (settings.gallery === true) {
+                    if (settings.menu === true) {
                         if (settings.vertical === true) {
-                            // set Gallery thumbnail width
+                            // set menu thumbnail width
                             $cSouter.find('.lSPager').css('width', settings.vThumbWidth + 'px');
                         }
                         pagerWidth = (i * (settings.thumbMargin + thumbWidth)) + 0.5;
@@ -391,7 +391,7 @@
                             'transition-duration': settings.speed + 'ms'
                         });
                         if (settings.vertical === true) {
-                            $slide.parent().css('padding-right', (settings.vThumbWidth + settings.galleryMargin) + 'px');
+                            $slide.parent().css('padding-right', (settings.vThumbWidth + settings.menuMargin) + 'px');
                         }
                         $cSouter.find('.lSPager').css(property, pagerWidth + 'px');
                     }
@@ -404,7 +404,7 @@
                             scene = $pager.index(this);
                         }
                         $el.mode(false);
-                        if (settings.gallery === true) {
+                        if (settings.menu === true) {
                             $this.slideThumb();
                         }
                         clearInterval(interval);
@@ -413,12 +413,12 @@
                 };
                 if (settings.pager) {
                     var cl = 'lSpg';
-                    if (settings.gallery) {
-                        cl = 'lSGallery';
+                    if (settings.menu) {
+                        cl = 'lSmenu';
                     }
                     $slide.after('<ul class="lSPager ' + cl + '"></ul>');
                     var gMargin = (settings.vertical) ? 'margin-left' : 'margin-top';
-                    $slide.parent().find('.lSPager').css(gMargin, settings.galleryMargin + 'px');
+                    $slide.parent().find('.lSPager').css(gMargin, settings.menuMargin + 'px');
                     refresh.createPager();
                 }
 
@@ -902,7 +902,7 @@
                     plugin.setHeight($el, true);
                 }
             }
-            if (settings.gallery === true) {
+            if (settings.menu === true) {
                 plugin.slideThumb();
             }
             if (settings.mode === 'slide') {
@@ -927,7 +927,7 @@
                 settings.onBeforePrevSlide.call(this, $el, scene);
                 scene--;
                 $el.mode(false);
-                if (settings.gallery === true) {
+                if (settings.menu === true) {
                     plugin.slideThumb();
                 }
             } else {
@@ -938,7 +938,7 @@
                         scene = parseInt(l / settings.slideMove);
                     }
                     $el.mode(false);
-                    if (settings.gallery === true) {
+                    if (settings.menu === true) {
                         plugin.slideThumb();
                     }
                 } else if (settings.slideEndAnimation === true) {
@@ -959,7 +959,7 @@
                 settings.onBeforeNextSlide.call(this, $el, scene);
                 scene++;
                 $el.mode(false);
-                if (settings.gallery === true) {
+                if (settings.menu === true) {
                     plugin.slideThumb();
                 }
             } else {
@@ -967,7 +967,7 @@
                     settings.onBeforeNextSlide.call(this, $el, scene);
                     scene = 0;
                     $el.mode(false);
-                    if (settings.gallery === true) {
+                    if (settings.menu === true) {
                         plugin.slideThumb();
                     }
                 } else if (settings.slideEndAnimation === true) {
@@ -1057,7 +1057,7 @@
                 scene = s;
             }
             $el.mode(false);
-            if (settings.gallery === true) {
+            if (settings.menu === true) {
                 plugin.slideThumb();
             }
         };

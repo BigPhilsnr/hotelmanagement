@@ -102,8 +102,8 @@
 }
 /* End of pager */
 
-/** Gallery */
-.lSSlideOuter .lSPager.lSGallery {
+/** menu */
+.lSSlideOuter .lSPager.lSmenu {
     list-style: none outside none;
     padding-left: 0;
     margin: 0;
@@ -122,27 +122,27 @@
     -ms-user-select: none;
     user-select: none;
 }
-.lSSlideOuter .lSPager.lSGallery li {
+.lSSlideOuter .lSPager.lSmenu li {
     overflow: hidden;
     -webkit-transition: border-radius 0.12s linear 0s 0.35s linear 0s;
     transition: border-radius 0.12s linear 0s 0.35s linear 0s;
 }
-.lSSlideOuter .lSPager.lSGallery li.active, .lSSlideOuter .lSPager.lSGallery li:hover {
+.lSSlideOuter .lSPager.lSmenu li.active, .lSSlideOuter .lSPager.lSmenu li:hover {
     border-radius: 5px;
 }
-.lSSlideOuter .lSPager.lSGallery img {
+.lSSlideOuter .lSPager.lSmenu img {
     display: block;
     height: auto;
     max-width: 100%;
 }
-.lSSlideOuter .lSPager.lSGallery:before, .lSSlideOuter .lSPager.lSGallery:after {
+.lSSlideOuter .lSPager.lSmenu:before, .lSSlideOuter .lSPager.lSmenu:after {
     content: " ";
     display: table;
 }
-.lSSlideOuter .lSPager.lSGallery:after {
+.lSSlideOuter .lSPager.lSmenu:after {
     clear: both;
 }
-/* End of Gallery*/
+/* End of menu*/
 
 /* slider actions */
 .lSAction > a {
@@ -188,7 +188,7 @@
 .lSSlideOuter.vertical.noPager {
     padding-right: 0px !important;
 }
-.lSSlideOuter.vertical .lSGallery {
+.lSSlideOuter.vertical .lSmenu {
     position: absolute !important;
     right: 0;
     top: 0;
@@ -228,10 +228,10 @@
 .lSSlideOuter.lSrtl .lightSlider, .lSSlideOuter.lSrtl .lSPager {
     padding-right: 0;
 }
-.lSSlideOuter .lightSlider > *,  .lSSlideOuter .lSGallery li {
+.lSSlideOuter .lightSlider > *,  .lSSlideOuter .lSmenu li {
     float: left;
 }
-.lSSlideOuter.lSrtl .lightSlider > *,  .lSSlideOuter.lSrtl .lSGallery li {
+.lSSlideOuter.lSrtl .lightSlider > *,  .lSSlideOuter.lSrtl .lSmenu li {
     float: right !important;
 }
 /* Rtl */

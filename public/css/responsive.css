@@ -169,14 +169,14 @@ body#accomodation_page .range_slider .range input {
 --------------------------------------------*/
 
 /* ----------------------------------------
-                start Gallery page
+                start menu page
 --------------------------------------------*/
-body#gallery_page .other_room ul.nav-tabs > li > a {
+body#menu_page .other_room ul.nav-tabs > li > a {
   padding: 2px 13px;
 }
 
 /* ----------------------------------------
-                end Gallery page
+                end menu page
 --------------------------------------------*/
 
 .blog_text_box ul li {
@@ -469,19 +469,19 @@ body#accomodation_page .range_slider .range input {
 
 
 /* ----------------------------------------
-                start Gallery page
+                start menu page
 --------------------------------------------*/
 
-body#gallery_page .other_room ul.nav-tabs > li > a {
+body#menu_page .other_room ul.nav-tabs > li > a {
   padding: 2px 10px;
 }
 
-body#gallery_page .accomodation_single_room .demo {
+body#menu_page .accomodation_single_room .demo {
   margin-bottom: 30px;
 }
 
 /* ----------------------------------------
-                end Gallery page
+                end menu page
 --------------------------------------------*/
 
 body#room_detail_page .room_detail_main .customer_says {
@@ -764,14 +764,14 @@ body#accomodation_page .breadcrumb_main.nice_title > h2{
 
 
 /* ----------------------------------------
-                start Gallery page
+                start menu page
 --------------------------------------------*/
 
-body#gallery_page .other_room ul.nav-tabs > li > a {
+body#menu_page .other_room ul.nav-tabs > li > a {
   font-size: 13px;
   padding: 5px;
 }
-body#gallery_page .accomodation_single_room .lSSlideWrapper.usingCss, body#gallery_page .accomodation_single_room .lSSlideOuter.vertical {
+body#menu_page .accomodation_single_room .lSSlideWrapper.usingCss, body#menu_page .accomodation_single_room .lSSlideOuter.vertical {
   height: 250px !important;
   margin-bottom: 35px;
 }

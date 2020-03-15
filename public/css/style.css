@@ -30,7 +30,7 @@
 	15. accomodation page CSS
 	16. contact us page CSS
 	17. room details page CSS
-	18. gallery page css
+	18. menu page css
 	19. booking page CSS
 	20. blog page CSS
 	21. single blog page CSS
@@ -953,7 +953,7 @@ div#about_us_page .single_facilities_name > a.btn {
 div#about_us_page .about_us_thumb > p{
 	margin-top: 45px;
 }
-div#about_us_page .single_staff .uk-overlay-background, div#staff_page .single_staff .uk-overlay-background, div#gallery_page .room_wrapper .uk-overlay-background{
+div#about_us_page .single_staff .uk-overlay-background, div#staff_page .single_staff .uk-overlay-background, div#menu_page .room_wrapper .uk-overlay-background{
 	background: rgba(254, 109, 109, 0.8) none repeat scroll 0 0;
 	padding: 30px;
 	-webkit-transition: 0.6s;
@@ -1130,7 +1130,7 @@ div#contact_us_page .contact_info .social_icons > ul > li > a:hover{
 -----------------------------------------------------------*/
 
 
-div#room_detail_page .lSSlideOuter .lSPager.lSGallery a:hover{
+div#room_detail_page .lSSlideOuter .lSPager.lSmenu a:hover{
 	opacity: 0.5;
 }
 div#room_detail_page .lSSlideOuter .lslide.active > img {
@@ -1180,23 +1180,23 @@ div#room_detail_page .customer_comment{
 
 
 /* --------------------------------------------------------
-18. 					start gallery page CSS
+18. 					start menu page CSS
 -----------------------------------------------------------*/
 
-div#gallery_page .breadcrumb_main_area, div#booking_page .breadcrumb_main_area, div#blog_page .breadcrumb_main_area{
-	background: url(img/gallery-breadcrumb.jpg) no-repeat center center / cover #000000;
+div#menu_page .breadcrumb_main_area, div#booking_page .breadcrumb_main_area, div#blog_page .breadcrumb_main_area{
+	background: url(img/menu-breadcrumb.jpg) no-repeat center center / cover #000000;
 	position: relative;
 }
-div#gallery_page .accomodation_single_room .room_media{
+div#menu_page .accomodation_single_room .room_media{
 	margin-bottom: 30px;
 }
-div#gallery_page .other_room .nav-tabs{
+div#menu_page .other_room .nav-tabs{
 	border-bottom: 0px;
 }
-div#gallery_page .other_room ul.nav-tabs > li{
+div#menu_page .other_room ul.nav-tabs > li{
 	margin-bottom: 0px;
 }
-div#gallery_page .other_room ul.nav-tabs > li > a{
+div#menu_page .other_room ul.nav-tabs > li > a{
 	border-radius: 0;
 	color: #313a45;
 	font-weight: 700;
@@ -1205,42 +1205,42 @@ div#gallery_page .other_room ul.nav-tabs > li > a{
 	border: 2px solid #fff;
 	cursor: pointer;
 }
-div#gallery_page .other_room ul.nav-tabs > li.active a{
+div#menu_page .other_room ul.nav-tabs > li.active a{
 	border: 2px solid #9d9d9d;
 }
-div#gallery_page .single_room_wrapper .dif_room_media img {
+div#menu_page .single_room_wrapper .dif_room_media img {
 	height: 213px;
 	width: auto;
 }
-div#gallery_page .lslide.active > img {
+div#menu_page .lslide.active > img {
   height: 100%;
   width: 100%;
 }
-#deluxe_gallery a.slider_ctrl, #gallery_main_slider a.slider_ctrl{
+#deluxe_menu a.slider_ctrl, #menu_main_slider a.slider_ctrl{
 	background: #313a45 none repeat scroll 0 0;
 	position: absolute;
 	text-align: center;
 	top: calc(50% - 15px);
 	width: 30px;
 }
-#deluxe_gallery a:hover, #gallery_main_slider a:hover{
+#deluxe_menu a:hover, #menu_main_slider a:hover{
 	background: #23b0eb none repeat scroll 0 0;
 }
-#deluxe_gallery a.slider_ctrl.left, #gallery_main_slider a.slider_ctrl.left{
+#deluxe_menu a.slider_ctrl.left, #menu_main_slider a.slider_ctrl.left{
     left: calc( 0% + 30px );
 }
-#deluxe_gallery a.slider_ctrl i, #gallery_main_slider a.slider_ctrl i{
+#deluxe_menu a.slider_ctrl i, #menu_main_slider a.slider_ctrl i{
 	color: #fff;
 	font-size: 18px;
 	height: 30px;
 	line-height: 30px;
 }
-#deluxe_gallery a.slider_ctrl.right, #gallery_main_slider a.slider_ctrl.right{
+#deluxe_menu a.slider_ctrl.right, #menu_main_slider a.slider_ctrl.right{
     right: calc( 0% + 30px );
 }
 
 /* --------------------------------------------------------
- 					end gallery page CSS
+ 					end menu page CSS
 -----------------------------------------------------------*/
 
 /* --------------------------------------------------------
@@ -1496,7 +1496,7 @@ right: 1px;
 -----------------------------------------------------------*/
 
 div#single_blog_page .breadcrumb_main_area{
-	background: url(img/gallery-breadcrumb.jpg) no-repeat center center / cover #000000;
+	background: url(img/menu-breadcrumb.jpg) no-repeat center center / cover #000000;
 	position: relative;
 }
 .single_blog_post_area{

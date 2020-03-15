@@ -1,16 +1,24 @@
 var mongoose = require("mongoose");
 
 var MenuSchema = mongoose.Schema({
-   
-    quantity: {
-        type: Number,
+
+    unit: {
+        type: String,
         required: true
     },
-    unitPrice: {
+    img:{
+        type:String,
+        required:false
+    },
+    price: {
         type: Number,
         required: true
     },
     name: {
+        type: String,
+        required: false
+    },
+    category: {
         type: String,
         required: false
     },
@@ -19,7 +27,12 @@ var MenuSchema = mongoose.Schema({
         default: Date.now
     },
     available: {
-        type: Number
+        type: Number,
+        required:true,
+        default:1
+    },
+    content:{
+        type:String
     }
 
 });

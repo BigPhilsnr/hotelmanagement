@@ -11,10 +11,14 @@ var ServiceSchema = mongoose.Schema({
         type: String,
         required: true
     },
-
+    price:{
+        type: String,
+    },
+    images: [String],
     content: {
         type: String
     },
+    unique: [String],
     createdAt: {
         type: Date,
         default: Date.now

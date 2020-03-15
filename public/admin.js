@@ -25,6 +25,10 @@ app.config(function ($routeProvider, $locationProvider) {
             templateUrl: "photos.html",
             controller: "photo"
         })
+        .when("/menu", {
+            templateUrl: "menu.html",
+            controller: "menu"
+        })
 
         .when("/services", {
             templateUrl: "service.html",
@@ -816,6 +820,124 @@ app.controller('service', function ($scope, $http, $location, Customer) {
         $http.post('deleteservice', JSON.stringify(data))
             .then(function (response) {
                 toastr.success('Success', 'service removed successfully ', {
+                    timeOut: 3000
+                });
+                console.log(response)
+                updateList(response.data.rooms)
+            })
+            .catch(function (error) {
+                toastr.error('Error', 'Failed ', {
+                    timeOut: 3000
+                });
+            })
+
+    }
+    $scope.uploadFilex = function (files) {
+
+        var fi = $scope.rm.uploaded;
+
+        var config = {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+            }
+        }
+        $http.post('', data, config)
+    }
+
+    $scope.manage = function (room) {
+        $scope.rm = room;
+
+
+    }
+
+});
+
+app.controller('menu', function ($scope, $http, $location, Customer) {
+
+    $scope.home = {};
+    $scope.home.Title1 = "";
+
+    var url = "menu"
+    $http.get(url).then(function (response) {
+        var data = response.data;
+
+        $scope.rooms = data;
+        Customer.rooms = data;;
+        $scope.db = data;
+
+    });
+
+
+    $scope.currentRoom = {
+        name: "Sample"
+    }
+
+    $scope.no = 0;
+    $scope.tab = function (no) {
+        $scope.no = no;
+    }
+
+    $scope.store = function (data) {
+        var data = jQuery.param({
+            customer_id: cId,
+            vehicle_id: vId
+
+        });
+        var config = {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+            }
+        }
+        $http.post('', data, config)
+    }
+
+    $scope.update = function () {
+        toastr.info('Processing', 'Updating.. ', {
+            timeOut: 2000
+        });
+        var myForm = document.getElementById('frm');
+        formData = new FormData(myForm);
+
+        var request = {
+            method: 'POST',
+            url: url,
+            data: formData,
+            headers: {
+                'Content-Type': undefined
+            }
+        };
+
+        // SEND THE FILES.
+        $http(request)
+            .then(function (data) {
+                toastr.success('Success', 'Saved', {
+                    timeOut: 2000
+                });
+                console.log(data)
+                updateList(data.data.rooms)
+            })
+            .catch(function (error) {
+
+                swal('Error', error.data, 'error');
+            });
+
+    }
+
+    var updateList = function (rooms) {
+        $scope.rooms = rooms;
+    }
+    $scope.new = function () {
+        $scope.rm = null;
+    }
+    $scope.delete = function () {
+
+        var data = {
+            id: $scope.rm._id
+        };
+
+        $http.post('deletemenu', JSON.stringify(data))
+            .then(function (response) {
+                toastr.success('Success', 'menu removed successfully ', {
                     timeOut: 3000
                 });
                 console.log(response)
