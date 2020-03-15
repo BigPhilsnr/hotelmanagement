@@ -18,7 +18,7 @@ var UserSchema = mongoose.Schema({
     },
     withpet: {
         type: Number,
-        required: true
+        required: false
     },
     parking: {
         type: Number,
