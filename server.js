@@ -8,6 +8,7 @@ var bcrypt = require('bcrypt-nodejs');
 var session = require('express-session')
 var multer = require('multer');
 
+
 //set up multer
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -33,9 +34,12 @@ var Booking = require("./Models/booking");
 var section = require("./Models/section");
 var News = require("./Models/news");
 var morgan = require('morgan')
+var Photo = require('./Models/photo')
+var Service = require('./Models/services')
+var Menu = require('./Models/menu')
 
 //set up database
-mongoose.connect("mongodb://saf:ademba4@ds119258.mlab.com:19258/royal", function (err) {
+mongoose.connect("mongodb://localhost:27017/royale", function (err) {
   if (err) {
     console.log(err)
   } else {
@@ -247,10 +251,36 @@ app.get('/getRooms', function (req, res) {
 
 });
 
+app.get('/admin/getRooms', function (req, res) {
+  Room.find((err, rms) => {
+    console.log("getting rooms");
+    res.send(rms);
+
+  });
+
+});
+
+app.get('/admin/photo', function (req, res) {
+  Photo.find((err, rms) => {
+    res.send(rms);
+
+  });
+
+});
+
+app.get('/admin/service', function (req, res) {
+  Service.find((err, rms) => {
+    res.send(rms);
+
+  });
+
+});
+
+
+
 app.post("/loginx", function (req, res) {
   var email = req.body.email;
   var password = req.body.password;
-
 
   Employee.findOne({
     email: email
@@ -358,10 +388,7 @@ var savefile = function (data) {
     console.log('Replaced!');
   })
 }
-var ID = function () {
 
-  return '_' + Math.random().toString(36).substr(2, 9);
-};
 app.post('/saveRoom', upload.single('img'), function (req, res, next) {
 
   if (req.body.id) {
@@ -398,9 +425,7 @@ app.post('/saveRoom', upload.single('img'), function (req, res, next) {
   }
 })
 
-app.post('/saveRoom1', upload.single('img'), async function (req, res, next) {
-  // req.file is the `avatar` file
-
+app.post('/admin/saveRoom1', upload.single('img'), async function (req, res, next) {
   try {
     console.log(req.body.id);
     var name = req.body.name;
@@ -482,6 +507,170 @@ app.post('/saveRoom1', upload.single('img'), async function (req, res, next) {
 
       if (result) {
         const rooms = await Room.find({});
+        res.status(200).send({
+          rooms: rooms
+        });
+      } else {
+        res.status(500).send("Update failed try again");
+      }
+    }
+  } catch (error) {
+    console.log(error)
+    res.status(500).send(error.message);
+  }
+
+
+});
+
+app.post('/admin/photo', upload.single('img'), async function (req, res, next) {
+  // req.file is the `avatar` file
+
+  try {
+    console.log(req.body.id);
+    var name = req.body.name;
+
+    if (!req.body.id) {
+
+      if (!req.file) {
+        res.status(500).send("Image not set");
+        return;
+      }
+
+      var src = req.file.originalname;
+
+      var complements = req.body.complements;
+      var detail = {
+        name: name,
+        complements: complements,
+        img: src
+      }
+      var photo = new Photo(detail);
+
+      photo.save(function (err) {
+        if (err) {
+          res.status(500).send(err.responseJSON.message);
+          return;
+        }
+
+        Photo.find((err, rooms) => {
+          if (err) {
+            res.status(500).send(err.responseJSON.message);
+            return;
+          }
+
+          res.status(200).send({
+            rooms: rooms
+          });
+
+        });
+
+      });
+    } else {
+
+      var status = req.body.status;
+      var complements = req.body.complements;
+      var detail = {
+        name: name,
+        complements: complements,
+      }
+
+      if (!req.file) {
+        res.status(500).send("Image not set");
+        var src = req.file.originalname;
+        detail.img=src
+      }
+
+    
+      const result = await Photo.update({
+        _id: req.body.id
+      }, {
+        $set: detail
+      });
+
+      if (result) {
+        const rooms = await Photo.find({});
+        res.status(200).send({
+          rooms: rooms
+        });
+      } else {
+        res.status(500).send("Update failed try again");
+      }
+    }
+  } catch (error) {
+    console.log(error)
+    res.status(500).send(error.message);
+  }
+
+
+});
+
+
+app.post('/admin/service', upload.single('img'), async function (req, res, next) {
+ 
+  try {
+    console.log(req.body.id);
+    var name = req.body.name;
+
+    if (!req.body.id) {
+
+      if (!req.file) {
+        res.status(500).send("Image not set");
+        return;
+      }
+
+      var src = req.file.originalname;
+
+      var complements = req.body.complements;
+      var detail = {
+        name: name,
+        complements: complements,
+        img: src
+      }
+      var service = new Service(detail);
+
+      service.save(function (err) {
+        if (err) {
+          res.status(500).send(err.responseJSON.message);
+          return;
+        }
+
+        Service.find((err, rooms) => {
+          if (err) {
+            res.status(500).send(err.responseJSON.message);
+            return;
+          }
+
+          res.status(200).send({
+            rooms: rooms
+          });
+
+        });
+
+      });
+    } else {
+
+      var status = req.body.status;
+      var complements = req.body.complements;
+      var detail = {
+        name: name,
+        complements: complements,
+      }
+
+      if (!req.file) {
+        res.status(500).send("Image not set");
+        var src = req.file.originalname;
+        detail.img=src
+      }
+
+    
+      const result = await Service.update({
+        _id: req.body.id
+      }, {
+        $set: detail
+      });
+
+      if (result) {
+        const rooms = await Service.find({});
         res.status(200).send({
           rooms: rooms
         });
@@ -582,7 +771,7 @@ app.get("/dash", (req, res) => {
 
 });
 
-app.get("/getUsers", (req, res) => {
+app.get("/admin/getUsers", (req, res) => {
   User.find({}, function (err, result) {
     if (err) {
       console.log(err.message);
@@ -610,7 +799,7 @@ app.post("/viewDetails", function (req, res) {
   })
 })
 
-app.get("/ball", (req, res) => {
+app.get("/admin/ball", (req, res) => {
   Booking.find({}, function (err, result) {
     if (err) {
       console.log(err.message)
@@ -618,9 +807,9 @@ app.get("/ball", (req, res) => {
       res.send(result);
     }
   })
-
-
 });
+
+
 app.get("/hfs", (req, res) => {
   Itab.findById("5aee68fe134c1630ccb04865", function (err, item) {
     if (err) {
@@ -632,7 +821,7 @@ app.get("/hfs", (req, res) => {
   })
 
 });
-app.get("/feedback", (req, res) => {
+app.get("/admin/feedback", (req, res) => {
   Feedback.find({}, function (err, item) {
     if (err) {
       res.send({});
@@ -658,7 +847,7 @@ app.post("/feedback", async (req, res) => {
 })
 
 
-app.post("/deleteRep", function (req, res) {
+app.post("/admin/deleteRep", function (req, res) {
   Feedback.findByIdAndRemove(req.body.id, function (err, ret) {
     if (err) {
       console.log(err.message)
@@ -670,7 +859,7 @@ app.post("/deleteRep", function (req, res) {
 
 
 
-app.post("/reply", function (req, res) {
+app.post("/admin/reply", function (req, res) {
   sendEmail(req.body.email, req.body.message, "salientke feedback repy");
   res.send("ok")
 })
@@ -757,6 +946,25 @@ app.get("/getEmployees", function (req, res) {
     }
     res.send(emp)
   })
+});
+
+app.get("/createUser",async(req,res)=>{
+  var data ={
+    firstname:"Admin",
+    lastname:"Royale",
+    isAdmin:1,
+    email:"philmaxsnr@gmail.com",
+    phone:"0728148643",
+    password: bcrypt.hashSync("royaleadmin")
+  }
+   const result =new Employee(data).save();
+   if(result){
+    res.status(200).send(result)
+    return
+   }
+ 
+   res.status(500).send("Failed")
+
 });
 app.post("/saveEmployee", (req, res) => {
   if (req.body.password.length < 40) {
@@ -942,7 +1150,7 @@ app.post("/saveBanner", upload.single('img'), function (req, res, next) {
 
 });
 
-app.post("/saveWelcome", function (req, res, next) {
+app.post("/admin/saveWelcome", function (req, res, next) {
   console.log(req.body)
   new I2(req.body).save(function (err) {
     if (err) {
@@ -955,7 +1163,7 @@ app.post("/saveWelcome", function (req, res, next) {
 
 });
 
-app.post("/deleteRoom", async (req, res) => {
+app.post("/admin/deleteRoom", async (req, res) => {
 
   try {
     const result = await Room.findByIdAndRemove(req.body.id);
@@ -964,6 +1172,60 @@ app.post("/deleteRoom", async (req, res) => {
       return;
     }
     const rooms = await Room.find({});
+    res.status(200).send({
+      rooms: rooms
+    })
+
+  } catch (error) {
+    res.status(500).send(error.responseJSON.message);
+  }
+});
+
+app.post("/admin/deletephoto", async (req, res) => {
+
+  try {
+    const result = await Photo.findByIdAndRemove(req.body.id);
+    if (!result) {
+      res.status(500).send('Not found');
+      return;
+    }
+    const rooms = await Photo.find({});
+    res.status(200).send({
+      rooms: rooms
+    })
+
+  } catch (error) {
+    res.status(500).send(error.responseJSON.message);
+  }
+});
+
+app.post("/admin/deleteservice", async (req, res) => {
+
+  try {
+    const result = await Service.findByIdAndRemove(req.body.id);
+    if (!result) {
+      res.status(500).send('Not found');
+      return;
+    }
+    const rooms = await Service.find({});
+    res.status(200).send({
+      rooms: rooms
+    })
+
+  } catch (error) {
+    res.status(500).send(error.responseJSON.message);
+  }
+})
+
+app.post("/admin/deletephoto", async (req, res) => {
+
+  try {
+    const result = await Photo.findByIdAndRemove(req.body.id);
+    if (!result) {
+      res.status(500).send('Not found');
+      return;
+    }
+    const rooms = await Photo.find({});
     res.status(200).send({
       rooms: rooms
     })
@@ -1053,17 +1315,17 @@ app.post("/loginUser", (req, res) => {
 
 
 
-app.get('/admin', function (req, res) {
-  Room.find((err, rooms) => {
-    if (err) return console.error(err);
+// app.get('/admin', function (req, res) {
+//   Room.find((err, rooms) => {
+//     if (err) return console.error(err);
 
-    res.render('admin.ejs', {
-      rooms: rooms
-    })
-    //res.render('index.ejs',{line1:item.line1,line2:item.line2,src:item.src,H2:I2Item});
+//     res.render('admin.ejs', {
+//       rooms: rooms
+//     })
+//     //res.render('index.ejs',{line1:item.line1,line2:item.line2,src:item.src,H2:I2Item});
 
-  });
-});
+//   });
+// });
 
 
 

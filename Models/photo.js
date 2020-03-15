@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 
-var ServiceSchema = mongoose.Schema({
-
+var PhotoSchema = mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -12,7 +11,7 @@ var ServiceSchema = mongoose.Schema({
         required: true
     },
 
-    content: {
+    complements: {
         type: String
     },
     createdAt: {
@@ -20,6 +19,7 @@ var ServiceSchema = mongoose.Schema({
         default: Date.now
 
     }
-});
 
-var Service = module.exports = mongoose.model('Service', ServiceSchema);
+
+});
+var Photo = module.exports = mongoose.model('Photo', PhotoSchema);
