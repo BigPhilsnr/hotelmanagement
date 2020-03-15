@@ -1233,11 +1233,32 @@ app.post("/admin/deletephoto", async(req, res) => {
     }
 });
 
-app.post("/booking", async(req, res) => {
+app.post("/admin/book", async(req, res) => {
 
     const data = req.body;
     try {
-        const result = await Booking.save(data);
+
+        const user = await new User({
+            name: req.body.name,
+            email: req.body.email,
+            phone: req.body.phone,
+            isAdmin: 0,
+            parking: 1,
+            withpet: 0
+        }).save();
+
+
+
+        data.user = user._id;
+        console.log(user._id)
+        const resultRoom = await Room.find({ _id: req.body.room })
+
+        if (!resultRoom) {
+            res.status(500).send("room not found")
+        }
+        data.amount = 10;
+        console.log(data)
+        const result = await new Booking(req.body).save();
         if (!result) {
             res.status(500).send('Failed to save');
             return;
@@ -1252,11 +1273,12 @@ app.post("/booking", async(req, res) => {
         }, {
             new: true
         })
-        const bookings = await Booking.find({});
+
         res.status(200).send({
-            bookings: bookings
+            bookings: []
         })
     } catch (error) {
+        console.log(error)
         res.status(500).send(error.responseJSON.message);
     }
 });

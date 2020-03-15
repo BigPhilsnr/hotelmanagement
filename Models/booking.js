@@ -9,22 +9,7 @@ var BookingSchema = mongoose.Schema({
         type: Date,
         required: true
     },
-    room: { type: mongoose.Schema.Types.ObjectId, ref: "Room" },
-    user: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true
-    },
-    amount: {
-        type: Number,
-        required: true
-    },
-    phone: {
-        type: Number
-    },
+
     paid: {
         type: Number,
         default: 0,
@@ -36,6 +21,36 @@ var BookingSchema = mongoose.Schema({
     },
     sid: {
         type: String
+    },
+    name: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    phone: {
+        type: String,
+        required: true
+    },
+    request: {
+        type: String
+    },
+    withpet: {
+        type: Number,
+        default: 0,
+        required: false
+    },
+    parking: {
+        type: Number,
+        default: 0,
+        required: true
+    },
+    isAdmin: {
+        type: Number,
+        required: true,
+        default: 0
     },
     adults: {
         type: Number
