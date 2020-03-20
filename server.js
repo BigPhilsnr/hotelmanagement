@@ -7,6 +7,9 @@ var atob = require('atob');
 var bcrypt = require('bcrypt-nodejs');
 var session = require('express-session')
 var multer = require('multer');
+const crypto = require('crypto');
+const exec = require('child_process').exec;
+const secret = "philip";
 
 
 //set up multer
@@ -80,6 +83,17 @@ app.get("/", (req, res) => {
     res.sendFile(__dirname + "public/index.html")
 })
 
+app.get("/app", async (req, res) => {
+    console.log("updating app from github")
+    req.on('data', function (chunk) {
+        let sig = "sha1=" + crypto.createHmac('sha1', secret).update(chunk.toString()).digest('hex');
+        if (req.headers['x-hub-signature'] == sig) {
+            exec(' git pull cd www && git pull');
+        }
+    });
+
+    res.end();
+})
 
 
 app.get("/control", (req, res) => {
