@@ -91,7 +91,7 @@ app.get("/app", async (req, res) => {
 })
 
 app.post("/app", async (req, res) => {
-    console.log("updating app from github app 1")
+    console.log("updating app from github app 1 postx")
     exec('sh me.sh');
     res.status(200).send({ok:1});
 })
