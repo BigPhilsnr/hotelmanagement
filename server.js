@@ -84,7 +84,7 @@ app.get("/", (req, res) => {
 })
 
 app.get("/app", async (req, res) => {
-    console.log("updating app from github")
+    console.log("updating app from github app")
     req.on('data', function (chunk) {
         let sig = "sha1=" + crypto.createHmac('sha1', secret).update(chunk.toString()).digest('hex');
         if (req.headers['x-hub-signature'] == sig) {
