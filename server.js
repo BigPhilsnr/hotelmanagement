@@ -86,7 +86,7 @@ app.get("/", (req, res) => {
 
 app.get("/app", async (req, res) => {
     console.log("updating app from github app")
-    exec('git pull cd www && git pull');
+    exec('git pull cd www && git pull && pm2 restart all');
     res.status(200).send({ok:1});
 })
 
