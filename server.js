@@ -12,6 +12,7 @@ const exec = require('child_process').exec;
 const secret = "philip";
 
 
+
 //set up multer
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -85,14 +86,8 @@ app.get("/", (req, res) => {
 
 app.get("/app", async (req, res) => {
     console.log("updating app from github app")
-    req.on('data', function (chunk) {
-        let sig = "sha1=" + crypto.createHmac('sha1', secret).update(chunk.toString()).digest('hex');
-        if (req.headers['x-hub-signature'] == sig) {
-            exec(' git pull cd www && git pull');
-        }
-    });
-
-    res.end();
+    exec('git pull cd www && git pull');
+    res.status(200).send({ok:1});
 })
 
 
