@@ -270,11 +270,12 @@ app.post('/admin/login', async (req, res) => {
     const user = await User.findOne({
         email: req.body.email
     });
+    console.log(user)
     if (!user) {
         res.status(404).send("User with email or password not found")
         return
     }
-    console.log(`${req.body.password}  --- ${user.password}`)
+    console.log(`${req.body.password}  ---  ${user.password}`)
     bcrypt.compare(req.body.password, user.password, function (err, result) {
         if (result) {
             res.status(200).send({
@@ -1405,7 +1406,7 @@ app.post('/contactmessage', function asyn(req, res) {
 
 
 //Start listening for requests
-var port = process.env.PORT || 80;
+var port = process.env.PORT || 7080;
 var server = app.listen(port, function () {
 
     console.log("app runinng -p 7080");
