@@ -79,7 +79,7 @@ app.use(morgan(function (tokens, req, res) {
 app.use('/admin', express.static(__dirname + '/public'));
 app.use('/images', express.static(__dirname + '/public/uploads'));
 
-console.log("Server is clean and in action")
+console.log("Server is clean and in action on push")
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "public/index.html")
 })
