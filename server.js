@@ -11,18 +11,18 @@ var multer = require('multer');
 
 //set up multer
 var storage = multer.diskStorage({
-    destination: function(req, file, cb) {
+    destination: function (req, file, cb) {
         cb(null, __dirname + '/public/uploads')
     },
-    filename: function(req, file, cb) {
+    filename: function (req, file, cb) {
         cb(null, file.originalname);
     }
 })
 
 var upload = multer({
-        storage: storage
-    })
-    //bring in models
+    storage: storage
+})
+//bring in models
 var Room = require("./Models/room");
 var User = require("./Models/user");
 var Employee = require("./Models/Employee");
@@ -39,7 +39,7 @@ var Service = require('./Models/services')
 var Menu = require('./Models/menu')
 
 //set up database
-mongoose.connect("mongodb://localhost:27017/royale", function(err) {
+mongoose.connect("mongodb://localhost:27017/royale", function (err) {
     if (err) {
         console.log(err)
     } else {
@@ -62,7 +62,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-app.use(morgan(function(tokens, req, res) {
+app.use(morgan(function (tokens, req, res) {
     return [
         tokens.method(req, res),
         tokens.url(req, res),
@@ -80,18 +80,16 @@ app.get("/", (req, res) => {
     res.sendFile(__dirname + "public/index.html")
 })
 
+
+
 app.get("/control", (req, res) => {
     res.sendFile(__dirname + "public/admin.html")
 })
 app.get("/x", (req, res) => {
-
-
     Iheader.find((err, header) => {
         if (err) return console.error(err);
         var nth = header.length - 1;
         var item = header[nth];
-
-
         var I2Item = {};
         I2.find((err, items) => {
             if (err) return console.error(err);
@@ -111,44 +109,44 @@ app.get("/x", (req, res) => {
 });
 
 
-var sendEmail = function(rec, body, subject) {
-        'use strict';
-        const nodemailer = require('nodemailer');
+var sendEmail = function (rec, body, subject) {
+    'use strict';
+    const nodemailer = require('nodemailer');
 
-        nodemailer.createTestAccount((err, account) => {
-            let transporter = nodemailer.createTransport({
-                service: 'gmail',
-                auth: {
-                    user: 'salientke@gmail.com', // generated ethereal user
-                    pass: 'philip@ademba4' // generated ethereal password
-                }
-            });
-
-            let mailOptions = {
-                from: 'salientke@gmail.com', // sender address
-                to: rec, // list of receivers
-                subject: subject, // Subject line
-                text: 'Salient Guest house no reply', // plain text body
-                html: body // html body
-            };
-
-            // send mail with defined transport object
-            transporter.sendMail(mailOptions, (error, info) => {
-                if (error) {
-                    return console.log(error);
-                }
-                res.send("sent")
-                console.log('Message sent: %s', info.messageId);
-                // Preview only available when sending through an Ethereal account
-                console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-            });
+    nodemailer.createTestAccount((err, account) => {
+        let transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'salientke@gmail.com', // generated ethereal user
+                pass: 'philip@ademba4' // generated ethereal password
+            }
         });
 
-    }
-    //routes
+        let mailOptions = {
+            from: 'salientke@gmail.com', // sender address
+            to: rec, // list of receivers
+            subject: subject, // Subject line
+            text: 'Salient Guest house no reply', // plain text body
+            html: body // html body
+        };
+
+        // send mail with defined transport object
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                return console.log(error);
+            }
+            res.send("sent")
+            console.log('Message sent: %s', info.messageId);
+            // Preview only available when sending through an Ethereal account
+            console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+        });
+    });
+
+}
+//routes
 app.post("/sendMail", (req, res) => {
     console.log(req.body)
-    new Feedback(req.body.feedback).save(function(err) {
+    new Feedback(req.body.feedback).save(function (err) {
         if (err) {
             console.log(err)
             res.send({
@@ -162,8 +160,21 @@ app.post("/sendMail", (req, res) => {
     })
 });
 
-app.get("/at", function(req, res) {
-    res.send(atob('SGVsbG8sIFdvcmxkIQ=='));
+app.get("/at", async (req, res) => {
+    const user = await new User({
+        name: "Ademba",
+        email: "Philip",
+        phone: "0728148643",
+        isAdmin: 0,
+        parking: 1,
+        withpet: 0
+    }).save();
+    console.log(user)
+
+    res.status(200).send({
+        user
+    })
+
 });
 
 
@@ -197,9 +208,9 @@ app.get("/HomeDetails", (req, res) => {
             sort({
                 rating: -1
             }).
-            exec(function(err, rooms) {
-                Feedback.find(function(err, feedback) {
-                    Itab.find({}, function(err, hf) {
+            exec(function (err, rooms) {
+                Feedback.find(function (err, feedback) {
+                    Itab.find({}, function (err, hf) {
 
                         News.
                         find({}).
@@ -207,7 +218,7 @@ app.get("/HomeDetails", (req, res) => {
                         sort({
                             date: -1
                         }).
-                        exec(function(err, news) {
+                        exec(function (err, news) {
                             if (err) {
                                 console.log(errr);
                             }
@@ -231,7 +242,7 @@ app.get("/HomeDetails", (req, res) => {
 
 });
 
-app.post('/philip', function(req, res) {
+app.post('/philip', function (req, res) {
     console.log("trial for access")
     var name = req.body.points;
     var price = req.body.rId;
@@ -241,11 +252,11 @@ app.post('/philip', function(req, res) {
 
 });
 
-app.get('/login', function(req, res) {
+app.get('/login', function (req, res) {
     res.render("login.ejs")
 });
 
-app.get('/getRooms', function(req, res) {
+app.get('/getRooms', function (req, res) {
     Room.find((err, rms) => {
         console.log("getting rooms");
         res.send(rms);
@@ -254,7 +265,29 @@ app.get('/getRooms', function(req, res) {
 
 });
 
-app.get('/admin/getRooms', function(req, res) {
+app.post('/admin/login', async (req, res) => {
+
+    const user = await User.findOne({
+        email: req.body.email
+    });
+    if (!user) {
+        res.status(404).send("User with email or password not found")
+        return
+    }
+    console.log(`${req.body.password}  --- ${user.password}`)
+    bcrypt.compare(req.body.password, user.password, function (err, result) {
+        if (result) {
+            res.status(200).send({
+                user
+            })
+        } else {
+            res.status(404).send("User with email or password not found,")
+        }
+    })
+
+})
+
+app.get('/admin/getRooms', function (req, res) {
     Room.find((err, rms) => {
         console.log("getting rooms");
         res.send(rms);
@@ -263,7 +296,7 @@ app.get('/admin/getRooms', function(req, res) {
 
 });
 
-app.get('/admin/photo', function(req, res) {
+app.get('/admin/photo', function (req, res) {
     Photo.find((err, rms) => {
         res.send(rms);
 
@@ -271,7 +304,7 @@ app.get('/admin/photo', function(req, res) {
 
 });
 
-app.get('/admin/menu', function(req, res) {
+app.get('/admin/menu', function (req, res) {
     Menu.find((err, rms) => {
         res.send(rms);
 
@@ -279,7 +312,7 @@ app.get('/admin/menu', function(req, res) {
 
 });
 
-app.get('/admin/service', async(req, res) => {
+app.get('/admin/service', async (req, res) => {
 
     if (req.query.id) {
         const service = await Service.findById(req.query.id);
@@ -303,7 +336,7 @@ app.get('/admin/service', async(req, res) => {
 
 
 
-app.post('/loginPost', function(req, res) {
+app.post('/loginPost', function (req, res) {
     console.log(req.body);
     var username = req.body.loginname;
     var password = req.body.password;
@@ -321,7 +354,7 @@ app.post('/loginPost', function(req, res) {
     }
 })
 
-app.post('/upload', upload.single('img'), function(req, res, next) {
+app.post('/upload', upload.single('img'), function (req, res, next) {
     // req.file is the `avatar` file
     console.log(req.body)
     var name = req.body.name;
@@ -340,7 +373,7 @@ app.post('/upload', upload.single('img'), function(req, res, next) {
         complements: complements,
         img: src
     });
-    room.save(function(err) {
+    room.save(function (err) {
         Room.find((err, rooms) => {
             if (err) return console.error(err);
 
@@ -354,19 +387,19 @@ app.post('/upload', upload.single('img'), function(req, res, next) {
     });
 
 });
-var savefile = function(data) {
+var savefile = function (data) {
     var fs = require('fs');
 
 
 
-    fs.writeFile('mynewfile3.jpg', data, function(err) {
+    fs.writeFile('mynewfile3.jpg', data, function (err) {
         if (err) throw err;
         console.log('Replaced!');
     })
 }
 
 
-app.post('/admin/saveRoom1', upload.single('img'), async function(req, res, next) {
+app.post('/admin/saveRoom1', upload.single('img'), async function (req, res, next) {
     try {
         console.log(req.body.id);
         var name = req.body.name;
@@ -401,7 +434,7 @@ app.post('/admin/saveRoom1', upload.single('img'), async function(req, res, next
             }
             var room = new Room(detail);
 
-            room.save(function(err) {
+            room.save(function (err) {
                 if (err) {
                     res.status(500).send(err.responseJSON.message);
                     return;
@@ -463,7 +496,7 @@ app.post('/admin/saveRoom1', upload.single('img'), async function(req, res, next
 
 });
 
-app.post('/admin/photo', upload.single('img'), async function(req, res, next) {
+app.post('/admin/photo', upload.single('img'), async function (req, res, next) {
     // req.file is the `avatar` file
 
     try {
@@ -487,7 +520,7 @@ app.post('/admin/photo', upload.single('img'), async function(req, res, next) {
             }
             var photo = new Photo(detail);
 
-            photo.save(function(err) {
+            photo.save(function (err) {
                 if (err) {
                     res.status(500).send(err.responseJSON.message);
                     return;
@@ -546,7 +579,7 @@ app.post('/admin/photo', upload.single('img'), async function(req, res, next) {
 });
 
 
-app.post('/admin/service', upload.array('img', 10), async function(req, res, next) {
+app.post('/admin/service', upload.array('img', 10), async function (req, res, next) {
 
     try {
 
@@ -578,7 +611,7 @@ app.post('/admin/service', upload.array('img', 10), async function(req, res, nex
             }
             var service = new Service(detail);
 
-            service.save(function(err) {
+            service.save(function (err) {
                 if (err) {
                     res.status(500).send(err.responseJSON.message);
                     return;
@@ -629,7 +662,7 @@ app.post('/admin/service', upload.array('img', 10), async function(req, res, nex
 
 });
 
-app.post('/admin/menu', upload.array('img', 10), async function(req, res, next) {
+app.post('/admin/menu', upload.array('img', 10), async function (req, res, next) {
 
     try {
         console.log(req.body)
@@ -647,7 +680,7 @@ app.post('/admin/menu', upload.array('img', 10), async function(req, res, next) 
             }
 
             var service = new Menu(req.body);
-            service.save(function(err) {
+            service.save(function (err) {
                 if (err) {
                     res.status(500).send(err);
                     return;
@@ -692,7 +725,7 @@ app.post('/admin/menu', upload.array('img', 10), async function(req, res, next) 
 
 });
 
-app.post('/saveNews', upload.single('img'), function(req, res, next) {
+app.post('/saveNews', upload.single('img'), function (req, res, next) {
     // req.file is the `avatar` file
     console.log(req.body)
     var news = {};
@@ -702,7 +735,7 @@ app.post('/saveNews', upload.single('img'), function(req, res, next) {
     news.src = req.file.originalname;
 
     var room = new News(news);
-    room.save(function(err) {
+    room.save(function (err) {
         if (err) {
             console.log(err)
         }
@@ -712,7 +745,7 @@ app.post('/saveNews', upload.single('img'), function(req, res, next) {
 
 });
 
-app.post('/header', upload.single('img'), function(req, res, next) {
+app.post('/header', upload.single('img'), function (req, res, next) {
     // req.file is the `avatar` file
 
 
@@ -734,7 +767,7 @@ app.post('/header', upload.single('img'), function(req, res, next) {
     // req.body will hold the text fields, if there were any
 });
 
-app.post('/h2', upload.single('img'), function(req, res, next) {
+app.post('/h2', upload.single('img'), function (req, res, next) {
     // req.file is the `avatar` file
     var title = req.body.title;
     var details = req.body.details;
@@ -751,7 +784,7 @@ app.post('/h2', upload.single('img'), function(req, res, next) {
     // req.body will hold the text fields, if there were any
 });
 
-app.post('/admin/hf', async(req, res) => {
+app.post('/admin/hf', async (req, res) => {
     console.log(req.body)
     Itab.deleteMany({})
     const result = new Itab(req.body).save()
@@ -768,7 +801,7 @@ app.get("/dash", (req, res) => {
 });
 
 app.get("/admin/getUsers", (req, res) => {
-    User.find({}, function(err, result) {
+    User.find({}, function (err, result) {
         if (err) {
             console.log(err.message);
             res.send([])
@@ -779,13 +812,13 @@ app.get("/admin/getUsers", (req, res) => {
     })
 })
 
-app.post("/viewDetails", function(req, res) {
-    User.findById(req.body.sid, function(err, usr) {
+app.post("/viewDetails", function (req, res) {
+    User.findById(req.body.sid, function (err, usr) {
         if (err) {
             usr = {}
             console.log(err.message);
         } else {
-            Room.findById(req.body.rid, function(err, room) {
+            Room.findById(req.body.rid, function (err, room) {
                 res.send({
                     user: usr,
                     room: room
@@ -796,7 +829,7 @@ app.post("/viewDetails", function(req, res) {
 })
 
 app.get("/admin/ball", (req, res) => {
-    Booking.find({}, function(err, result) {
+    Booking.find({}, function (err, result) {
         if (err) {
             console.log(err.message)
         } else {
@@ -807,7 +840,7 @@ app.get("/admin/ball", (req, res) => {
 
 
 app.get("/admin/hfs", (req, res) => {
-    Itab.find({}, function(err, item) {
+    Itab.find({}, function (err, item) {
         if (err) {
             res.send({});
 
@@ -818,7 +851,7 @@ app.get("/admin/hfs", (req, res) => {
 
 });
 app.get("/admin/feedback", (req, res) => {
-    Feedback.find({}, function(err, item) {
+    Feedback.find({}, function (err, item) {
         if (err) {
             res.send({});
 
@@ -830,7 +863,7 @@ app.get("/admin/feedback", (req, res) => {
 });
 console.log("jasdhfk")
 
-app.post("/feedback", async(req, res) => {
+app.post("/feedback", async (req, res) => {
     try {
         const result = await new Feedback(req.body).save()
         res.status(200).send({
@@ -844,8 +877,8 @@ app.post("/feedback", async(req, res) => {
 })
 
 
-app.post("/admin/deleteRep", function(req, res) {
-    Feedback.findByIdAndRemove(req.body.id, function(err, ret) {
+app.post("/admin/deleteRep", function (req, res) {
+    Feedback.findByIdAndRemove(req.body.id, function (err, ret) {
         if (err) {
             console.log(err.message)
         }
@@ -856,11 +889,11 @@ app.post("/admin/deleteRep", function(req, res) {
 
 
 
-app.post("/admin/reply", function(req, res) {
+app.post("/admin/reply", function (req, res) {
     sendEmail(req.body.email, req.body.message, "salientke feedback repy");
     res.send("ok")
 })
-app.post("/token", function(req, res, next) {
+app.post("/token", function (req, res, next) {
     var stripe = require("stripe")("sk_test_A98yWXNGWXcQZBMc3DkXLi3d");
     let token = req.body.token;
     console.log(token)
@@ -869,7 +902,7 @@ app.post("/token", function(req, res, next) {
         currency: "usd",
         source: token, // obtained with Stripe.js
         description: "Booking room"
-    }, function(err, charge) {
+    }, function (err, charge) {
         if (err) {
 
             res.send("error")
@@ -879,7 +912,7 @@ app.post("/token", function(req, res, next) {
             var book = req.body.book;
             book.paid = 1;
             book.sid = charge._id;
-            new Booking(book).save(function(err, booking) {
+            new Booking(book).save(function (err, booking) {
                 if (err) {
                     console.log(err);
                 } else {
@@ -891,7 +924,7 @@ app.post("/token", function(req, res, next) {
                         $set: {
                             status: 'no'
                         }
-                    }, function(err, update) {
+                    }, function (err, update) {
                         if (err) {
 
                             console.log(err.message)
@@ -914,10 +947,10 @@ app.post("/token", function(req, res, next) {
     })
 });
 // user crud
-app.post("/createUser", async(req, res) => {
+app.post("/createUser", async (req, res) => {
     console.log(req.body)
     req.body.isAdmin = 0;
-    new User(req.body).save(function(err, result) {
+    new User(req.body).save(function (err, result) {
         if (err) {
             console.log(err)
             res.send({
@@ -935,8 +968,8 @@ app.post("/createUser", async(req, res) => {
 
 });
 
-app.get("/getEmployees", function(req, res) {
-    Employee.find({}, function(err, emp) {
+app.get("/getEmployees", function (req, res) {
+    Employee.find({}, function (err, emp) {
         if (err) {
             console.log(err.message);
             res.send([])
@@ -945,22 +978,29 @@ app.get("/getEmployees", function(req, res) {
     })
 });
 
-app.get("/createUser", async(req, res) => {
-    var data = {
-        firstname: "Admin",
-        lastname: "Royale",
-        isAdmin: 1,
-        email: "philmaxsnr@gmail.com",
-        phone: "0728148643",
-        password: bcrypt.hashSync("royaleadmin")
-    }
-    const result = new Employee(data).save();
-    if (result) {
-        res.status(200).send(result)
-        return
+app.get("/newadmin", async (req, res) => {
+    try {
+        var data = {
+            name: "Admin",
+            isAdmin: 1,
+            email: "philmaxsnr@gmail.com",
+            phone: "0728148643",
+            parking: 0,
+            password: bcrypt.hashSync("royaleadmin")
+        }
+        const result = await new User(data).save();
+        if (result) {
+            res.status(200).send(result)
+            return
+        }
+
+    } catch (error) {
+        res.status(500).send({
+            error
+        })
     }
 
-    res.status(500).send("Failed")
+
 
 });
 app.post("/saveEmployee", (req, res) => {
@@ -977,7 +1017,7 @@ app.post("/saveEmployee", (req, res) => {
         delete req.body["_id"]
         Employee.update(id, {
             $set: req.body
-        }, function(err, result) {
+        }, function (err, result) {
             if (err) {
                 console.log(err.message);
                 res.send({
@@ -994,7 +1034,7 @@ app.post("/saveEmployee", (req, res) => {
         })
 
     } else {
-        new Employee(req.body).save(function(err, result) {
+        new Employee(req.body).save(function (err, result) {
             if (err) {
                 console.log(err.message);
                 res.send({
@@ -1023,7 +1063,7 @@ app.post("/updateBooking", (req, res) => {
             _id: id
         }, {
             $set: req.body
-        }, function(err, update) {
+        }, function (err, update) {
             if (err) {
 
                 console.log(err.message)
@@ -1040,7 +1080,7 @@ app.post("/updateBooking", (req, res) => {
                     $set: {
                         status: status
                     }
-                }, function(err, update) {
+                }, function (err, update) {
                     if (err) {
 
                         console.log(err.message)
@@ -1074,7 +1114,7 @@ app.get("/cancelBooking", (req, res) => {
             $set: {
                 paid: 0
             }
-        }, function(err, update) {
+        }, function (err, update) {
             if (err) {
 
                 console.log(err.message)
@@ -1086,7 +1126,7 @@ app.get("/cancelBooking", (req, res) => {
                     $set: {
                         status: 'yes'
                     }
-                }, function(err, update) {
+                }, function (err, update) {
                     if (err) {
 
                         console.log(err.message)
@@ -1115,7 +1155,7 @@ app.post("/updateUser", (req, res) => {
             _id: id
         }, {
             $set: req.body.user
-        }, function(err, update) {
+        }, function (err, update) {
             if (err) {
 
                 console.log(err.message)
@@ -1134,10 +1174,10 @@ app.post("/deleteUser", (req, res) => {
     res.render('dash.ejs');
 
 });
-app.post("/admin/saveBanner", upload.single('img'), function(req, res, next) {
+app.post("/admin/saveBanner", upload.single('img'), function (req, res, next) {
     req.body.src = req.file.originalname;
     Iheader.deleteMany({});
-    new Iheader(req.body).save(function(err) {
+    new Iheader(req.body).save(function (err) {
         if (err) {
             console.log(err.message)
         } else {
@@ -1148,9 +1188,9 @@ app.post("/admin/saveBanner", upload.single('img'), function(req, res, next) {
 
 });
 
-app.post("/admin/saveWelcome", function(req, res, next) {
+app.post("/admin/saveWelcome", function (req, res, next) {
     console.log(req.body)
-    new I2(req.body).save(function(err) {
+    new I2(req.body).save(function (err) {
         if (err) {
             console.log(err.message)
         } else {
@@ -1161,7 +1201,7 @@ app.post("/admin/saveWelcome", function(req, res, next) {
 
 });
 
-app.post("/admin/deleteRoom", async(req, res) => {
+app.post("/admin/deleteRoom", async (req, res) => {
 
     try {
         const result = await Room.findByIdAndRemove(req.body.id);
@@ -1179,7 +1219,7 @@ app.post("/admin/deleteRoom", async(req, res) => {
     }
 });
 
-app.post("/admin/deletephoto", async(req, res) => {
+app.post("/admin/deletephoto", async (req, res) => {
 
     try {
         const result = await Photo.findByIdAndRemove(req.body.id);
@@ -1197,7 +1237,7 @@ app.post("/admin/deletephoto", async(req, res) => {
     }
 });
 
-app.post("/admin/deleteservice", async(req, res) => {
+app.post("/admin/deleteservice", async (req, res) => {
 
     try {
         const result = await Service.findByIdAndRemove(req.body.id);
@@ -1215,7 +1255,7 @@ app.post("/admin/deleteservice", async(req, res) => {
     }
 })
 
-app.post("/admin/deletephoto", async(req, res) => {
+app.post("/admin/deletephoto", async (req, res) => {
 
     try {
         const result = await Photo.findByIdAndRemove(req.body.id);
@@ -1233,7 +1273,7 @@ app.post("/admin/deletephoto", async(req, res) => {
     }
 });
 
-app.post("/admin/book", async(req, res) => {
+app.post("/admin/book", async (req, res) => {
 
     const data = req.body;
     try {
@@ -1247,16 +1287,16 @@ app.post("/admin/book", async(req, res) => {
             withpet: 0
         }).save();
 
-
-
         data.user = user._id;
         console.log(user._id)
-        const resultRoom = await Room.find({ _id: req.body.room })
+        const resultRoom = await Room.find({
+            _id: req.body.room
+        })
 
         if (!resultRoom) {
             res.status(500).send("room not found")
         }
-        data.amount = 10;
+        data.amount = resultRoom.price;
         console.log(data)
         const result = await new Booking(req.body).save();
         if (!result) {
@@ -1285,7 +1325,7 @@ app.post("/admin/book", async(req, res) => {
 
 
 
-app.post("/checkout", async(req, res) => {
+app.post("/checkout", async (req, res) => {
     const data = req.body;
     try {
         const result = await Booking.findById(data.bookingId);
@@ -1314,7 +1354,7 @@ app.post("/checkout", async(req, res) => {
     }
 });
 
-app.post("/checkroom", async(req, res) => {
+app.post("/checkroom", async (req, res) => {
     try {
         const result = await Room.find({
             nextFree: {
@@ -1351,7 +1391,7 @@ app.post("/loginUser", (req, res) => {
 
 
 
-app.post('/maxbooking', function(req, res) {
+app.post('/maxbooking', function (req, res) {
     sendEmail("philmaxsnr@gmail.com", JSON.stringify(req.body), "salientke feedback repy");
     res.send("ok")
 });
@@ -1365,8 +1405,8 @@ app.post('/contactmessage', function asyn(req, res) {
 
 
 //Start listening for requests
-var port = process.env.PORT || 7080;
-var server = app.listen(port, function() {
+var port = process.env.PORT || 80;
+var server = app.listen(port, function () {
 
     console.log("app runinng -p 7080");
 

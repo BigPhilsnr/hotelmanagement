@@ -214,16 +214,16 @@
 
                 var email = $('#email').val()
                 var password = $('#password').val();
-                $.post('loginx', {
+                $.post('login', {
                     email: email,
                     password: password
                 }, function(res) {
 
-                    if (res.success == 1) {
+                    if (res.user) {
                         document.getElementById("loader-wrapper").setAttribute("class",
                             "ng-hide");
 
-                        localStorage.setItem("user", JSON.stringify(res))
+                        localStorage.setItem("user", JSON.stringify(res.user))
                     } else {
                         alert("wrong credentials try again")
                     }
