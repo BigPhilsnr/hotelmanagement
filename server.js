@@ -87,7 +87,6 @@ app.get("/", (req, res) => {
 app.get("/app", async (req, res) => {
     console.log("updating app from github app 1")
     exec('sh me.sh');
-   
     res.status(200).send({ok:1});
 })
 
