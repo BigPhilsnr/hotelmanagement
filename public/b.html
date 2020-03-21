@@ -87,8 +87,8 @@
                 <th>id</th>
                 <th>Arrival</th>
                 <th>Depature</th>   
-                <th>room Id</th>
-                <th>User Id</th>        
+                <th>Name</th>
+                <th>Room</th>        
                 <th> Amount</th>    
                 <th>Status</th>
                 <th>Date</th>   
@@ -99,8 +99,8 @@
                    <td>{{booking._id| cut:true:4:' ...'}}</td> 
                    <td>{{booking.from | cut:true:10:' '}}</td> 
                    <td>{{booking.to | cut:true:10:' '}}</td>
-                   <td>{{booking.roomId | cut:true:4:' ...'}}</td> 
-                   <td>{{booking.userId | cut:true:4:' ...'}}</td> 
+                   <td>{{booking.name | cut:true:4:' ...'}}</td> 
+                   <td>{{booking.sid | cut:true:4:' ...'}}</td> 
                    <td>{{booking.amount}}</td> 
                    <td>{{booking.paid}}</td>  
                    <td>{{booking.date}}</td>

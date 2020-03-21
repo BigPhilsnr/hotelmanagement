@@ -87,14 +87,18 @@ app.get("/", (req, res) => {
 app.get("/app", async (req, res) => {
     console.log("updating app from github app 1")
     exec('sh me.sh');
-    res.status(200).send({ok:1});
+    res.status(200).send({
+        ok: 1
+    });
 })
 
 app.post("/app", async (req, res) => {
     console.log("updating app from github app 1 postx")
     exec('sh me.sh');
-    
-    res.status(200).send({ok:1});
+
+    res.status(200).send({
+        ok: 1
+    });
 })
 
 
@@ -1332,6 +1336,7 @@ app.post("/admin/book", async (req, res) => {
         if (!resultRoom) {
             res.status(500).send("room not found")
         }
+        req.body.sid =resultRoom.name
         data.amount = resultRoom.price;
         console.log(data)
         const result = await new Booking(req.body).save();
@@ -1343,7 +1348,6 @@ app.post("/admin/book", async (req, res) => {
             _id: data.roomId
         }, {
             $set: {
-                status: "Yes",
                 nextFree: data.to
             }
         }, {
@@ -1393,7 +1397,6 @@ app.post("/checkout", async (req, res) => {
 app.post("/checkroom", async (req, res) => {
     try {
         const result = await Room.find({
-
             status: "No"
         });
         res.status(200).send({
