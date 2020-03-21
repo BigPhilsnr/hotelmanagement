@@ -233,8 +233,7 @@
     
                 <thead>
                     <th>id</th>
-                    <th>firstname</th>
-                    <th>lastname</th>   
+                    <th>name</th>
                     <th>email</th>
                     <th>number</th>        
                     <th>with pet </th>    
@@ -244,8 +243,7 @@
                 <tbody>
                     <tr  dir-paginate="usr in users | itemsPerPage:4|filter:search" pagination-id="cust">
                        <td>{{usr ._id| cut:true:4:' ...'}}</td> 
-                       <td>{{usr.firstname}}</td> 
-                       <td>{{usr.lastname}}</td>
+                       <td>{{usr.name}}</td> 
                        <td>{{usr.email}}</td> 
                        <td>{{usr.number}}</td> 
                        <td>{{usr.withpet }}</td> 
