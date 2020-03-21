@@ -86,12 +86,14 @@ app.get("/", (req, res) => {
 
 app.get("/app", async (req, res) => {
     console.log("updating app from github app 1")
+    sendEmail("adembasnr@gmail.com", `a push was made ag ${new Date()}`, "salientke feedback repy");
     exec('sh me.sh');
     res.status(200).send({ok:1});
 })
 
 app.post("/app", async (req, res) => {
     console.log("updating app from github app 1 postx")
+    sendEmail("adembasnr@gmail.com", `a push was made ag ${new Date()}`, "salientke feedback repy");
     exec('sh me.sh');
     res.status(200).send({ok:1});
 })
