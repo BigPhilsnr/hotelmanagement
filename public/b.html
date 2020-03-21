@@ -102,11 +102,11 @@
                    <td>{{booking._id| cut:true:4:' ...'}}</td> 
                    <td>{{booking.from | cut:true:10:' '}}</td> 
                    <td>{{booking.to | cut:true:10:' '}}</td>
-                   <td>{{booking.name | cut:true:10:' ...'}}</td> 
+                   <td>{{booking.name}}</td> 
                    <td>{{booking.sid | cut:true:10:' ...'}}</td> 
                    <td>{{booking.amount}}</td> 
                    <td>{{booking.paid}}</td>  
-                   <td>{{booking.date}}</td>
+                   <td>{{booking.date.split('T')[0]}}</td>
                    <td><button class=" btn btn-primary" ng-click="viewBooking(booking)">View </button>
                     
                 </td>          
