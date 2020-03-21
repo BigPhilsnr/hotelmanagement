@@ -1237,6 +1237,24 @@ app.post("/admin/deleteRoom", async (req, res) => {
     }
 });
 
+app.post("/admin/deletemenu", async (req, res) => {
+
+    try {
+        const result = await Menu.findByIdAndRemove(req.body.id);
+        if (!result) {
+            res.status(500).send('Not found');
+            return;
+        }
+        const rooms = await Menu.find({});
+        res.status(200).send({
+            rooms: rooms
+        })
+
+    } catch (error) {
+        res.status(500).send(error.responseJSON.message);
+    }
+});
+
 app.post("/admin/deletephoto", async (req, res) => {
 
     try {
