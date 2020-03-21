@@ -47,8 +47,11 @@
                                     </div>
                                 </div>
                             <div>
-                            Booked by:{{user.firstname}}{{user.lastname}}
+                            Booked by {{currentBooking.name}}
+                            Email:{{currentBooking.email}}
+                            Phone:{{currentBooking.phone}}
                             <br>
+                        
                             Time:{{currentBooking.date}}
                             Expiry:{{currentBooking.to | cut:true:10:' '}}
                             <hr>
@@ -99,8 +102,8 @@
                    <td>{{booking._id| cut:true:4:' ...'}}</td> 
                    <td>{{booking.from | cut:true:10:' '}}</td> 
                    <td>{{booking.to | cut:true:10:' '}}</td>
-                   <td>{{booking.name | cut:true:4:' ...'}}</td> 
-                   <td>{{booking.sid | cut:true:4:' ...'}}</td> 
+                   <td>{{booking.name | cut:true:10:' ...'}}</td> 
+                   <td>{{booking.sid | cut:true:10:' ...'}}</td> 
                    <td>{{booking.amount}}</td> 
                    <td>{{booking.paid}}</td>  
                    <td>{{booking.date}}</td>
