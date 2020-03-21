@@ -101,6 +101,7 @@ app.post("/app", async (req, res) => {
 app.get("/control", (req, res) => {
     res.sendFile(__dirname + "public/admin.html")
 })
+
 app.get("/x", (req, res) => {
     Iheader.find((err, header) => {
         if (err) return console.error(err);
@@ -1000,7 +1001,7 @@ app.get("/newadmin", async (req, res) => {
         var data = {
             name: "Admin",
             isAdmin: 1,
-            email: "philmaxsnr@gmail.com",
+            email: "royaleadmin@gmail.com",
             phone: "0728148643",
             parking: 0,
             password: bcrypt.hashSync("royaleadmin")
