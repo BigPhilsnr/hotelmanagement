@@ -1393,9 +1393,7 @@ app.post("/checkout", async (req, res) => {
 app.post("/checkroom", async (req, res) => {
     try {
         const result = await Room.find({
-            nextFree: {
-                $gte: req.body.from
-            },
+
             status: "No"
         });
         res.status(200).send({
