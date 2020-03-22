@@ -130,21 +130,42 @@ app.get("/x", (req, res) => {
 });
 
 
+var createMail =function(room,name){
+    const content=
+    `<H3>Booking</H3>
+    <H4>Dear ${name},</H4>
+    <p>your booking request for ${room} has been recieved our staff will get in touch with you shortly to confirm you booking
+    thank you for choosing Royale Health Club
+    `
+}
+
+var createSignal =function(room,from, to){
+    const content=
+    `<H3>Booking</H3>
+    <p>A new booking has been made  for ${room} starting from ${from} to ${to}
+    `
+}
+
 var sendEmail = function (rec, body, subject) {
     'use strict';
     const nodemailer = require('nodemailer');
 
     nodemailer.createTestAccount((err, account) => {
         let transporter = nodemailer.createTransport({
-            service: 'gmail',
+            host: 'smtp.mail.yahoo.com',
+            port: 465,
+            service:'yahoo',
+            secure: false,
             auth: {
-                user: 'salientke@gmail.com', // generated ethereal user
-                pass: 'philip@ademba4' // generated ethereal password
-            }
+                user: 'systems.royale@yahoo.com', // generated ethereal user
+                pass: 'Philip@ademba4' // generated ethereal password
+            },
+            debug: false,
+            logger: true 
         });
 
         let mailOptions = {
-            from: 'salientke@gmail.com', // sender address
+            from: 'systems.royale@yahoo.com', // sender address
             to: rec, // list of receivers
             subject: subject, // Subject line
             text: 'Salient Guest house no reply', // plain text body
@@ -608,16 +629,18 @@ app.post('/admin/service', upload.array('img', 10), async function (req, res, ne
 
         var name = req.body.name;
         console.log(req.files)
-        const files = req.files.map(x => {
-            return x.originalname
-        })
-
+       
         console.log(files)
         if (!req.body.id) {
             if (!req.files) {
                 res.status(500).send("Image not set");
                 return;
             }
+
+            const files = req.files.map(x => {
+                return x.originalname
+            })
+    
 
             var src = req.files[0].originalname;
             var content = req.body.content;
@@ -654,13 +677,28 @@ app.post('/admin/service', upload.array('img', 10), async function (req, res, ne
             });
         } else {
 
-            var status = req.body.status;
             var content = req.body.content;
             var detail = {
                 name: name,
                 content: content,
+             //   images: files,
             }
 
+            if (!req.files) {
+                const files = req.files.map(x => {
+                    return x.originalname
+                })
+
+               detail.img = req.files[0].originalname;
+               detail.images=files;
+             }
+
+           
+            if (req.body.perks) {
+                const perks = req.body.perks.split(',');
+                detail.unique = perks
+            }
+            
             const result = await Service.update({
                 _id: req.body.id
             }, {
@@ -814,12 +852,6 @@ app.post('/admin/hf', async (req, res) => {
 
 
     // req.body will hold the text fields, if there were any
-});
-
-app.get("/dash", (req, res) => {
-
-    res.render('dash.ejs');
-
 });
 
 app.get("/admin/getUsers", (req, res) => {
