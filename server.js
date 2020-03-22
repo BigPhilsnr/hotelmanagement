@@ -130,18 +130,18 @@ app.get("/x", (req, res) => {
 });
 
 
-var createMail =function(room,name){
-    const content=
-    `<H3>Booking</H3>
+var createMail = function (room, name) {
+    const content =
+        `<H3>Booking</H3>
     <H4>Dear ${name},</H4>
     <p>your booking request for ${room} has been recieved our staff will get in touch with you shortly to confirm you booking
     thank you for choosing Royale Health Club
     `
 }
 
-var createSignal =function(room,from, to){
-    const content=
-    `<H3>Booking</H3>
+var createSignal = function (room, from, to) {
+    const content =
+        `<H3>Booking</H3>
     <p>A new booking has been made  for ${room} starting from ${from} to ${to}
     `
 }
@@ -154,14 +154,14 @@ var sendEmail = function (rec, body, subject) {
         let transporter = nodemailer.createTransport({
             host: 'smtp.mail.yahoo.com',
             port: 465,
-            service:'yahoo',
+            service: 'yahoo',
             secure: false,
             auth: {
                 user: 'systems.royale@yahoo.com', // generated ethereal user
                 pass: 'Philip@ademba4' // generated ethereal password
             },
             debug: false,
-            logger: true 
+            logger: true
         });
 
         let mailOptions = {
@@ -629,8 +629,7 @@ app.post('/admin/service', upload.array('img', 10), async function (req, res, ne
 
         var name = req.body.name;
         console.log(req.files)
-       
-        console.log(files)
+
         if (!req.body.id) {
             if (!req.files) {
                 res.status(500).send("Image not set");
@@ -640,7 +639,7 @@ app.post('/admin/service', upload.array('img', 10), async function (req, res, ne
             const files = req.files.map(x => {
                 return x.originalname
             })
-    
+
 
             var src = req.files[0].originalname;
             var content = req.body.content;
@@ -676,12 +675,10 @@ app.post('/admin/service', upload.array('img', 10), async function (req, res, ne
 
             });
         } else {
-
             var content = req.body.content;
             var detail = {
                 name: name,
-                content: content,
-             //   images: files,
+                content: content
             }
 
             if (!req.files) {
@@ -689,16 +686,16 @@ app.post('/admin/service', upload.array('img', 10), async function (req, res, ne
                     return x.originalname
                 })
 
-               detail.img = req.files[0].originalname;
-               detail.images=files;
-             }
+                detail.img = req.files[0].originalname;
+                detail.images = files;
+            }
 
-           
+
             if (req.body.perks) {
                 const perks = req.body.perks.split(',');
                 detail.unique = perks
             }
-            
+
             const result = await Service.update({
                 _id: req.body.id
             }, {
@@ -1368,7 +1365,7 @@ app.post("/admin/book", async (req, res) => {
         if (!resultRoom) {
             res.status(500).send("room not found")
         }
-        req.body.sid =resultRoom.name
+        req.body.sid = resultRoom.name
         data.amount = resultRoom.price;
         console.log(data)
         const result = await new Booking(req.body).save();
