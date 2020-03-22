@@ -675,6 +675,7 @@ app.post('/admin/service', upload.array('img', 10), async function (req, res, ne
 
             });
         } else {
+
             var content = req.body.content;
             var detail = {
                 name: name,
@@ -689,7 +690,6 @@ app.post('/admin/service', upload.array('img', 10), async function (req, res, ne
                 detail.img = req.files[0].originalname;
                 detail.images = files;
             }
-
 
             if (req.body.perks) {
                 const perks = req.body.perks.split(',');
