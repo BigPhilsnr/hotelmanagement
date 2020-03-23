@@ -130,19 +130,19 @@ app.get("/x", (req, res) => {
 });
 
 
-var createMail = function (room, name) {
+var createMail = function (room, name,from, to) {
     const content =
         `<H3>Booking</H3>
     <H4>Dear ${name},</H4>
-    <p>your booking request for ${room} has been recieved our staff will get in touch with you shortly to confirm you booking
+    <p>your booking request for ${room} from ${from} to ${to} has been recieved our staff will get in touch with you shortly to confirm you booking
     thank you for choosing Royale Health Club
     `
 }
 
-var createSignal = function (room, from, to) {
+var createSignal = function (room,name, from, to) {
     const content =
         `<H3>Booking</H3>
-    <p>A new booking has been made  for ${room} starting from ${from} to ${to}
+    <p>A new booking  from ${name} has been made  for ${room} starting from ${from} to ${to}
     `
 }
 
@@ -1153,9 +1153,6 @@ app.post("/updateBooking", (req, res) => {
 app.get("/cancelBooking", (req, res) => {
     var id = null;
     var rid = req.param('rid');
-
-
-
     if (rid) {
 
 
@@ -1220,11 +1217,7 @@ app.post("/updateUser", (req, res) => {
     }
 
 });
-app.post("/deleteUser", (req, res) => {
 
-    res.render('dash.ejs');
-
-});
 app.post("/admin/saveBanner", upload.single('img'), function (req, res, next) {
     req.body.src = req.file.originalname;
     Iheader.deleteMany({});
@@ -1382,6 +1375,8 @@ app.post("/admin/book", async (req, res) => {
         }, {
             new: true
         })
+
+       sendEmail("philmaxsnr@gmail.com",createMail(req.body.username,req.body.name,req.body.from,req.body.to))
 
         res.status(200).send({
             bookings: []
