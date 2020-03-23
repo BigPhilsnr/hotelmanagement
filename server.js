@@ -152,8 +152,6 @@ var sendEmail = function (rec, body, subject) {
 
     nodemailer.createTestAccount((err, account) => {
         let transporter = nodemailer.createTransport({
-            host: 'smtp.mail.gmail.com',
-            port: 465,
             service: 'gmail',
             secure: false,
             auth: {
