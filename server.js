@@ -142,6 +142,7 @@ var createMail = function (room, name,from, to) {
 var createSignal = function (room,name, from, to) {
     const content =
         `<H3>Booking</H3>
+        
     <p>A new booking  from ${name} has been made  for ${room} starting from ${from} to ${to}
     `
 }
@@ -156,7 +157,7 @@ var sendEmail = function (rec, body, subject) {
             secure: false,
             auth: {
                 user: 'royalehealthclubkaren@gmail.com', // generated ethereal user
-                pass: 'Philip@ademba4' // generated ethereal password
+                pass: 'Philip@ademba4' // g enerated ethereal password
             },
             debug: false,
             logger: true
