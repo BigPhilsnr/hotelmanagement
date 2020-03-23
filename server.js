@@ -164,7 +164,7 @@ var sendEmail = function (rec, body, subject) {
         });
 
         let mailOptions = {
-            from: 'systems.royale@yahoo.com', // sender address
+            from: 'royalehealthclubkaren@gmail.com', // sender address
             to: rec, // list of receivers
             subject: subject, // Subject line
             text: 'Salient Guest house no reply', // plain text body
