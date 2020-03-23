@@ -150,38 +150,41 @@ var createSignal = function (room,name, from, to) {
 var sendEmail = function (rec, body, subject) {
     'use strict';
     const nodemailer = require('nodemailer');
-
-    nodemailer.createTestAccount((err, account) => {
-        let transporter = nodemailer.createTransport({
-            host: "smtp.mailtrap.io",
-            port: 2525,
-            auth: {
-                user: 'rch', // generated etheral user
-                pass: 'Philip@ademba4' // g enerated ethereal password
-            },
-            debug: false,
-            logger: true
-        });
-
-        let mailOptions = {
-            from: 'royalehealthclubkaren@gmail.com', // sender address
-            to: rec, // list of receivers
-            subject: subject, // Subject line
-            text: 'Salient Guest house no reply', // plain text body
-            html: body // html body
-        };
-
-        // send mail with defined transport object
-        transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-                return console.log(error);
-            }
-            res.send("sent")
-            console.log('Message sent: %s', info.messageId);
-            // Preview only available when sending through an Ethereal account
-            console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-        });
+try {
+    let transporter = nodemailer.createTransport({
+        host: "smtp.mailtrap.io",
+        port: 2525,
+        auth: {
+            user: 'royalehealthclubkaren@gmail.com', // generated etheral user
+            pass: 'Philip@ademba4' // g enerated ethereal password
+        },
+        debug: false,
+        logger: true
     });
+
+    let mailOptions = {
+        from: 'royalehealthclubkaren@gmail.com', // sender address
+        to: rec, // list of receivers
+        subject: subject, // Subject line
+        text: 'Salient Guest house no reply', // plain text body
+        html: body // html body
+    };
+
+    // send mail with defined transport object
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.log(error);
+        }
+        res.send("sent")
+        console.log('Message sent: %s', info.messageId);
+        // Preview only available when sending through an Ethereal account
+        console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+    });
+} catch (error) {
+    console.log(error)
+}
+       
+ 
 
 }
 //routes
