@@ -152,13 +152,13 @@ var sendEmail = function (rec, body, subject) {
 
     nodemailer.createTestAccount((err, account) => {
         let transporter = nodemailer.createTransport({
-            host: 'smtp.mail.yahoo.com',
+            host: 'smtp.mail.gmail.com',
             port: 465,
-            service: 'yahoo',
+            service: 'gmail',
             secure: false,
             auth: {
-                user: 'systems.royale@yahoo.com', // generated ethereal user
-                pass: 'Philip@ademba3' // generated ethereal password
+                user: 'royalehealthclubkaren@gmail.com', // generated ethereal user
+                pass: 'Philip@ademba4' // generated ethereal password
             },
             debug: false,
             logger: true
