@@ -156,7 +156,7 @@ var sendEmail = function (rec, body, subject) {
             host: "smtp.mailtrap.io",
             port: 2525,
             auth: {
-                user: 'rch', // generated ethereal user
+                user: 'rch', // generated etheral user
                 pass: 'Philip@ademba4' // g enerated ethereal password
             },
             debug: false,
