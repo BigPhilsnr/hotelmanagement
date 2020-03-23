@@ -153,8 +153,8 @@ var sendEmail = function (rec, body, subject) {
 
     nodemailer.createTestAccount((err, account) => {
         let transporter = nodemailer.createTransport({
-            service: 'gmail',
-            secure: false,
+            host: "smtp.mailtrap.io",
+            port: 2525,
             auth: {
                 user: 'royalehealthclubkaren@gmail.com', // generated ethereal user
                 pass: 'Philip@ademba4' // g enerated ethereal password
