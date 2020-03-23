@@ -158,7 +158,7 @@ var sendEmail = function (rec, body, subject) {
             secure: false,
             auth: {
                 user: 'systems.royale@yahoo.com', // generated ethereal user
-                pass: 'Philip@ademba4' // generated ethereal password
+                pass: 'Philip@ademba3' // generated ethereal password
             },
             debug: false,
             logger: true
@@ -1376,7 +1376,7 @@ app.post("/admin/book", async (req, res) => {
             new: true
         })
 
-       sendEmail("philmaxsnr@gmail.com",createMail(req.body.username,req.body.name,req.body.from,req.body.to))
+       sendEmail("philmaxsnr@gmail.com",createMail(req.body.username,req.body.name,req.body.from,req.body.to),"new booking")
 
         res.status(200).send({
             bookings: []
