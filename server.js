@@ -155,7 +155,7 @@ try {
         host: "smtp.mailtrap.io",
         port: 2525,
         auth: {
-            user: 'royalehealthclubkaren@gmail.com', // generated etheral user
+            user: 'rch', // generated etheral user
             pass: 'Philip@ademba4' // g enerated ethereal password
         },
         debug: false,
@@ -174,6 +174,7 @@ try {
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             console.log(error);
+            return;
         }
        console.log(info)
     });
