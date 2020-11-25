@@ -19,8 +19,9 @@ var MenuSchema = mongoose.Schema({
         required: false
     },
     category: {
-        type: String,
-        required: false
+        type: Number,
+        required: false,
+        default:100,
     },
     date: {
         type: Date,
