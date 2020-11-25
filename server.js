@@ -130,58 +130,58 @@ app.get("/x", (req, res) => {
 });
 
 
-var createMail = function (room, name,from, to) {
+var createMail = function (room, name, from, to) {
     const content =
         `<H3>Booking</H3>
     <H4>Dear ${name},</H4>
     <p>your booking request for ${room} from ${from} to ${to} has been recieved our staff will get in touch with you shortly to confirm you booking
-    thank you for choosing Royale Health Club
-    `
+    thank you for choosing Royale Health Club`
+    return content;
 }
 
-var createSignal = function (room,name, from, to) {
+var createSignal = function (room, user, dates) {
     const content =
-        `<H3>Booking</H3>
-        
-    <p>A new booking  from ${name} has been made  for ${room} starting from ${from} to ${to}
+        `<H3> New Booking</H3>
+        <p>A new booking  from ${user.name} (${user.email}) has been made  for ${room.name} starting from ${date.from} to ${dates.to}
     `
+    return content
 }
 
 var sendEmail = function (rec, body, subject) {
     'use strict';
     const nodemailer = require('nodemailer');
-try {
-    let transporter = nodemailer.createTransport({
-        host: "smtp.mailtrap.io",
-        port: 2525,
-        auth: {
-            user: 'rch', // generated etheral user
-            pass: 'Philip@ademba4' // g enerated ethereal password
-        },
-        debug: false,
-        logger: true
-    });
+    try {
+        let transporter = nodemailer.createTransport({
+            host: "smtp.ethereal.email",
+            port: 587,
+            secure:false,
+            auth: {
+                user: 'bo.dicki82@ethereal.email',
+                pass: 'FMUbnpdTYNhsTQ8GSs'
+            },
+            debug: false,
+            logger: true
+        });
 
-    let mailOptions = {
-        from: 'royalehealthclubkaren@gmail.com', // sender address
-        to: rec, // list of receivers
-        subject: subject, // Subject line
-        text: 'Salient Guest house no reply', // plain text body
-        html: body // html body
-    };
 
-    // send mail with defined transport object
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            console.log(error);
-        }
-       console.log(info)
-    });
-} catch (error) {
-    console.log(error)
-}
-       
- 
+        let mailOptions = {
+            from: 'Royalehealthclubkaren system', // sender address
+            to: rec, // list of receivers
+            subject: subject, // Subject line
+            text: 'Salient Guest house no reply', // plain text body
+            html: body // html body
+        };
+
+        // send mail with defined transport object
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.log(error);
+            }
+            console.log(info)
+        });
+    } catch (error) {
+        console.log(error)
+    }
 
 }
 //routes
@@ -1334,6 +1334,10 @@ app.post("/admin/deletephoto", async (req, res) => {
     }
 });
 
+app.get('/trybook', async (req, res) => {
+    sendEmail("philmaxsnr@gmail.com", createMail("Philip", "Ademba", "philmaxsnr@gamil.com", "adembasnr@gmail.com"), "new booking")
+})
+
 app.post("/admin/book", async (req, res) => {
 
     const data = req.body;
@@ -1375,7 +1379,7 @@ app.post("/admin/book", async (req, res) => {
             new: true
         })
 
-       sendEmail("philmaxsnr@gmail.com",createMail(req.body.username,req.body.name,req.body.from,req.body.to),"new booking")
+        sendEmail(req.body.email, createSignal(room, user,data), "New booking")
 
         res.status(200).send({
             bookings: []
