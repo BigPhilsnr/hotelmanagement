@@ -399,13 +399,12 @@ app.get('/admin/photo', function (req, res) {
 
 });
 
-app.get('/admin/menu', function (req, res) {
-    Menu.find((err, rms) => {
-        res.send(rms);
-
-    }).sort({
-        'category': 1
-    });
+app.get('/admin/menu', async (req, res) => {
+    const menuItems = Menu.find()
+        .sort({
+            'category': 1
+        });
+    res.send(menuItems);
 
 });
 
