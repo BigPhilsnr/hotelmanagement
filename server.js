@@ -403,6 +403,8 @@ app.get('/admin/menu', function (req, res) {
     Menu.find((err, rms) => {
         res.send(rms);
 
+    }).sort({
+        'category': 1
     });
 
 });
