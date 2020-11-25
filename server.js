@@ -400,7 +400,7 @@ app.get('/admin/photo', function (req, res) {
 });
 
 app.get('/admin/menu', async (req, res) => {
-    const menuItems = Menu.find()
+    const menuItems = await Menu.find()
         .sort({
             'category': 1
         });
