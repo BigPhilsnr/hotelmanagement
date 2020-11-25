@@ -139,10 +139,63 @@ var createMail = function (room, name, from, to) {
     return content;
 }
 
-var createSignal = function (room, user, dates) {
+var createSignal = function (room, data) {
     const content =
-        `<H3> New Booking</H3>
-        <p>A new booking  from ${user.name} (${user.email}) has been made  for ${room.name} starting from ${date.from} to ${dates.to}
+        `
+        <style>
+table, th, td {
+  border: 1px solid black;
+  te
+}
+
+</style>
+        <H3> New Booking</H3>
+      <p> A new Booking has been made with the details below </p>
+
+    <table style="width:100%">
+        <tr>
+            <th>Room</th>
+            <th>${room.name}</th>
+            
+        </tr>
+        
+        <tr>
+            <td>User</td>
+            <td> ${data.name}</td>
+           
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>${data.email}, </td>
+            
+        </tr>
+
+        <tr>
+            <td>Phone</td>
+            <td>${data.phone}, </td>
+         </tr>
+
+         <tr>
+         <td>From</td>
+         <td>${data.from}, </td>
+      </tr>
+
+      <tr>
+      <td>To</td>
+      <td>${data.to}, </td>
+
+   </tr>
+
+   <tr>
+   <td>Children</td>
+   <td>${data.children}, </td>
+</tr>
+<tr>
+<td>Adults</td>
+<td>${data.adults}, </td>
+</tr>
+        
+    </table>
     `
     return content
 }
@@ -154,7 +207,7 @@ var sendEmail = function (rec, body, subject) {
         let transporter = nodemailer.createTransport({
             host: "smtp.ethereal.email",
             port: 587,
-            secure:false,
+            secure: false,
             auth: {
                 user: 'bo.dicki82@ethereal.email',
                 pass: 'FMUbnpdTYNhsTQ8GSs'
@@ -165,7 +218,7 @@ var sendEmail = function (rec, body, subject) {
 
 
         let mailOptions = {
-            from: 'Royalehealthclubkaren system', // sender address
+            from: '"Royale Health Club System" <royalehealthclubkaren@gmail.com>', // sender address
             to: rec, // list of receivers
             subject: subject, // Subject line
             text: 'Salient Guest house no reply', // plain text body
@@ -1354,13 +1407,13 @@ app.post("/admin/book", async (req, res) => {
 
         data.user = user._id;
         console.log(user._id)
-        const resultRoom = await Room.find({
-            _id: req.body.room
-        })
+        let resultRoom = await Room.findById(req.body.room)
+        console.log(resultRoom._doc)
 
         if (!resultRoom) {
             res.status(500).send("room not found")
         }
+        resultRoom = resultRoom._doc
         req.body.sid = resultRoom.name
         data.amount = resultRoom.price;
         console.log(data)
@@ -1379,7 +1432,7 @@ app.post("/admin/book", async (req, res) => {
             new: true
         })
 
-        sendEmail(req.body.email, createSignal(room, user,data), "New booking")
+        sendEmail(req.body.email, createSignal(resultRoom, data), "New booking")
 
         res.status(200).send({
             bookings: []
