@@ -401,9 +401,9 @@ app.get('/admin/photo', function (req, res) {
 
 app.get('/admin/menu', async (req, res) => {
     const menuItems = await Menu.find()
-        // .sort({
-        //     'category': 1
-        // });
+        .sort({
+            'category': 1
+        });
     res.send(menuItems);
 
 });
