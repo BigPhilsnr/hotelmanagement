@@ -103,7 +103,7 @@
                    <td>{{booking.from | cut:true:10:' '}}</td> 
                    <td>{{booking.to | cut:true:10:' '}}</td>
                    <td>{{booking.name}}</td> 
-                   <td>{{booking.sid | cut:true:10:' ...'}}</td> 
+                   <td>{{booking.sid | cut:true:100:' ...'}}</td> 
                    <td>{{booking.amount}}</td> 
                    <td>{{booking.paid}}</td>  
                    <td>{{booking.date.split('T')[0]}}</td>
