@@ -145,7 +145,7 @@ var createSignal = function (room, data) {
         <style>
 table, th, td {
   border: 1px solid black;
-  te
+
 }
 
 </style>
@@ -933,7 +933,11 @@ app.post("/viewDetails", function (req, res) {
 })
 
 app.get("/admin/ball", (req, res) => {
-    Booking.find({}, function (err, result) {
+    Booking.find({}, null, {
+        sort: {
+            date: -1
+        }
+    }, function (err, result) {
         if (err) {
             console.log(err.message)
         } else {
