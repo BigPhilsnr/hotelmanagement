@@ -4,7 +4,8 @@ var MenuSchema = mongoose.Schema({
 
     unit: {
         type: String,
-        required: true
+        required: false,
+        default:1
     },
     img:{
         type:String,
@@ -12,7 +13,8 @@ var MenuSchema = mongoose.Schema({
     },
     price: {
         type: Number,
-        required: true
+        required: false,
+        default:1
     },
     name: {
         type: String,
@@ -29,7 +31,7 @@ var MenuSchema = mongoose.Schema({
     },
     available: {
         type: Number,
-        required:true,
+        required:false,
         default:1
     },
     content:{
