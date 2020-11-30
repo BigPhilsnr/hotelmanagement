@@ -96,8 +96,7 @@
                         <th>Depature</th>
                         <th>Name</th>
                         <th>Room</th>
-                        <th> Amount</th>
-                        <th>Status</th>
+                       
                         <th>Date</th>
                         <th>Operations</th>
                     </thead>
@@ -108,8 +107,6 @@
                             <td>{{booking.to | cut:true:10:' '}}</td>
                             <td>{{booking.name}}</td>
                             <td>{{booking.sid | cut:true:100:' ...'}}</td>
-                            <td>{{booking.amount}}</td>
-                            <td>{{booking.paid}}</td>
                             <td>{{booking.date.split('T')[0]}}</td>
                             <td><button class=" btn btn-primary" ng-click="viewBooking(booking)">View </button>
 
