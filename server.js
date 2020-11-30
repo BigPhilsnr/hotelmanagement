@@ -906,6 +906,7 @@ app.post('/admin/hf', async (req, res) => {
 
 app.get("/admin/getUsers", (req, res) => {
     User.find({}, function (err, result) {
+        result = result.reverse()
         if (err) {
             console.log(err.message);
             res.send([])
