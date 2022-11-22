@@ -30,7 +30,7 @@
     "nodemailer": "^4.7.0",
     "nodemailer-express-handlebars": "^3.0.0",
     "simple-git": "^1.132.0",
-    "socket.io": "^1.7.4",
+    "socket.io": "^4.5.3",
     "stripe": "^4.23.2"
   }
 }
